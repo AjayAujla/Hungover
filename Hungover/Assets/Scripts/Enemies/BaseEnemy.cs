@@ -62,12 +62,6 @@ public class BaseEnemy : MonoBehaviour {
 		this.transform.Translate(this.direction * 2.0f * Time.deltaTime);
 	}
 
-	void AnimateCharacter () {
-		if(direction == Vector3.up) {
-			moving_up = true;
-		}
-	}
-
 	// Prevents character from walking outside of the viewport
 	void LimitPosition() {
 		// Get current position
@@ -94,6 +88,7 @@ public class BaseEnemy : MonoBehaviour {
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
 			this.direction = newDirection;
+			animator.SetInteger("move_direction", directionsIdx);
 
 		}
 
