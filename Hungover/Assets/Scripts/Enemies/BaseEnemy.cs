@@ -11,6 +11,7 @@ public class BaseEnemy : MonoBehaviour {
 
 	[SerializeField]
 	float speed;
+	bool isDancing;
 
 	// limiting character's movement by Camera's viewport coordinates
 	private float minX, maxX, minY, maxY;
