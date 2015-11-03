@@ -81,7 +81,7 @@ public class BaseEnemy : MonoBehaviour {
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
 			this.direction = newDirection;
-			mAnimator.SetInteger("move_direction", directionsIdx);
+			mAnimator.SetInteger("move_direction", directionsIdx + 1);
 		}
 
 	}
