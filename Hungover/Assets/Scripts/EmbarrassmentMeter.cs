@@ -22,13 +22,25 @@ public class EmbarrassmentMeter : MonoBehaviour {
     }
 	
 	void Update () {
-
+		Image embarrassmentMeterImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[1];
+		if(embarrassmentMeterSlider.value <= 1 && embarrassmentMeterSlider.value >= 0.8) {
+			embarrassmentMeterImage.color = Color.green;
+		} else if(embarrassmentMeterSlider.value < 0.8 && embarrassmentMeterSlider.value >= 0.4) {
+			embarrassmentMeterImage.color = Color.yellow;
+		} else {
+			embarrassmentMeterImage.color = Color.red;
+		}
 	}
 
     private bool embarrassmentMeterFilled()
     {
         return this.embarrassmentMeterSlider.value >= this.embarrassmentMeterSlider.maxValue;
     }
+
+	public void setEmbarrassment(float value)
+	{
+		this.embarrassmentMeterSlider.value = value;
+	}
 
     public void increaseEmbarrassment(float value)
     {
