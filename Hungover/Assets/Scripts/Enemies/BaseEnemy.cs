@@ -7,11 +7,11 @@ public class BaseEnemy : MonoBehaviour {
 	Vector3 direction;
 	Vector3[] directions = { Vector3.up, Vector3.right, Vector3.down, Vector3.left };
 
-	Animator animator;
-	Animation animation;
-	// Will hold WalkUp, WalkDown, Walk Left and WalkRight clips
-	// Will later hold clips for dancing animations, etc
-	AnimationClip[] animationClips;
+	Animator mAnimator;
+
+	[SerializeField]
+	float speed;
+	bool isDancing;
 
 	// limiting character's movement by Camera's viewport coordinates
 	private float minX, maxX, minY, maxY;
@@ -27,17 +27,8 @@ public class BaseEnemy : MonoBehaviour {
 		maxX = topCorner.x;
 		minY = bottomCorner.y;
 		maxY = topCorner.y;
-
-		animationClips = new AnimationClip[5];
-		animationClips[1] = new AnimationClip();
-		animationClips[1].name = "Walk_Right";
-
-		AnimationCurve animationCurve = new AnimationCurve();
-		Keyframe keyFrame = new Keyframe();
-
-		animator = GetComponent<Animator>();
-		animation = GetComponent<Animation>();
-
+		
+		mAnimator = GetComponent<Animator>();
 
 	}
 
@@ -49,6 +40,8 @@ public class BaseEnemy : MonoBehaviour {
 		int directionsIdx = Random.Range(0, 4);
 		this.direction = directions[directionsIdx];
 
+		speed = 2.0f;
+
 	}
 	
 	// Update is called once per frame
@@ -59,7 +52,7 @@ public class BaseEnemy : MonoBehaviour {
 	}
 
 	void MoveCharacter () {
-		this.transform.Translate(this.direction * 2.0f * Time.deltaTime);
+		this.transform.Translate(this.direction * speed * Time.deltaTime);
 	}
 
 	// Prevents character from walking outside of the viewport
@@ -88,8 +81,7 @@ public class BaseEnemy : MonoBehaviour {
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
 			this.direction = newDirection;
-			animator.SetInteger("move_direction", directionsIdx);
-
+			mAnimator.SetInteger("move_direction", directionsIdx);
 		}
 
 	}

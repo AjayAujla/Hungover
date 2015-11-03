@@ -3,21 +3,19 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    enum MovementDirection
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
 
+	/***************************************
+	 * 
+	 *	Animation States:
+	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
+	 *	2 = Walk Right		6 = Run Right		10 = Dance move 2
+	 *	3 = Walk Down		7 = Run Down		11 = Dance move 3
+	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
+	 *
+	 ****************************************/
+
+	[SerializeField]
     public float speed;
-
-    private const string kIdle = "Idle";
-    private const string kUp = "Up";
-    private const string kDown = "Down";
-    private const string kRight = "Right";
-    private const string kLeft = "Left";
 
     private Animator mAnimator;
 
@@ -28,59 +26,38 @@ public class Player : MonoBehaviour
 
 	void Update ()
     {
-        Movement();
+        MoveCharacter();
 	}
 
-    void Movement()
+	void MoveCharacter()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            SetWalking(MovementDirection.Right);
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
-        }
+		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
+		
+		Vector2 direction = new Vector2(h, v);
+		transform.Translate(direction * speed * Time.deltaTime);
 
-        else if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            SetWalking(MovementDirection.Left);
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
-
-        else if (Input.GetAxisRaw("Vertical") > 0)
-        {
-            SetWalking(MovementDirection.Up);
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
-        }
-
-        else if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            SetWalking(MovementDirection.Down);
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
-        }
-
-        else
-        {
-            SetIdle();
-        }
+		SetAnimation(direction);	   
     }
 
-    void SetWalking(MovementDirection direction)
+    void SetAnimation(Vector2 direction)
     {
-        mAnimator.SetBool(direction.ToString(), true);
-        mAnimator.SetBool(kIdle, false);
+		int animationIdx = 0;
+
+		if(direction.y > 0.0f) animationIdx = 1;		// Up
+		else if(direction.x > 0.0f) animationIdx = 2;	// Right
+		else if(direction.y < 0.0f) animationIdx = 3;	// Down
+		else if(direction.x < 0.0f) animationIdx = 4;	// Left
+		else { mAnimator.Play("Character_Idle"); }
+
+		if(direction != Vector2.zero && Input.GetButton("Run")) {
+			animationIdx += 4;	// Will be in Run range
+			speed = 3;
+		} else {
+			speed = 2;
+		}
+
+		mAnimator.SetInteger("move_direction", animationIdx);
     }
 
-    void SetIdle()
-    {
-        mAnimator.SetBool(kIdle, true);
-        ResetMovementTriggers();
-    }
-
-    void ResetMovementTriggers()
-    {
-        mAnimator.SetBool(kUp, false);
-        mAnimator.SetBool(kDown, false);
-        mAnimator.SetBool(kRight, false);
-        mAnimator.SetBool(kLeft, false);
-    }
 }
