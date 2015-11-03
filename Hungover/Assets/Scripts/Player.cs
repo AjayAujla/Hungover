@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
 
-	/***************************************
+	/********************************************************************
 	 * 
 	 *	Animation States:
 	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 	 *	3 = Walk Down		7 = Run Down		11 = Dance move 3
 	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
 	 *
-	 ****************************************/
+	 ********************************************************************/
 
 	[SerializeField]
     public float speed;

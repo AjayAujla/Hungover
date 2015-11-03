@@ -2,15 +2,25 @@
 using System.Collections;
 
 public class BaseEnemy : MonoBehaviour {
-
+	
+	/********************************************************************
+	 * 
+	 *	Animation States:
+	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
+	 *	2 = Walk Right		6 = Run Right		10 = Dance move 2
+	 *	3 = Walk Down		7 = Run Down		11 = Dance move 3
+	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
+	 *
+	 ********************************************************************/
 
 	Vector3 direction;
-	Vector3[] directions = { Vector3.up, Vector3.right, Vector3.down, Vector3.left };
+	Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
 
 	Animator mAnimator;
+	AudioSource PartyMusic;
 
 	[SerializeField]
-	float speed;
+	public float speed;
 	bool isDancing;
 
 	// limiting character's movement by Camera's viewport coordinates
@@ -29,6 +39,7 @@ public class BaseEnemy : MonoBehaviour {
 		maxY = topCorner.y;
 		
 		mAnimator = GetComponent<Animator>();
+		PartyMusic = (AudioSource)GameObject.Find ("PartyMusic").GetComponents<AudioSource>()[0];
 
 	}
 
@@ -41,12 +52,25 @@ public class BaseEnemy : MonoBehaviour {
 		this.direction = directions[directionsIdx];
 
 		speed = 2.0f;
+		isDancing = false;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		MoveCharacter();
+
+		if(PartyMusic.isPlaying) {
+			if(!isDancing) {
+				isDancing = true;
+				DanceCharacter();
+			}
+		} else {
+			isDancing = false;
+			MoveCharacter();
+		}
+
+		mAnimator.SetBool("is_dancing", isDancing);
+
 		ChangeDirection ();
 		LimitPosition ();
 	}
@@ -55,8 +79,13 @@ public class BaseEnemy : MonoBehaviour {
 		this.transform.Translate(this.direction * speed * Time.deltaTime);
 	}
 
+	void DanceCharacter () {
+		int dance_move = Random.Range(9, 12);	// will generate 9, 10, or 11
+		mAnimator.SetInteger("move_direction", dance_move);
+	}
+
 	// Prevents character from walking outside of the viewport
-	void LimitPosition() {
+	void LimitPosition () {
 		// Get current position
 		Vector3 pos = transform.position;
 		
