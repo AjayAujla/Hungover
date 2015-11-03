@@ -19,12 +19,27 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 	
-	protected class Room 
+	public class Room 
 	{
 		public int widthRoom;
 		public int heightRoom;
 		public int xRoomPosition;
 		public int yRoomPosition;
+		
+		public int xEnterPosition;
+		public int yEnterPosition;
+		public int xExitPosition;
+		public int yExitPosition;
+		
+		public int xCenterPos
+		{
+			get {return xRoomPosition + (widthRoom/2);}
+		}
+		
+		public int yCenterPos
+		{
+			get {return yRoomPosition + (heightRoom/2);}
+		}
 		
 		public bool CollidesWith(Room otherRoom)
 		{
@@ -54,16 +69,18 @@ public class BoardManager : MonoBehaviour {
     public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
 	public Count enemyCount = new Count (5, 10);
     public GameObject exit;                                         //Prefab to spawn for exit.
+	public GameObject enter;                                         //Prefab to spawn for enter.
     public GameObject[] floorTiles;                                 //Array of floor prefabs.
     public GameObject[] wallTiles;                                  //Array of wall prefabs.
     public GameObject[] foodTiles;                                  //Array of food prefabs.
     public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
     public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
+	public GameObject player;										//Player prefab.
 	
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
 	
-	List<Room> roomsList = new List<Room>();
+	public List<Room> roomsList = new List<Room>();
 
 	
 	void InitialiseList () //Clears our list gridPositions and prepares it to generate a new board.
@@ -116,6 +133,11 @@ public class BoardManager : MonoBehaviour {
 				}
 			}	
 		}
+		
+		//Instantiate enter and exit tiles in the rooms.
+		SpawnDoors();
+		
+		ConnectRooms();
 	}
 	
 	bool RoomCollides(Room r1)
@@ -129,6 +151,60 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		return false;	
+	}
+	
+	void SpawnDoors()
+	{
+		foreach(Room r in roomsList)
+		{
+			r.xEnterPosition = r.xRoomPosition + 1;
+			r.yEnterPosition = r.yRoomPosition + 1;
+			r.xExitPosition = r.xRoomPosition + r.widthRoom - 1;
+			r.yExitPosition = r.yRoomPosition + r.heightRoom - 1;
+			
+			Instantiate (enter, new Vector3 (r.xEnterPosition, r.yEnterPosition, 0f), Quaternion.identity);
+			Instantiate (exit, new Vector3 (r.xExitPosition, r.yExitPosition, 0f), Quaternion.identity);
+		}
+		
+	}
+	
+	void ConnectRooms()
+	{
+		for(int i = 0; i < roomsList.Count - 1; i++)
+		{
+			int xPath = roomsList[i].xCenterPos;
+			int yPath = roomsList[i].yCenterPos;
+			
+			while (xPath != roomsList[i+1].xCenterPos)
+			{
+				Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+				
+				if(xPath < roomsList[i+1].xCenterPos)
+				{
+					xPath++;
+				}
+				
+				else 
+				{
+					xPath--;
+				}
+			}
+			
+			while (yPath != roomsList[i+1].yCenterPos)
+			{
+				Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+				
+				if(yPath < roomsList[i+1].yCenterPos)
+				{
+					yPath++;
+				}
+				
+				else 
+				{
+					yPath--;
+				}
+			}
+		}	
 	}
 	
 	Vector3 RandomPosition () //RandomPosition returns a random position within a generated room.
@@ -168,6 +244,9 @@ public class BoardManager : MonoBehaviour {
 		//Reset our list of gridpositions.
 		InitialiseList ();
 		
+		//Instantiates Player.
+		Instantiate (player, new Vector3 (roomsList[0].xRoomPosition + 1, roomsList[0].yRoomPosition + 1, 0f), Quaternion.identity);
+		
 		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
 		
@@ -177,8 +256,6 @@ public class BoardManager : MonoBehaviour {
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);
 		
-		//Instantiate the exit tile in the upper right hand corner of our game board
-		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
 	}
 
 
