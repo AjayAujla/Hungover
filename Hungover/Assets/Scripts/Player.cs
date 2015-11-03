@@ -3,21 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    enum MovementDirection
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
+	[SerializeField]
     public float speed;
-
-    private const string kIdle = "Idle";
-    private const string kUp = "Up";
-    private const string kDown = "Down";
-    private const string kRight = "Right";
-    private const string kLeft = "Left";
 
     private Animator mAnimator;
 
@@ -28,59 +15,31 @@ public class Player : MonoBehaviour
 
 	void Update ()
     {
-        Movement();
+        MoveCharacter();
 	}
 
-    void Movement()
+	void MoveCharacter()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            SetWalking(MovementDirection.Right);
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
-        }
+		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
+		
+		Vector2 direction = new Vector2(h, v);
+		transform.Translate(direction * speed * Time.deltaTime);
 
-        else if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            SetWalking(MovementDirection.Left);
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
-
-        else if (Input.GetAxisRaw("Vertical") > 0)
-        {
-            SetWalking(MovementDirection.Up);
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
-        }
-
-        else if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            SetWalking(MovementDirection.Down);
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
-        }
-
-        else
-        {
-            SetIdle();
-        }
+		SetWalking(direction);	   
     }
 
-    void SetWalking(MovementDirection direction)
+    void SetWalking(Vector2 direction)
     {
-        mAnimator.SetBool(direction.ToString(), true);
-        mAnimator.SetBool(kIdle, false);
+		int directionIdx = 0;
+
+		if(direction.y > 0.0f) directionIdx = 1;		// Up
+		else if(direction.x > 0.0f) directionIdx = 2;	// Right
+		else if(direction.y < 0.0f) directionIdx = 3;	// Down
+		else if(direction.x < 0.0f) directionIdx = 4;	// Left
+
+		mAnimator.SetInteger("move_direction", directionIdx);
+
     }
 
-    void SetIdle()
-    {
-        mAnimator.SetBool(kIdle, true);
-        ResetMovementTriggers();
-    }
-
-    void ResetMovementTriggers()
-    {
-        mAnimator.SetBool(kUp, false);
-        mAnimator.SetBool(kDown, false);
-        mAnimator.SetBool(kRight, false);
-        mAnimator.SetBool(kLeft, false);
-    }
 }
