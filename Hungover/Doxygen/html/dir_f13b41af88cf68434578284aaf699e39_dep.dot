@@ -1,0 +1,13 @@
+digraph "Assets/Scripts" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_84bbf7b3c7f28a5a18725745e1505219 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Assets" fontname="Helvetica", fontsize="10", URL="dir_84bbf7b3c7f28a5a18725745e1505219.html"]
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_f13b41af88cf68434578284aaf699e39.html"];
+    dir_f13b41af88cf68434578284aaf699e39 [shape=plaintext label="Scripts"];
+    dir_e38f79708023712d14694221d03bb0b3 [shape=box label="Enemies" color="black" fillcolor="white" style="filled" URL="dir_e38f79708023712d14694221d03bb0b3.html"];
+  }
+  }
+}

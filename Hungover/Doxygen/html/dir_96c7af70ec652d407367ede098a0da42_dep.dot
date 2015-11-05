@@ -1,0 +1,9 @@
+digraph "Hungover/Assets/Scripts/Enemies" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_60bf122dafe45b4fe320899b61bf6946 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Scripts" fontname="Helvetica", fontsize="10", URL="dir_60bf122dafe45b4fe320899b61bf6946.html"]
+  dir_96c7af70ec652d407367ede098a0da42 [shape=box, label="Enemies", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_96c7af70ec652d407367ede098a0da42.html"];
+  }
+}
