@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Hungover: C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/Player.cs Source File</title>
+<title>Hungover: Assets/Scripts/Player.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -109,7 +111,7 @@ $(document).ready(function(){initNavTree('_player_8cs_source.html','');});
 <a href="_player_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_unity_engine.html">UnityEngine</a>;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_system.html">System</a>.Collections;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_player.html">    4</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : MonoBehaviour</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_player.html">    4</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <a class="code" href="class_mono_behaviour.html">MonoBehaviour</a></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="comment">/********************************************************************</span></div>
@@ -125,19 +127,19 @@ $(document).ready(function(){initNavTree('_player_8cs_source.html','');});
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    [SerializeField]</div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_player.html#abd2291a934964b32e9bc06a7738042d3">   18</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code" href="class_player.html#abd2291a934964b32e9bc06a7738042d3">speed</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span> Animator mAnimator;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_player.html#a04c97138ce2622039314ba43cbb27475">   20</a></span>&#160;    <span class="keyword">private</span> Animator <a class="code" href="class_player.html#a04c97138ce2622039314ba43cbb27475">mAnimator</a>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> Start ()</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_player.html#a1a09a3ded16ac1646f6bdd4f25fe0ddd">   22</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a1a09a3ded16ac1646f6bdd4f25fe0ddd">Start</a> ()</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        mAnimator = GetComponent&lt;Animator&gt;();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> Update ()</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_player.html#aace80372e18e32fe177e295fe5d93ba8">   27</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#aace80372e18e32fe177e295fe5d93ba8">Update</a> ()</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        MoveCharacter();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_player.html#a681c296c440445e8d6157c1493e36b07">MoveCharacter</a>();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> MoveCharacter()</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_player.html#a681c296c440445e8d6157c1493e36b07">   32</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a681c296c440445e8d6157c1493e36b07">MoveCharacter</a>()</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">float</span> h = Input.GetAxis(<span class="stringliteral">&quot;Horizontal&quot;</span>);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">float</span> v = Input.GetAxis(<span class="stringliteral">&quot;Vertical&quot;</span>);</div>
@@ -145,10 +147,10 @@ $(document).ready(function(){initNavTree('_player_8cs_source.html','');});
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Vector2 direction = <span class="keyword">new</span> Vector2(h, v);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        transform.Translate(direction * speed * Time.deltaTime);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        SetAnimation(direction);       </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_player.html#a4b318fcc1a2b11dfef6e49714944594e">SetAnimation</a>(direction);       </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> SetAnimation(Vector2 direction)</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_player.html#a4b318fcc1a2b11dfef6e49714944594e">   43</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a4b318fcc1a2b11dfef6e49714944594e">SetAnimation</a>(Vector2 direction)</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">int</span> animationIdx = 0;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
@@ -169,9 +171,15 @@ $(document).ready(function(){initNavTree('_player_8cs_source.html','');});
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="ttc" id="class_mono_behaviour_html"><div class="ttname"><a href="class_mono_behaviour.html">MonoBehaviour</a></div></div>
 <div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
 <div class="ttc" id="class_player_html_abd2291a934964b32e9bc06a7738042d3"><div class="ttname"><a href="class_player.html#abd2291a934964b32e9bc06a7738042d3">Player.speed</a></div><div class="ttdeci">float speed</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00018">Player.cs:18</a></div></div>
+<div class="ttc" id="class_player_html_a4b318fcc1a2b11dfef6e49714944594e"><div class="ttname"><a href="class_player.html#a4b318fcc1a2b11dfef6e49714944594e">Player.SetAnimation</a></div><div class="ttdeci">void SetAnimation(Vector2 direction)</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00043">Player.cs:43</a></div></div>
+<div class="ttc" id="class_player_html_aace80372e18e32fe177e295fe5d93ba8"><div class="ttname"><a href="class_player.html#aace80372e18e32fe177e295fe5d93ba8">Player.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00027">Player.cs:27</a></div></div>
+<div class="ttc" id="class_player_html_a1a09a3ded16ac1646f6bdd4f25fe0ddd"><div class="ttname"><a href="class_player.html#a1a09a3ded16ac1646f6bdd4f25fe0ddd">Player.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00022">Player.cs:22</a></div></div>
 <div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00004">Player.cs:4</a></div></div>
+<div class="ttc" id="class_player_html_a04c97138ce2622039314ba43cbb27475"><div class="ttname"><a href="class_player.html#a04c97138ce2622039314ba43cbb27475">Player.mAnimator</a></div><div class="ttdeci">Animator mAnimator</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00020">Player.cs:20</a></div></div>
+<div class="ttc" id="class_player_html_a681c296c440445e8d6157c1493e36b07"><div class="ttname"><a href="class_player.html#a681c296c440445e8d6157c1493e36b07">Player.MoveCharacter</a></div><div class="ttdeci">void MoveCharacter()</div><div class="ttdef"><b>Definition:</b> <a href="_player_8cs_source.html#l00032">Player.cs:32</a></div></div>
 <div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

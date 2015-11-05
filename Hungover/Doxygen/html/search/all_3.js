@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['embarrassmentmeter',['EmbarrassmentMeter',['../class_embarrassment_meter.html',1,'']]],
-  ['embarrassmentmeter_2ecs',['EmbarrassmentMeter.cs',['../_embarrassment_meter_8cs.html',1,'']]],
-  ['enemycount',['enemyCount',['../class_board_manager.html#a55051c566ca4d11ac433afb54db42b3a',1,'BoardManager']]],
-  ['enemytiles',['enemyTiles',['../class_board_manager.html#a8eff8e2cd82171b3dfc923732ac4a1ed',1,'BoardManager']]],
-  ['enter',['enter',['../class_board_manager.html#ae949afb612938a48f19e613dcb13bc75',1,'BoardManager']]],
-  ['exit',['exit',['../class_board_manager.html#aba1e3c84134fe1dd29d22409a25a178d',1,'BoardManager']]]
+  ['dancecharacter',['DanceCharacter',['../class_base_enemy.html#af33b3688ccdd5609817d34df1d0e4b8c',1,'BaseEnemy']]],
+  ['decreaseembarrassment',['decreaseEmbarrassment',['../class_embarrassment_meter.html#a74497666f058e2f93ca505b151cc0930',1,'EmbarrassmentMeter']]],
+  ['direction',['direction',['../class_base_enemy.html#a5e07e715971cd06e16dcb966fe6400a3',1,'BaseEnemy']]],
+  ['directions',['directions',['../class_base_enemy.html#a0f582e8311605791b687930e4976e500',1,'BaseEnemy']]],
+  ['dj',['DJ',['../class_d_j.html',1,'']]],
+  ['dj_2ecs',['DJ.cs',['../_d_j_8cs.html',1,'']]]
 ];

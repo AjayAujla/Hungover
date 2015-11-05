@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Hungover: C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/GameManager.cs Source File</title>
+<title>Hungover: Assets/Scripts/GameManager.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -110,15 +112,15 @@ $(document).ready(function(){initNavTree('_game_manager_8cs_source.html','');});
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_system.html">System</a>.Collections;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_system.html">System</a>.Collections.Generic;       <span class="comment">//Allows us to use Lists. </span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    </div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_game_manager.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_game_manager.html">GameManager</a> : MonoBehaviour</div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_game_manager.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_game_manager.html">GameManager</a> : <a class="code" href="class_mono_behaviour.html">MonoBehaviour</a></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_game_manager.html#a7666e8468dac197b9eb32dd32128524f">    8</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="class_game_manager.html">GameManager</a> <a class="code" href="class_game_manager.html#a7666e8468dac197b9eb32dd32128524f">instance</a> = null;              <span class="comment">//Static instance of GameManager which allows it to be accessed by any other script.</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span> <a class="code" href="class_board_manager.html">BoardManager</a> boardScript;                       <span class="comment">//Store a reference to our BoardManager which will set up the level.</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> level = 3;                                  <span class="comment">//Current level number, expressed in game as &quot;Day 1&quot;.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_game_manager.html#a91ccb6fcbc6a97439a677bb2eef4e97c">    9</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="class_board_manager.html">BoardManager</a> <a class="code" href="class_game_manager.html#a91ccb6fcbc6a97439a677bb2eef4e97c">boardScript</a>;                       <span class="comment">//Store a reference to our BoardManager which will set up the level.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_game_manager.html#a097c52937fbd398b11bd06bd8d126348">   10</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="class_game_manager.html#a097c52937fbd398b11bd06bd8d126348">level</a> = 3;                                  <span class="comment">//Current level number, expressed in game as &quot;Day 1&quot;.</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="comment">//Awake is always called before any Start functions</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> Awake()</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_game_manager.html#a2959177ee51ac31badbf8b1bc8f7f637">   13</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_game_manager.html#a2959177ee51ac31badbf8b1bc8f7f637">Awake</a>()</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="comment">//Check if instance already exists</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span> (instance == null)</div>
@@ -139,23 +141,28 @@ $(document).ready(function(){initNavTree('_game_manager_8cs_source.html','');});
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        boardScript = GetComponent&lt;BoardManager&gt;();</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">//Call the InitGame function to initialize the first level </span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        InitGame();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="class_game_manager.html#ae89646fcd2784cfb7fcf94378fa0a9a5">InitGame</a>();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//Initializes the game for each level.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> InitGame()</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_game_manager.html#ae89646fcd2784cfb7fcf94378fa0a9a5">   38</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_game_manager.html#ae89646fcd2784cfb7fcf94378fa0a9a5">InitGame</a>()</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">//Call the SetupScene function of the BoardManager script, pass it current level number.</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        boardScript.<a class="code" href="class_board_manager.html#ae361ac57a3c87227f59602c42e7be3ce">SetupScene</a>(level);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="ttc" id="class_mono_behaviour_html"><div class="ttname"><a href="class_mono_behaviour.html">MonoBehaviour</a></div></div>
 <div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
 <div class="ttc" id="class_game_manager_html_a7666e8468dac197b9eb32dd32128524f"><div class="ttname"><a href="class_game_manager.html#a7666e8468dac197b9eb32dd32128524f">GameManager.instance</a></div><div class="ttdeci">static GameManager instance</div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00008">GameManager.cs:8</a></div></div>
 <div class="ttc" id="class_board_manager_html"><div class="ttname"><a href="class_board_manager.html">BoardManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00006">BoardManager.cs:6</a></div></div>
+<div class="ttc" id="class_game_manager_html_a2959177ee51ac31badbf8b1bc8f7f637"><div class="ttname"><a href="class_game_manager.html#a2959177ee51ac31badbf8b1bc8f7f637">GameManager.Awake</a></div><div class="ttdeci">void Awake()</div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00013">GameManager.cs:13</a></div></div>
+<div class="ttc" id="class_game_manager_html_ae89646fcd2784cfb7fcf94378fa0a9a5"><div class="ttname"><a href="class_game_manager.html#ae89646fcd2784cfb7fcf94378fa0a9a5">GameManager.InitGame</a></div><div class="ttdeci">void InitGame()</div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00038">GameManager.cs:38</a></div></div>
 <div class="ttc" id="class_board_manager_html_ae361ac57a3c87227f59602c42e7be3ce"><div class="ttname"><a href="class_board_manager.html#ae361ac57a3c87227f59602c42e7be3ce">BoardManager.SetupScene</a></div><div class="ttdeci">void SetupScene(int level)</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00239">BoardManager.cs:239</a></div></div>
 <div class="ttc" id="class_game_manager_html"><div class="ttname"><a href="class_game_manager.html">GameManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00005">GameManager.cs:5</a></div></div>
+<div class="ttc" id="class_game_manager_html_a91ccb6fcbc6a97439a677bb2eef4e97c"><div class="ttname"><a href="class_game_manager.html#a91ccb6fcbc6a97439a677bb2eef4e97c">GameManager.boardScript</a></div><div class="ttdeci">BoardManager boardScript</div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00009">GameManager.cs:9</a></div></div>
 <div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
+<div class="ttc" id="class_game_manager_html_a097c52937fbd398b11bd06bd8d126348"><div class="ttname"><a href="class_game_manager.html#a097c52937fbd398b11bd06bd8d126348">GameManager.level</a></div><div class="ttdeci">int level</div><div class="ttdef"><b>Definition:</b> <a href="_game_manager_8cs_source.html#l00010">GameManager.cs:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
