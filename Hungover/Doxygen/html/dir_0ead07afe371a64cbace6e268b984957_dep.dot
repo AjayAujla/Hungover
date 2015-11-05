@@ -1,0 +1,10 @@
+digraph "Hungover" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_0ead07afe371a64cbace6e268b984957 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_0ead07afe371a64cbace6e268b984957.html"];
+    dir_0ead07afe371a64cbace6e268b984957 [shape=plaintext label="Hungover"];
+    dir_59585c5070883ae41b03f9c7bfdbd723 [shape=box label="Assets" color="red" fillcolor="white" style="filled" URL="dir_59585c5070883ae41b03f9c7bfdbd723.html"];
+  }
+}
