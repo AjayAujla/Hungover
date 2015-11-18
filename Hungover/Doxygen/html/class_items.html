@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -117,6 +119,7 @@ Inheritance diagram for Items:</div>
  <div class="center">
   <img src="class_items.png" usemap="#Items_map" alt=""/>
   <map id="Items_map" name="Items_map">
+<area href="class_mono_behaviour.html" alt="MonoBehaviour" shape="rect" coords="0,0,102,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -144,11 +147,14 @@ Public Member Functions</h2></td></tr>
 <p>Makes item sprite opaque if it has been found TODO: Invoke this function within collision detection code of player against the item hidden within the scene </p>
 
 <p>Definition at line <a class="el" href="_items_8cs_source.html#l00011">11</a> of file <a class="el" href="_items_8cs_source.html">Items.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        this.gameObject.GetComponent&lt;Image&gt;().color = <span class="keyword">new</span> Color(1, 1, 1, 1f);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/<a class="el" href="_items_8cs_source.html">Items.cs</a></li>
+<li>Assets/Scripts/<a class="el" href="_items_8cs_source.html">Items.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

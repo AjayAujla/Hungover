@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -164,7 +166,28 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00044">44</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="class_board_manager_1_1_room.html#afe7b556c62ab6910dee773df0cccc713">xRoomPosition</a> &gt; (otherRoom.xRoomPosition + otherRoom.widthRoom - 1)) <span class="comment">// this room&#39;s left &gt; the other room&#39;s right</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;              <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;         </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="class_board_manager_1_1_room.html#adbf8afca0ee9bb9c3a840ce0c2477a71">yRoomPosition</a> &gt; (otherRoom.yRoomPosition + otherRoom.heightRoom + 1)) <span class="comment">// this room&#39;s bottom &gt; the other room&#39;s top</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;              <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;         </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">if</span>((<a class="code" href="class_board_manager_1_1_room.html#afe7b556c62ab6910dee773df0cccc713">xRoomPosition</a> + <a class="code" href="class_board_manager_1_1_room.html#a90f1edd276b3009b78ce72b767d0c926">widthRoom</a> - 1) &lt; otherRoom.xRoomPosition) <span class="comment">// this room&#39;s right &lt; the other room&#39;s left</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;              <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span>((<a class="code" href="class_board_manager_1_1_room.html#adbf8afca0ee9bb9c3a840ce0c2477a71">yRoomPosition</a> + <a class="code" href="class_board_manager_1_1_room.html#a71e207bf40721d9e04dada455f30b0fb">heightRoom</a> + 1) &lt; otherRoom.yRoomPosition) <span class="comment">// this room&#39;s top &lt; the other room&#39;s bottom</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;              <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;             </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="ttc" id="class_board_manager_1_1_room_html_adbf8afca0ee9bb9c3a840ce0c2477a71"><div class="ttname"><a href="class_board_manager_1_1_room.html#adbf8afca0ee9bb9c3a840ce0c2477a71">BoardManager.Room.yRoomPosition</a></div><div class="ttdeci">int yRoomPosition</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00027">BoardManager.cs:27</a></div></div>
+<div class="ttc" id="class_board_manager_1_1_room_html_a71e207bf40721d9e04dada455f30b0fb"><div class="ttname"><a href="class_board_manager_1_1_room.html#a71e207bf40721d9e04dada455f30b0fb">BoardManager.Room.heightRoom</a></div><div class="ttdeci">int heightRoom</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00025">BoardManager.cs:25</a></div></div>
+<div class="ttc" id="class_board_manager_1_1_room_html_afe7b556c62ab6910dee773df0cccc713"><div class="ttname"><a href="class_board_manager_1_1_room.html#afe7b556c62ab6910dee773df0cccc713">BoardManager.Room.xRoomPosition</a></div><div class="ttdeci">int xRoomPosition</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00026">BoardManager.cs:26</a></div></div>
+<div class="ttc" id="class_board_manager_1_1_room_html_a90f1edd276b3009b78ce72b767d0c926"><div class="ttname"><a href="class_board_manager_1_1_room.html#a90f1edd276b3009b78ce72b767d0c926">BoardManager.Room.widthRoom</a></div><div class="ttdeci">int widthRoom</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00024">BoardManager.cs:24</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -326,7 +349,7 @@ Properties</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/<a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a></li>
+<li>Assets/Scripts/<a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

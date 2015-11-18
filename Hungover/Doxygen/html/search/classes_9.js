@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utils',['Utils',['../class_utils.html',1,'']]]
+  ['soundcontroller',['SoundController',['../class_sound_controller.html',1,'']]]
 ];

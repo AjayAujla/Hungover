@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Hungover: C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/PlayerStats.cs Source File</title>
+<title>Hungover: Assets/Scripts/PlayerStats.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -110,33 +112,33 @@ $(document).ready(function(){initNavTree('_player_stats_8cs_source.html','');});
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_system.html">System</a>.Collections;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_unity_engine.html">UnityEngine</a>.UI;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_player_stats.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_player_stats.html">PlayerStats</a> : MonoBehaviour {</div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_player_stats.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_player_stats.html">PlayerStats</a> : <a class="code" href="class_mono_behaviour.html">MonoBehaviour</a> {</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> cash;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> experience;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> beerCans;</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_player_stats.html#a34e418c7aa9de1103bb2adca714db5ee">    7</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="class_player_stats.html#a34e418c7aa9de1103bb2adca714db5ee">cash</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_player_stats.html#a1b3dda2640037a9183afc642322796f6">    8</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="class_player_stats.html#a1b3dda2640037a9183afc642322796f6">experience</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_player_stats.html#a5e450a125abbc12c98e83cbf5e878917">    9</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="class_player_stats.html#a5e450a125abbc12c98e83cbf5e878917">beerCans</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">private</span> Text[] playerStatText;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">private</span> Text cashText;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span> Text experienceText;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">private</span> Text beerCansText;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_player_stats.html#a364d9facdb70c4d249ce3ec861185370">   11</a></span>&#160;    <span class="keyword">private</span> Text[] <a class="code" href="class_player_stats.html#a364d9facdb70c4d249ce3ec861185370">playerStatText</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_player_stats.html#a42651e22092061876039d296c1eb3307">   12</a></span>&#160;    <span class="keyword">private</span> Text <a class="code" href="class_player_stats.html#a42651e22092061876039d296c1eb3307">cashText</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_player_stats.html#a7d9f748515447dad5e7ff85ccf51b764">   13</a></span>&#160;    <span class="keyword">private</span> Text <a class="code" href="class_player_stats.html#a7d9f748515447dad5e7ff85ccf51b764">experienceText</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_player_stats.html#a4a85b930fd7255a4fb95a6d297bf60af">   14</a></span>&#160;    <span class="keyword">private</span> Text <a class="code" href="class_player_stats.html#a4a85b930fd7255a4fb95a6d297bf60af">beerCansText</a>;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_player_stats.html#a31fdb0ddcb71426f6bbb07dbf72f9cd0">   16</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="class_player_stats.html#a31fdb0ddcb71426f6bbb07dbf72f9cd0">setCash</a>(<span class="keywordtype">int</span> cash)</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        this.cash = cash;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        this.cash = <a class="code" href="class_player_stats.html#a34e418c7aa9de1103bb2adca714db5ee">cash</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_player_stats.html#ad9f245a773a2d215e370bdb321f74b6e">   21</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="class_player_stats.html#ad9f245a773a2d215e370bdb321f74b6e">setExperience</a>(<span class="keywordtype">int</span> experience)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        this.experience = experience;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        this.experience = <a class="code" href="class_player_stats.html#a1b3dda2640037a9183afc642322796f6">experience</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_player_stats.html#aa8c6ecacddc75ea9e5f1700b642668d0">   26</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="class_player_stats.html#aa8c6ecacddc75ea9e5f1700b642668d0">setBeerCans</a>(<span class="keywordtype">int</span> beerCans)</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        this.beerCans = beerCans;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        this.beerCans = <a class="code" href="class_player_stats.html#a5e450a125abbc12c98e83cbf5e878917">beerCans</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> Start()</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_player_stats.html#ae25b7817bb5fb9dad046cf347ae7af45">   34</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player_stats.html#ae25b7817bb5fb9dad046cf347ae7af45">Start</a>()</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        this.playerStatText = this.gameObject.GetComponentsInChildren&lt;Text&gt;();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        this.cashText = this.playerStatText[0];</div>
@@ -144,19 +146,29 @@ $(document).ready(function(){initNavTree('_player_stats_8cs_source.html','');});
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        this.beerCansText = this.playerStatText[3];</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Update()</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_player_stats.html#a15175185aaa4f8290e5148640f0ff80a">   45</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player_stats.html#a15175185aaa4f8290e5148640f0ff80a">Update</a>()</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        this.cashText.text = <span class="stringliteral">&quot;$&quot;</span> + this.cash.ToString();</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        this.experienceText.text = this.experience.ToString();</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        this.beerCansText.text = this.beerCans.ToString();</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="ttc" id="class_mono_behaviour_html"><div class="ttname"><a href="class_mono_behaviour.html">MonoBehaviour</a></div></div>
+<div class="ttc" id="class_player_stats_html_a34e418c7aa9de1103bb2adca714db5ee"><div class="ttname"><a href="class_player_stats.html#a34e418c7aa9de1103bb2adca714db5ee">PlayerStats.cash</a></div><div class="ttdeci">int cash</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00007">PlayerStats.cs:7</a></div></div>
 <div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
+<div class="ttc" id="class_player_stats_html_a364d9facdb70c4d249ce3ec861185370"><div class="ttname"><a href="class_player_stats.html#a364d9facdb70c4d249ce3ec861185370">PlayerStats.playerStatText</a></div><div class="ttdeci">Text[] playerStatText</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00011">PlayerStats.cs:11</a></div></div>
 <div class="ttc" id="class_player_stats_html"><div class="ttname"><a href="class_player_stats.html">PlayerStats</a></div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00005">PlayerStats.cs:5</a></div></div>
 <div class="ttc" id="class_player_stats_html_aa8c6ecacddc75ea9e5f1700b642668d0"><div class="ttname"><a href="class_player_stats.html#aa8c6ecacddc75ea9e5f1700b642668d0">PlayerStats.setBeerCans</a></div><div class="ttdeci">void setBeerCans(int beerCans)</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00026">PlayerStats.cs:26</a></div></div>
 <div class="ttc" id="class_player_stats_html_a31fdb0ddcb71426f6bbb07dbf72f9cd0"><div class="ttname"><a href="class_player_stats.html#a31fdb0ddcb71426f6bbb07dbf72f9cd0">PlayerStats.setCash</a></div><div class="ttdeci">void setCash(int cash)</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00016">PlayerStats.cs:16</a></div></div>
+<div class="ttc" id="class_player_stats_html_a4a85b930fd7255a4fb95a6d297bf60af"><div class="ttname"><a href="class_player_stats.html#a4a85b930fd7255a4fb95a6d297bf60af">PlayerStats.beerCansText</a></div><div class="ttdeci">Text beerCansText</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00014">PlayerStats.cs:14</a></div></div>
+<div class="ttc" id="class_player_stats_html_a15175185aaa4f8290e5148640f0ff80a"><div class="ttname"><a href="class_player_stats.html#a15175185aaa4f8290e5148640f0ff80a">PlayerStats.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00045">PlayerStats.cs:45</a></div></div>
 <div class="ttc" id="class_player_stats_html_ad9f245a773a2d215e370bdb321f74b6e"><div class="ttname"><a href="class_player_stats.html#ad9f245a773a2d215e370bdb321f74b6e">PlayerStats.setExperience</a></div><div class="ttdeci">void setExperience(int experience)</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00021">PlayerStats.cs:21</a></div></div>
+<div class="ttc" id="class_player_stats_html_a1b3dda2640037a9183afc642322796f6"><div class="ttname"><a href="class_player_stats.html#a1b3dda2640037a9183afc642322796f6">PlayerStats.experience</a></div><div class="ttdeci">int experience</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00008">PlayerStats.cs:8</a></div></div>
+<div class="ttc" id="class_player_stats_html_a7d9f748515447dad5e7ff85ccf51b764"><div class="ttname"><a href="class_player_stats.html#a7d9f748515447dad5e7ff85ccf51b764">PlayerStats.experienceText</a></div><div class="ttdeci">Text experienceText</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00013">PlayerStats.cs:13</a></div></div>
+<div class="ttc" id="class_player_stats_html_a42651e22092061876039d296c1eb3307"><div class="ttname"><a href="class_player_stats.html#a42651e22092061876039d296c1eb3307">PlayerStats.cashText</a></div><div class="ttdeci">Text cashText</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00012">PlayerStats.cs:12</a></div></div>
+<div class="ttc" id="class_player_stats_html_ae25b7817bb5fb9dad046cf347ae7af45"><div class="ttname"><a href="class_player_stats.html#ae25b7817bb5fb9dad046cf347ae7af45">PlayerStats.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00034">PlayerStats.cs:34</a></div></div>
 <div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
+<div class="ttc" id="class_player_stats_html_a5e450a125abbc12c98e83cbf5e878917"><div class="ttname"><a href="class_player_stats.html#a5e450a125abbc12c98e83cbf5e878917">PlayerStats.beerCans</a></div><div class="ttdeci">int beerCans</div><div class="ttdef"><b>Definition:</b> <a href="_player_stats_8cs_source.html#l00009">PlayerStats.cs:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

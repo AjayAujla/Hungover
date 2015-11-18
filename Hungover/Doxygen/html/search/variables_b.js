@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['xenterposition',['xEnterPosition',['../class_board_manager_1_1_room.html#a4e1a728dffdc74b98cd539770d8fb8b3',1,'BoardManager::Room']]],
-  ['xexitposition',['xExitPosition',['../class_board_manager_1_1_room.html#a951111ea81c292929cb45f6dbf07014c',1,'BoardManager::Room']]],
-  ['xroomposition',['xRoomPosition',['../class_board_manager_1_1_room.html#afe7b556c62ab6910dee773df0cccc713',1,'BoardManager::Room']]]
+  ['outerwalltiles',['outerWallTiles',['../class_board_manager.html#aa48fc2f768dfdbb95ea8161ae8e0b2fe',1,'BoardManager']]]
 ];

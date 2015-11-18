@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -108,6 +110,8 @@ $(document).ready(function(){initNavTree('class_board_manager.html','');});
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_board_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BoardManager Class Reference</div>  </div>
@@ -119,6 +123,7 @@ Inheritance diagram for BoardManager:</div>
  <div class="center">
   <img src="class_board_manager.png" usemap="#BoardManager_map" alt=""/>
   <map id="BoardManager_map" name="BoardManager_map">
+<area href="class_mono_behaviour.html" alt="MonoBehaviour" shape="rect" coords="0,0,102,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -166,11 +171,349 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a3b207e83625786cbc14de352653703e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c04cc63ae1006495eb48be7fbb5839c"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_board_manager_1_1_room.html">Room</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a> = new List&lt;<a class="el" href="class_board_manager_1_1_room.html">Room</a>&gt;()</td></tr>
 <tr class="separator:a2c04cc63ae1006495eb48be7fbb5839c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae703c0db10424152b177754d43c53352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#ae703c0db10424152b177754d43c53352">InitialiseList</a> ()</td></tr>
+<tr class="separator:ae703c0db10424152b177754d43c53352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb3725ac08af4c70dd18283bb80b438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#afdb3725ac08af4c70dd18283bb80b438">BoardSetup</a> ()</td></tr>
+<tr class="separator:afdb3725ac08af4c70dd18283bb80b438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbe98e3f4efb8f3beb94526eae2cc71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#acfbe98e3f4efb8f3beb94526eae2cc71">RoomCollides</a> (<a class="el" href="class_board_manager_1_1_room.html">Room</a> r1)</td></tr>
+<tr class="separator:acfbe98e3f4efb8f3beb94526eae2cc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e49dd40bdd1b0d63d0e3253534cf53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#a58e49dd40bdd1b0d63d0e3253534cf53">SpawnDoors</a> ()</td></tr>
+<tr class="separator:a58e49dd40bdd1b0d63d0e3253534cf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98ade8243f718025be16a7996ccdcc73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#a98ade8243f718025be16a7996ccdcc73">ConnectRooms</a> ()</td></tr>
+<tr class="separator:a98ade8243f718025be16a7996ccdcc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d35d8f253aedf38a8d2b1c86e222c8"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#ae0d35d8f253aedf38a8d2b1c86e222c8">RandomPosition</a> ()</td></tr>
+<tr class="separator:ae0d35d8f253aedf38a8d2b1c86e222c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55b7c6e59ff341a86fd846d851aec7e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#a55b7c6e59ff341a86fd846d851aec7e7">LayoutObjectAtRandom</a> (GameObject[] tileArray, int minimum, int maximum)</td></tr>
+<tr class="separator:a55b7c6e59ff341a86fd846d851aec7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad9ff00ef71f2a78e5a773105057c86fa"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#ad9ff00ef71f2a78e5a773105057c86fa">boardHolder</a></td></tr>
+<tr class="separator:ad9ff00ef71f2a78e5a773105057c86fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fb390a35d1490c0f9bccf00bc8c81d"><td class="memItemLeft" align="right" valign="top">List&lt; Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board_manager.html#a55fb390a35d1490c0f9bccf00bc8c81d">gridPositions</a> = new List &lt;Vector3&gt; ()</td></tr>
+<tr class="separator:a55fb390a35d1490c0f9bccf00bc8c81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00006">6</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afdb3725ac08af4c70dd18283bb80b438"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BoardManager.BoardSetup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00100">100</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="class_board_manager.html#ad9ff00ef71f2a78e5a773105057c86fa">boardHolder</a> = <span class="keyword">new</span> GameObject (<span class="stringliteral">&quot;Board&quot;</span>).transform;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="comment">//Room Generation</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_board_manager.html#afea6569e97646df6e280a39e8dd73193">roomNumber</a>; i++)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            Room r = <span class="keyword">new</span> Room();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            r.widthRoom = <a class="code" href="namespace_random.html">Random</a>.Range(4,8);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            r.heightRoom = <a class="code" href="namespace_random.html">Random</a>.Range(4,8);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            r.xRoomPosition = <a class="code" href="namespace_random.html">Random</a>.Range(0, <a class="code" href="class_board_manager.html#aaeee4944e9f86f64e9490fec576a5a48">rows</a> - r.widthRoom);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            r.yRoomPosition = <a class="code" href="namespace_random.html">Random</a>.Range(0, <a class="code" href="class_board_manager.html#a001ec95102c2dbb535b3713d62b0cac2">columns</a> - r.heightRoom);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="class_board_manager.html#acfbe98e3f4efb8f3beb94526eae2cc71">RoomCollides</a>(r))</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x = r.xRoomPosition; x &lt;= (r.xRoomPosition + r.widthRoom); x++)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> y = r.yRoomPosition; y &lt;= (r.yRoomPosition + r.heightRoom); y++)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                        GameObject toInstantiate = <a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>[<a class="code" href="namespace_random.html">Random</a>.Range (0,<a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>.Length)];</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        <span class="keywordflow">if</span>(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                            toInstantiate = <a class="code" href="class_board_manager.html#aa48fc2f768dfdbb95ea8161ae8e0b2fe">outerWallTiles</a> [<a class="code" href="namespace_random.html">Random</a>.Range (0, <a class="code" href="class_board_manager.html#aa48fc2f768dfdbb95ea8161ae8e0b2fe">outerWallTiles</a>.Length)];</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                        </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        GameObject instance = Instantiate (toInstantiate, <span class="keyword">new</span> Vector3 (x, y, 0f), Quaternion.identity) as GameObject;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>.Add (r);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                        </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        instance.transform.SetParent (<a class="code" href="class_board_manager.html#ad9ff00ef71f2a78e5a773105057c86fa">boardHolder</a>); </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            }   </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment">//Instantiate enter and exit tiles in the rooms.</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="class_board_manager.html#a58e49dd40bdd1b0d63d0e3253534cf53">SpawnDoors</a>();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <a class="code" href="class_board_manager.html#a98ade8243f718025be16a7996ccdcc73">ConnectRooms</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
+<div class="ttc" id="class_board_manager_html_a58e49dd40bdd1b0d63d0e3253534cf53"><div class="ttname"><a href="class_board_manager.html#a58e49dd40bdd1b0d63d0e3253534cf53">BoardManager.SpawnDoors</a></div><div class="ttdeci">void SpawnDoors()</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00156">BoardManager.cs:156</a></div></div>
+<div class="ttc" id="class_board_manager_html_a98ade8243f718025be16a7996ccdcc73"><div class="ttname"><a href="class_board_manager.html#a98ade8243f718025be16a7996ccdcc73">BoardManager.ConnectRooms</a></div><div class="ttdeci">void ConnectRooms()</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00171">BoardManager.cs:171</a></div></div>
+<div class="ttc" id="class_board_manager_html_aa48fc2f768dfdbb95ea8161ae8e0b2fe"><div class="ttname"><a href="class_board_manager.html#aa48fc2f768dfdbb95ea8161ae8e0b2fe">BoardManager.outerWallTiles</a></div><div class="ttdeci">GameObject[] outerWallTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00077">BoardManager.cs:77</a></div></div>
+<div class="ttc" id="namespace_random_html"><div class="ttname"><a href="namespace_random.html">Random</a></div></div>
+<div class="ttc" id="class_board_manager_html_afea6569e97646df6e280a39e8dd73193"><div class="ttname"><a href="class_board_manager.html#afea6569e97646df6e280a39e8dd73193">BoardManager.roomNumber</a></div><div class="ttdeci">int roomNumber</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00067">BoardManager.cs:67</a></div></div>
+<div class="ttc" id="class_board_manager_html_aaeee4944e9f86f64e9490fec576a5a48"><div class="ttname"><a href="class_board_manager.html#aaeee4944e9f86f64e9490fec576a5a48">BoardManager.rows</a></div><div class="ttdeci">int rows</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00066">BoardManager.cs:66</a></div></div>
+<div class="ttc" id="class_board_manager_html_ad9ff00ef71f2a78e5a773105057c86fa"><div class="ttname"><a href="class_board_manager.html#ad9ff00ef71f2a78e5a773105057c86fa">BoardManager.boardHolder</a></div><div class="ttdeci">Transform boardHolder</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00080">BoardManager.cs:80</a></div></div>
+<div class="ttc" id="class_board_manager_html_acfbe98e3f4efb8f3beb94526eae2cc71"><div class="ttname"><a href="class_board_manager.html#acfbe98e3f4efb8f3beb94526eae2cc71">BoardManager.RoomCollides</a></div><div class="ttdeci">bool RoomCollides(Room r1)</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00143">BoardManager.cs:143</a></div></div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+<div class="ttc" id="class_board_manager_html_a001ec95102c2dbb535b3713d62b0cac2"><div class="ttname"><a href="class_board_manager.html#a001ec95102c2dbb535b3713d62b0cac2">BoardManager.columns</a></div><div class="ttdeci">int columns</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00065">BoardManager.cs:65</a></div></div>
+<div class="ttc" id="class_board_manager_html_a43eb0228b03f3aad54503c985eec4929"><div class="ttname"><a href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">BoardManager.floorTiles</a></div><div class="ttdeci">GameObject[] floorTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00073">BoardManager.cs:73</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a98ade8243f718025be16a7996ccdcc73"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BoardManager.ConnectRooms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00171">171</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>.Count - 1; i++)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="keywordtype">int</span> xPath = <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i].xCenterPos;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordtype">int</span> yPath = <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i].yCenterPos;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">while</span> (xPath != <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i+1].xCenterPos)</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                Instantiate (<a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>[<a class="code" href="namespace_random.html">Random</a>.Range (0,<a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>.Length)], <span class="keyword">new</span> Vector3 (xPath, yPath, 0f), Quaternion.identity);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">if</span>(xPath &lt; <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i+1].xCenterPos)</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                {</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    xPath++;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                }</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                    xPath--;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">while</span> (yPath != <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i+1].yCenterPos)</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                Instantiate (<a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>[<a class="code" href="namespace_random.html">Random</a>.Range (0,<a class="code" href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">floorTiles</a>.Length)], <span class="keyword">new</span> Vector3 (xPath, yPath, 0f), Quaternion.identity);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">if</span>(yPath &lt; <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[i+1].yCenterPos)</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    yPath++;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    yPath--;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        }   </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    }</div>
+<div class="ttc" id="namespace_random_html"><div class="ttname"><a href="namespace_random.html">Random</a></div></div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+<div class="ttc" id="class_board_manager_html_a43eb0228b03f3aad54503c985eec4929"><div class="ttname"><a href="class_board_manager.html#a43eb0228b03f3aad54503c985eec4929">BoardManager.floorTiles</a></div><div class="ttdeci">GameObject[] floorTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00073">BoardManager.cs:73</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ae703c0db10424152b177754d43c53352"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BoardManager.InitialiseList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00086">86</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="class_board_manager.html#a55fb390a35d1490c0f9bccf00bc8c81d">gridPositions</a>.Clear ();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x = 1; x &lt; <a class="code" href="class_board_manager.html#a001ec95102c2dbb535b3713d62b0cac2">columns</a>-1; x++)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> y = 1; y &lt; <a class="code" href="class_board_manager.html#aaeee4944e9f86f64e9490fec576a5a48">rows</a>-1; y++)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <a class="code" href="class_board_manager.html#a55fb390a35d1490c0f9bccf00bc8c81d">gridPositions</a>.Add (<span class="keyword">new</span> Vector3(x, y, 0f));</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="ttc" id="class_board_manager_html_aaeee4944e9f86f64e9490fec576a5a48"><div class="ttname"><a href="class_board_manager.html#aaeee4944e9f86f64e9490fec576a5a48">BoardManager.rows</a></div><div class="ttdeci">int rows</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00066">BoardManager.cs:66</a></div></div>
+<div class="ttc" id="class_board_manager_html_a55fb390a35d1490c0f9bccf00bc8c81d"><div class="ttname"><a href="class_board_manager.html#a55fb390a35d1490c0f9bccf00bc8c81d">BoardManager.gridPositions</a></div><div class="ttdeci">List&lt; Vector3 &gt; gridPositions</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00081">BoardManager.cs:81</a></div></div>
+<div class="ttc" id="class_board_manager_html_a001ec95102c2dbb535b3713d62b0cac2"><div class="ttname"><a href="class_board_manager.html#a001ec95102c2dbb535b3713d62b0cac2">BoardManager.columns</a></div><div class="ttdeci">int columns</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00065">BoardManager.cs:65</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a55b7c6e59ff341a86fd846d851aec7e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BoardManager.LayoutObjectAtRandom </td>
+          <td>(</td>
+          <td class="paramtype">GameObject[]&#160;</td>
+          <td class="paramname"><em>tileArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minimum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maximum</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00220">220</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="comment">//Choose a random number of objects to instantiate within the minimum and maximum limits</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordtype">int</span> objectCount = <a class="code" href="namespace_random.html">Random</a>.Range (minimum, maximum+1);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="comment">//Instantiate objects until the randomly chosen limit objectCount is reached</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; objectCount; i++)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="comment">//Choose a position for randomPosition by getting a random position from our list of available Vector3s stored in gridPosition</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            Vector3 randomPosition = <a class="code" href="class_board_manager.html#ae0d35d8f253aedf38a8d2b1c86e222c8">RandomPosition</a>();</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="comment">//Choose a random tile from tileArray and assign it to tileChoice</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            GameObject tileChoice = tileArray[<a class="code" href="namespace_random.html">Random</a>.Range (0, tileArray.Length)];</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="comment">//Instantiate tileChoice at the position returned by RandomPosition with no change in rotation</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            Instantiate(tileChoice, randomPosition, Quaternion.identity);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
+<div class="ttc" id="namespace_random_html"><div class="ttname"><a href="namespace_random.html">Random</a></div></div>
+<div class="ttc" id="class_board_manager_html_ae0d35d8f253aedf38a8d2b1c86e222c8"><div class="ttname"><a href="class_board_manager.html#ae0d35d8f253aedf38a8d2b1c86e222c8">BoardManager.RandomPosition</a></div><div class="ttdeci">Vector3 RandomPosition()</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00210">BoardManager.cs:210</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ae0d35d8f253aedf38a8d2b1c86e222c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 BoardManager.RandomPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00210">210</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        Room room = <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[<a class="code" href="namespace_random.html">Random</a>.Range(0, <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>.Count)]; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        </div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        Vector3 randomPosition = <span class="keyword">new</span> Vector3(<a class="code" href="namespace_random.html">Random</a>.Range(room.xRoomPosition + 1, room.xRoomPosition + room.widthRoom - 1 ), <a class="code" href="namespace_random.html">Random</a>.Range(room.yRoomPosition + 1, room.yRoomPosition + room.heightRoom - 1 ), 0f);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordflow">return</span> randomPosition;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
+<div class="ttc" id="namespace_random_html"><div class="ttname"><a href="namespace_random.html">Random</a></div></div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="acfbe98e3f4efb8f3beb94526eae2cc71"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BoardManager.RoomCollides </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_board_manager_1_1_room.html">Room</a>&#160;</td>
+          <td class="paramname"><em>r1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00143">143</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">foreach</span>(Room r2 <span class="keywordflow">in</span> <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordflow">if</span>(r1.CollidesWith(r2))</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;   </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="ae361ac57a3c87227f59602c42e7be3ce"></a>
 <div class="memitem">
 <div class="memproto">
@@ -186,10 +529,106 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00239">239</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="comment">//Creates the outer walls and floor.</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="class_board_manager.html#afdb3725ac08af4c70dd18283bb80b438">BoardSetup</a> ();</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="comment">//Reset our list of gridpositions.</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <a class="code" href="class_board_manager.html#ae703c0db10424152b177754d43c53352">InitialiseList</a> ();</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="comment">//Instantiates Player.</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        Instantiate (<a class="code" href="class_board_manager.html#a3b207e83625786cbc14de352653703e9">player</a>, <span class="keyword">new</span> Vector3 (<a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[0].xRoomPosition + 1, <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>[0].yRoomPosition + 1, 0f), Quaternion.identity);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="comment">//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <a class="code" href="class_board_manager.html#a55b7c6e59ff341a86fd846d851aec7e7">LayoutObjectAtRandom</a> (<a class="code" href="class_board_manager.html#a61aaa59130e951ca94a6c444c547fa8e">wallTiles</a>, <a class="code" href="class_board_manager.html#ab17fef907cca6807cdefa93482005cb3">wallCount</a>.<a class="code" href="class_board_manager_1_1_count.html#a3a154a0b20f41c1b6c1f12cef8b77187">minimum</a>, <a class="code" href="class_board_manager.html#ab17fef907cca6807cdefa93482005cb3">wallCount</a>.<a class="code" href="class_board_manager_1_1_count.html#ae43a7c9cac29b04af44dfbbc6e931eb5">maximum</a>);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="comment">//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="class_board_manager.html#a55b7c6e59ff341a86fd846d851aec7e7">LayoutObjectAtRandom</a> (<a class="code" href="class_board_manager.html#a91e6f67ee3b393dbcb346e7d8c40d2b7">foodTiles</a>, <a class="code" href="class_board_manager.html#ac57e1a1842282f57141410a6ebc03d0d">foodCount</a>.<a class="code" href="class_board_manager_1_1_count.html#a3a154a0b20f41c1b6c1f12cef8b77187">minimum</a>, <a class="code" href="class_board_manager.html#ac57e1a1842282f57141410a6ebc03d0d">foodCount</a>.<a class="code" href="class_board_manager_1_1_count.html#ae43a7c9cac29b04af44dfbbc6e931eb5">maximum</a>);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="comment">//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <a class="code" href="class_board_manager.html#a55b7c6e59ff341a86fd846d851aec7e7">LayoutObjectAtRandom</a> (<a class="code" href="class_board_manager.html#a8eff8e2cd82171b3dfc923732ac4a1ed">enemyTiles</a>, <a class="code" href="class_board_manager.html#a55051c566ca4d11ac433afb54db42b3a">enemyCount</a>.<a class="code" href="class_board_manager_1_1_count.html#a3a154a0b20f41c1b6c1f12cef8b77187">minimum</a>, <a class="code" href="class_board_manager.html#a55051c566ca4d11ac433afb54db42b3a">enemyCount</a>.<a class="code" href="class_board_manager_1_1_count.html#ae43a7c9cac29b04af44dfbbc6e931eb5">maximum</a>);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="ttc" id="class_board_manager_html_afdb3725ac08af4c70dd18283bb80b438"><div class="ttname"><a href="class_board_manager.html#afdb3725ac08af4c70dd18283bb80b438">BoardManager.BoardSetup</a></div><div class="ttdeci">void BoardSetup()</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00100">BoardManager.cs:100</a></div></div>
+<div class="ttc" id="class_board_manager_html_a55051c566ca4d11ac433afb54db42b3a"><div class="ttname"><a href="class_board_manager.html#a55051c566ca4d11ac433afb54db42b3a">BoardManager.enemyCount</a></div><div class="ttdeci">Count enemyCount</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00070">BoardManager.cs:70</a></div></div>
+<div class="ttc" id="class_board_manager_html_a61aaa59130e951ca94a6c444c547fa8e"><div class="ttname"><a href="class_board_manager.html#a61aaa59130e951ca94a6c444c547fa8e">BoardManager.wallTiles</a></div><div class="ttdeci">GameObject[] wallTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00074">BoardManager.cs:74</a></div></div>
+<div class="ttc" id="class_board_manager_html_a55b7c6e59ff341a86fd846d851aec7e7"><div class="ttname"><a href="class_board_manager.html#a55b7c6e59ff341a86fd846d851aec7e7">BoardManager.LayoutObjectAtRandom</a></div><div class="ttdeci">void LayoutObjectAtRandom(GameObject[] tileArray, int minimum, int maximum)</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00220">BoardManager.cs:220</a></div></div>
+<div class="ttc" id="class_board_manager_html_ae703c0db10424152b177754d43c53352"><div class="ttname"><a href="class_board_manager.html#ae703c0db10424152b177754d43c53352">BoardManager.InitialiseList</a></div><div class="ttdeci">void InitialiseList()</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00086">BoardManager.cs:86</a></div></div>
+<div class="ttc" id="class_board_manager_html_a3b207e83625786cbc14de352653703e9"><div class="ttname"><a href="class_board_manager.html#a3b207e83625786cbc14de352653703e9">BoardManager.player</a></div><div class="ttdeci">GameObject player</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00078">BoardManager.cs:78</a></div></div>
+<div class="ttc" id="class_board_manager_html_ac57e1a1842282f57141410a6ebc03d0d"><div class="ttname"><a href="class_board_manager.html#ac57e1a1842282f57141410a6ebc03d0d">BoardManager.foodCount</a></div><div class="ttdeci">Count foodCount</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00069">BoardManager.cs:69</a></div></div>
+<div class="ttc" id="class_board_manager_html_ab17fef907cca6807cdefa93482005cb3"><div class="ttname"><a href="class_board_manager.html#ab17fef907cca6807cdefa93482005cb3">BoardManager.wallCount</a></div><div class="ttdeci">Count wallCount</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00068">BoardManager.cs:68</a></div></div>
+<div class="ttc" id="class_board_manager_1_1_count_html_a3a154a0b20f41c1b6c1f12cef8b77187"><div class="ttname"><a href="class_board_manager_1_1_count.html#a3a154a0b20f41c1b6c1f12cef8b77187">BoardManager.Count.minimum</a></div><div class="ttdeci">int minimum</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00011">BoardManager.cs:11</a></div></div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+<div class="ttc" id="class_board_manager_html_a8eff8e2cd82171b3dfc923732ac4a1ed"><div class="ttname"><a href="class_board_manager.html#a8eff8e2cd82171b3dfc923732ac4a1ed">BoardManager.enemyTiles</a></div><div class="ttdeci">GameObject[] enemyTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00076">BoardManager.cs:76</a></div></div>
+<div class="ttc" id="class_board_manager_html_a91e6f67ee3b393dbcb346e7d8c40d2b7"><div class="ttname"><a href="class_board_manager.html#a91e6f67ee3b393dbcb346e7d8c40d2b7">BoardManager.foodTiles</a></div><div class="ttdeci">GameObject[] foodTiles</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00075">BoardManager.cs:75</a></div></div>
+<div class="ttc" id="class_board_manager_1_1_count_html_ae43a7c9cac29b04af44dfbbc6e931eb5"><div class="ttname"><a href="class_board_manager_1_1_count.html#ae43a7c9cac29b04af44dfbbc6e931eb5">BoardManager.Count.maximum</a></div><div class="ttdeci">int maximum</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00012">BoardManager.cs:12</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a58e49dd40bdd1b0d63d0e3253534cf53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BoardManager.SpawnDoors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00156">156</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">foreach</span>(Room r <span class="keywordflow">in</span> <a class="code" href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">roomsList</a>)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            r.xEnterPosition = r.xRoomPosition + 1;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            r.yEnterPosition = r.yRoomPosition + 1;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            r.xExitPosition = r.xRoomPosition + r.widthRoom - 1;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            r.yExitPosition = r.yRoomPosition + r.heightRoom - 1;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            Instantiate (<a class="code" href="class_board_manager.html#ae949afb612938a48f19e613dcb13bc75">enter</a>, <span class="keyword">new</span> Vector3 (r.xEnterPosition, r.yEnterPosition, 0f), Quaternion.identity);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            Instantiate (<a class="code" href="class_board_manager.html#aba1e3c84134fe1dd29d22409a25a178d">exit</a>, <span class="keyword">new</span> Vector3 (r.xExitPosition, r.yExitPosition, 0f), Quaternion.identity);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
+<div class="ttc" id="class_board_manager_html_ae949afb612938a48f19e613dcb13bc75"><div class="ttname"><a href="class_board_manager.html#ae949afb612938a48f19e613dcb13bc75">BoardManager.enter</a></div><div class="ttdeci">GameObject enter</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00072">BoardManager.cs:72</a></div></div>
+<div class="ttc" id="class_board_manager_html_aba1e3c84134fe1dd29d22409a25a178d"><div class="ttname"><a href="class_board_manager.html#aba1e3c84134fe1dd29d22409a25a178d">BoardManager.exit</a></div><div class="ttdeci">GameObject exit</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00071">BoardManager.cs:71</a></div></div>
+<div class="ttc" id="class_board_manager_html_a2c04cc63ae1006495eb48be7fbb5839c"><div class="ttname"><a href="class_board_manager.html#a2c04cc63ae1006495eb48be7fbb5839c">BoardManager.roomsList</a></div><div class="ttdeci">List&lt; Room &gt; roomsList</div><div class="ttdef"><b>Definition:</b> <a href="_board_manager_8cs_source.html#l00083">BoardManager.cs:83</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ad9ff00ef71f2a78e5a773105057c86fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform BoardManager.boardHolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00080">80</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a001ec95102c2dbb535b3713d62b0cac2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -302,6 +741,28 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a55fb390a35d1490c0f9bccf00bc8c81d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;Vector3&gt; BoardManager.gridPositions = new List &lt;Vector3&gt; ()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board_manager_8cs_source.html#l00081">81</a> of file <a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa48fc2f768dfdbb95ea8161ae8e0b2fe"></a>
 <div class="memitem">
 <div class="memproto">
@@ -401,7 +862,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/<a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a></li>
+<li>Assets/Scripts/<a class="el" href="_board_manager_8cs_source.html">BoardManager.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

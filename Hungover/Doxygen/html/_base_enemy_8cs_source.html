@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Hungover: C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/Enemies/BaseEnemy.cs Source File</title>
+<title>Hungover: Assets/Scripts/Enemies/BaseEnemy.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -109,7 +111,7 @@ $(document).ready(function(){initNavTree('_base_enemy_8cs_source.html','');});
 <a href="_base_enemy_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_unity_engine.html">UnityEngine</a>;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_system.html">System</a>.Collections;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_base_enemy.html">    4</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_base_enemy.html">BaseEnemy</a> : MonoBehaviour {</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_base_enemy.html">    4</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_base_enemy.html">BaseEnemy</a> : <a class="code" href="class_mono_behaviour.html">MonoBehaviour</a> {</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="comment">/********************************************************************</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">     * </span></div>
@@ -121,20 +123,20 @@ $(document).ready(function(){initNavTree('_base_enemy_8cs_source.html','');});
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">     *</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">     ********************************************************************/</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    Vector3 direction;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a5e07e715971cd06e16dcb966fe6400a3">   16</a></span>&#160;    Vector3 <a class="code" href="class_base_enemy.html#a5e07e715971cd06e16dcb966fe6400a3">direction</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a0f582e8311605791b687930e4976e500">   17</a></span>&#160;    Vector2[] <a class="code" href="class_base_enemy.html#a0f582e8311605791b687930e4976e500">directions</a> = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Animator mAnimator;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    AudioSource PartyMusic;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a902aa1b1c470491e3c888ed9034ea9ca">   19</a></span>&#160;    Animator <a class="code" href="class_base_enemy.html#a902aa1b1c470491e3c888ed9034ea9ca">mAnimator</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_base_enemy.html#abc0e9233eaf5d6f8aa8c4f00517aa8f2">   20</a></span>&#160;    AudioSource <a class="code" href="class_base_enemy.html#abc0e9233eaf5d6f8aa8c4f00517aa8f2">PartyMusic</a>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    [SerializeField]</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a34b9ab76f443bedc6a9bf074896e64e6">   23</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code" href="class_base_enemy.html#a34b9ab76f443bedc6a9bf074896e64e6">speed</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> isDancing;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a8cee2e66d7052a407b95ead9567f136e">   24</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_base_enemy.html#a8cee2e66d7052a407b95ead9567f136e">isDancing</a>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// limiting character&#39;s movement by Camera&#39;s viewport coordinates</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">float</span> minX, maxX, minY, maxY;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a3559a388833a567d36d6161736fa153f">   27</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">float</span> <a class="code" href="class_base_enemy.html#ac5f048ae1b25e718754ef20685a96fdb">minX</a>, <a class="code" href="class_base_enemy.html#a764799936ec33d69c4193adc96ffbc58">maxX</a>, <a class="code" href="class_base_enemy.html#a3559a388833a567d36d6161736fa153f">minY</a>, <a class="code" href="class_base_enemy.html#a889a3201e0fec4207fcfeb90748bbb64">maxY</a>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> Awake () {</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a50df6be0b39556321f7a41705277e922">   29</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#a50df6be0b39556321f7a41705277e922">Awake</a> () {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">// If you want the min max values to update if the resolution changes </span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">// set them in update else set them in Start</span></div>
@@ -152,7 +154,7 @@ $(document).ready(function(){initNavTree('_base_enemy_8cs_source.html','');});
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Use this for initialization</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> Start () {</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_base_enemy.html#ac200ff10edc386b7fbb9bce6d4832be6">   47</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#ac200ff10edc386b7fbb9bce6d4832be6">Start</a> () {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// Starting each enemy in a random direction</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// Going from index 0 to 4 exclusively</span></div>
@@ -165,51 +167,51 @@ $(document).ready(function(){initNavTree('_base_enemy_8cs_source.html','');});
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Update is called once per frame</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> Update () {</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_base_enemy.html#adcc81381e94ff2eaa6b2cd2193cb812f">   60</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#adcc81381e94ff2eaa6b2cd2193cb812f">Update</a> () {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span>(PartyMusic.isPlaying) {</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span>(!isDancing) {</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                isDancing = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                DanceCharacter();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="class_base_enemy.html#af33b3688ccdd5609817d34df1d0e4b8c">DanceCharacter</a>();</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            isDancing = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            MoveCharacter();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <a class="code" href="class_base_enemy.html#acff066d070e775af0700f1925cf61d73">MoveCharacter</a>();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        mAnimator.SetBool(<span class="stringliteral">&quot;is_dancing&quot;</span>, isDancing);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        ChangeDirection ();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        LimitPosition ();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="class_base_enemy.html#a09615600fe6541aa564a946bae6fe31d">ChangeDirection</a> ();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="class_base_enemy.html#a3629fecfd1fb26128ff8a5775465193d">LimitPosition</a> ();</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> MoveCharacter () {</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_base_enemy.html#acff066d070e775af0700f1925cf61d73">   78</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#acff066d070e775af0700f1925cf61d73">MoveCharacter</a> () {</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        this.transform.Translate(this.direction * speed * Time.deltaTime);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> DanceCharacter () {</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_base_enemy.html#af33b3688ccdd5609817d34df1d0e4b8c">   82</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#af33b3688ccdd5609817d34df1d0e4b8c">DanceCharacter</a> () {</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">int</span> dance_move = <a class="code" href="namespace_random.html">Random</a>.Range(9, 12);   <span class="comment">// will generate 9, 10, or 11</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        mAnimator.SetInteger(<span class="stringliteral">&quot;move_direction&quot;</span>, dance_move);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Prevents character from walking outside of the viewport</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> LimitPosition () {</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a3629fecfd1fb26128ff8a5775465193d">   88</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#a3629fecfd1fb26128ff8a5775465193d">LimitPosition</a> () {</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">// Get current position</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        Vector3 pos = transform.position;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">// Horizontal contraint</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(pos.x &lt; minX) pos.x = minX;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span>(pos.x &gt; maxX) pos.x = maxX;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(pos.x &lt; minX) pos.x = <a class="code" href="class_base_enemy.html#ac5f048ae1b25e718754ef20685a96fdb">minX</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span>(pos.x &gt; maxX) pos.x = <a class="code" href="class_base_enemy.html#a764799936ec33d69c4193adc96ffbc58">maxX</a>;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        </div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">// vertical contraint</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span>(pos.y &lt; minY) pos.y = minY;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span>(pos.y &gt; maxY) pos.y = maxY;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span>(pos.y &lt; minY) pos.y = <a class="code" href="class_base_enemy.html#a3559a388833a567d36d6161736fa153f">minY</a>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span>(pos.y &gt; maxY) pos.y = <a class="code" href="class_base_enemy.html#a889a3201e0fec4207fcfeb90748bbb64">maxY</a>;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment">// Update position</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        transform.position = pos;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> ChangeDirection () {</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_base_enemy.html#a09615600fe6541aa564a946bae6fe31d">  104</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_base_enemy.html#a09615600fe6541aa564a946bae6fe31d">ChangeDirection</a> () {</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">// Every 2 seconds, change direction</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// Note that newDirection could be the same as current one, on purpose</span></div>
@@ -223,10 +225,27 @@ $(document).ready(function(){initNavTree('_base_enemy_8cs_source.html','');});
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="ttc" id="class_mono_behaviour_html"><div class="ttname"><a href="class_mono_behaviour.html">MonoBehaviour</a></div></div>
 <div class="ttc" id="class_base_enemy_html"><div class="ttname"><a href="class_base_enemy.html">BaseEnemy</a></div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00004">BaseEnemy.cs:4</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a3559a388833a567d36d6161736fa153f"><div class="ttname"><a href="class_base_enemy.html#a3559a388833a567d36d6161736fa153f">BaseEnemy.minY</a></div><div class="ttdeci">float minY</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00027">BaseEnemy.cs:27</a></div></div>
+<div class="ttc" id="class_base_enemy_html_adcc81381e94ff2eaa6b2cd2193cb812f"><div class="ttname"><a href="class_base_enemy.html#adcc81381e94ff2eaa6b2cd2193cb812f">BaseEnemy.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00060">BaseEnemy.cs:60</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a09615600fe6541aa564a946bae6fe31d"><div class="ttname"><a href="class_base_enemy.html#a09615600fe6541aa564a946bae6fe31d">BaseEnemy.ChangeDirection</a></div><div class="ttdeci">void ChangeDirection()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00104">BaseEnemy.cs:104</a></div></div>
 <div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a764799936ec33d69c4193adc96ffbc58"><div class="ttname"><a href="class_base_enemy.html#a764799936ec33d69c4193adc96ffbc58">BaseEnemy.maxX</a></div><div class="ttdeci">float maxX</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00027">BaseEnemy.cs:27</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a8cee2e66d7052a407b95ead9567f136e"><div class="ttname"><a href="class_base_enemy.html#a8cee2e66d7052a407b95ead9567f136e">BaseEnemy.isDancing</a></div><div class="ttdeci">bool isDancing</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00024">BaseEnemy.cs:24</a></div></div>
+<div class="ttc" id="class_base_enemy_html_abc0e9233eaf5d6f8aa8c4f00517aa8f2"><div class="ttname"><a href="class_base_enemy.html#abc0e9233eaf5d6f8aa8c4f00517aa8f2">BaseEnemy.PartyMusic</a></div><div class="ttdeci">AudioSource PartyMusic</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00020">BaseEnemy.cs:20</a></div></div>
 <div class="ttc" id="class_base_enemy_html_a34b9ab76f443bedc6a9bf074896e64e6"><div class="ttname"><a href="class_base_enemy.html#a34b9ab76f443bedc6a9bf074896e64e6">BaseEnemy.speed</a></div><div class="ttdeci">float speed</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00023">BaseEnemy.cs:23</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a3629fecfd1fb26128ff8a5775465193d"><div class="ttname"><a href="class_base_enemy.html#a3629fecfd1fb26128ff8a5775465193d">BaseEnemy.LimitPosition</a></div><div class="ttdeci">void LimitPosition()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00088">BaseEnemy.cs:88</a></div></div>
 <div class="ttc" id="namespace_random_html"><div class="ttname"><a href="namespace_random.html">Random</a></div></div>
+<div class="ttc" id="class_base_enemy_html_ac5f048ae1b25e718754ef20685a96fdb"><div class="ttname"><a href="class_base_enemy.html#ac5f048ae1b25e718754ef20685a96fdb">BaseEnemy.minX</a></div><div class="ttdeci">float minX</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00027">BaseEnemy.cs:27</a></div></div>
+<div class="ttc" id="class_base_enemy_html_ac200ff10edc386b7fbb9bce6d4832be6"><div class="ttname"><a href="class_base_enemy.html#ac200ff10edc386b7fbb9bce6d4832be6">BaseEnemy.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00047">BaseEnemy.cs:47</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a50df6be0b39556321f7a41705277e922"><div class="ttname"><a href="class_base_enemy.html#a50df6be0b39556321f7a41705277e922">BaseEnemy.Awake</a></div><div class="ttdeci">void Awake()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00029">BaseEnemy.cs:29</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a0f582e8311605791b687930e4976e500"><div class="ttname"><a href="class_base_enemy.html#a0f582e8311605791b687930e4976e500">BaseEnemy.directions</a></div><div class="ttdeci">Vector2[] directions</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00017">BaseEnemy.cs:17</a></div></div>
+<div class="ttc" id="class_base_enemy_html_acff066d070e775af0700f1925cf61d73"><div class="ttname"><a href="class_base_enemy.html#acff066d070e775af0700f1925cf61d73">BaseEnemy.MoveCharacter</a></div><div class="ttdeci">void MoveCharacter()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00078">BaseEnemy.cs:78</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a5e07e715971cd06e16dcb966fe6400a3"><div class="ttname"><a href="class_base_enemy.html#a5e07e715971cd06e16dcb966fe6400a3">BaseEnemy.direction</a></div><div class="ttdeci">Vector3 direction</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00016">BaseEnemy.cs:16</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a902aa1b1c470491e3c888ed9034ea9ca"><div class="ttname"><a href="class_base_enemy.html#a902aa1b1c470491e3c888ed9034ea9ca">BaseEnemy.mAnimator</a></div><div class="ttdeci">Animator mAnimator</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00019">BaseEnemy.cs:19</a></div></div>
+<div class="ttc" id="class_base_enemy_html_af33b3688ccdd5609817d34df1d0e4b8c"><div class="ttname"><a href="class_base_enemy.html#af33b3688ccdd5609817d34df1d0e4b8c">BaseEnemy.DanceCharacter</a></div><div class="ttdeci">void DanceCharacter()</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00082">BaseEnemy.cs:82</a></div></div>
+<div class="ttc" id="class_base_enemy_html_a889a3201e0fec4207fcfeb90748bbb64"><div class="ttname"><a href="class_base_enemy.html#a889a3201e0fec4207fcfeb90748bbb64">BaseEnemy.maxY</a></div><div class="ttdeci">float maxY</div><div class="ttdef"><b>Definition:</b> <a href="_base_enemy_8cs_source.html#l00027">BaseEnemy.cs:27</a></div></div>
 <div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

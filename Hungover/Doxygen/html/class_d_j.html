@@ -30,9 +30,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Hungover
    </div>
+   <div id="projectbrief">Live,Laugh,Love...Naked!</div>
   </td>
  </tr>
  </tbody>
@@ -105,6 +107,8 @@ $(document).ready(function(){initNavTree('class_d_j.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_d_j-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DJ Class Reference</div>  </div>
@@ -116,13 +120,174 @@ Inheritance diagram for DJ:</div>
  <div class="center">
   <img src="class_d_j.png" usemap="#DJ_map" alt=""/>
   <map id="DJ_map" name="DJ_map">
+<area href="class_mono_behaviour.html" alt="MonoBehaviour" shape="rect" coords="0,0,102,24"/>
 </map>
  </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab3d4a491083a143a74b9afb5fd49125e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_j.html#ab3d4a491083a143a74b9afb5fd49125e">Start</a> ()</td></tr>
+<tr class="separator:ab3d4a491083a143a74b9afb5fd49125e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc62bc427f38bd433af422ed24ed73f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_j.html#adcc62bc427f38bd433af422ed24ed73f">Update</a> ()</td></tr>
+<tr class="separator:adcc62bc427f38bd433af422ed24ed73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1b90d80393f525da0c0f2bb6f4b6430f"><td class="memItemLeft" align="right" valign="top">Component[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_j.html#a1b90d80393f525da0c0f2bb6f4b6430f">mAudioSources</a></td></tr>
+<tr class="separator:a1b90d80393f525da0c0f2bb6f4b6430f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6e7c4dac52214a4d7be95fb87b6e67b"><td class="memItemLeft" align="right" valign="top">AudioSource&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">NellyMusic</a></td></tr>
+<tr class="separator:ac6e7c4dac52214a4d7be95fb87b6e67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a174a7eca3f9bd2904caad9271190708e"><td class="memItemLeft" align="right" valign="top">AudioSource&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_j.html#a174a7eca3f9bd2904caad9271190708e">StopScratching</a></td></tr>
+<tr class="separator:a174a7eca3f9bd2904caad9271190708e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00004">4</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Ajay/Desktop/Hungover/Hungover/Assets/Scripts/<a class="el" href="_d_j_8cs_source.html">DJ.cs</a></li>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab3d4a491083a143a74b9afb5fd49125e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DJ.Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00011">11</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="class_d_j.html#a1b90d80393f525da0c0f2bb6f4b6430f">mAudioSources</a> = GetComponents&lt;AudioSource&gt;();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">NellyMusic</a> = (AudioSource)<a class="code" href="class_d_j.html#a1b90d80393f525da0c0f2bb6f4b6430f">mAudioSources</a>[0];</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="class_d_j.html#a174a7eca3f9bd2904caad9271190708e">StopScratching</a> = (AudioSource)<a class="code" href="class_d_j.html#a1b90d80393f525da0c0f2bb6f4b6430f">mAudioSources</a>[1];</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="ttc" id="class_d_j_html_ac6e7c4dac52214a4d7be95fb87b6e67b"><div class="ttname"><a href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">DJ.NellyMusic</a></div><div class="ttdeci">AudioSource NellyMusic</div><div class="ttdef"><b>Definition:</b> <a href="_d_j_8cs_source.html#l00007">DJ.cs:7</a></div></div>
+<div class="ttc" id="class_d_j_html_a174a7eca3f9bd2904caad9271190708e"><div class="ttname"><a href="class_d_j.html#a174a7eca3f9bd2904caad9271190708e">DJ.StopScratching</a></div><div class="ttdeci">AudioSource StopScratching</div><div class="ttdef"><b>Definition:</b> <a href="_d_j_8cs_source.html#l00008">DJ.cs:8</a></div></div>
+<div class="ttc" id="class_d_j_html_a1b90d80393f525da0c0f2bb6f4b6430f"><div class="ttname"><a href="class_d_j.html#a1b90d80393f525da0c0f2bb6f4b6430f">DJ.mAudioSources</a></div><div class="ttdeci">Component[] mAudioSources</div><div class="ttdef"><b>Definition:</b> <a href="_d_j_8cs_source.html#l00006">DJ.cs:6</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="adcc62bc427f38bd433af422ed24ed73f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DJ.Update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00019">19</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                   {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">if</span>(Input.GetButtonUp(<span class="stringliteral">&quot;Music&quot;</span>)) {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">NellyMusic</a>.isPlaying) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">NellyMusic</a>.Play();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">NellyMusic</a>.Stop();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="class_d_j.html#a174a7eca3f9bd2904caad9271190708e">StopScratching</a>.Play ();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="ttc" id="class_d_j_html_ac6e7c4dac52214a4d7be95fb87b6e67b"><div class="ttname"><a href="class_d_j.html#ac6e7c4dac52214a4d7be95fb87b6e67b">DJ.NellyMusic</a></div><div class="ttdeci">AudioSource NellyMusic</div><div class="ttdef"><b>Definition:</b> <a href="_d_j_8cs_source.html#l00007">DJ.cs:7</a></div></div>
+<div class="ttc" id="class_d_j_html_a174a7eca3f9bd2904caad9271190708e"><div class="ttname"><a href="class_d_j.html#a174a7eca3f9bd2904caad9271190708e">DJ.StopScratching</a></div><div class="ttdeci">AudioSource StopScratching</div><div class="ttdef"><b>Definition:</b> <a href="_d_j_8cs_source.html#l00008">DJ.cs:8</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1b90d80393f525da0c0f2bb6f4b6430f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component [] DJ.mAudioSources</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00006">6</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac6e7c4dac52214a4d7be95fb87b6e67b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AudioSource DJ.NellyMusic</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00007">7</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a174a7eca3f9bd2904caad9271190708e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AudioSource DJ.StopScratching</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_d_j_8cs_source.html#l00008">8</a> of file <a class="el" href="_d_j_8cs_source.html">DJ.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>Assets/Scripts/<a class="el" href="_d_j_8cs_source.html">DJ.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

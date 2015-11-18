@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "BoardManager.Count", "class_board_manager_1_1_count.html", null ],
-    [ "MonoBehaviour", null, [
+    [ "MonoBehaviour", "class_mono_behaviour.html", [
       [ "BaseEnemy", "class_base_enemy.html", [
         [ "CrushEnemy", "class_crush_enemy.html", null ]
       ] ],
