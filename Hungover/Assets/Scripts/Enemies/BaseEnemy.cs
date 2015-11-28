@@ -40,10 +40,9 @@ public class BaseEnemy : MonoBehaviour {
 		
 		mAnimator = GetComponent<Animator>();
 		PartyMusic = (AudioSource)GameObject.Find ("PartyMusic").GetComponents<AudioSource>()[0];
-        player = GameObject.Find("AshFlashem(Clone)").transform;
+        this.player = GameObject.Find("AshFlashem(Clone)").transform;
     }
 
-    // Use this for initialization
     void Start () {
 
 		// Starting each enemy in a random direction
@@ -53,10 +52,8 @@ public class BaseEnemy : MonoBehaviour {
 
 		speed = 2.0f;
 		isDancing = false;
-
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		if(PartyMusic.isPlaying) {
@@ -76,8 +73,8 @@ public class BaseEnemy : MonoBehaviour {
 
         if (player != null)
         {
-            rightLineFOV = RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
-            leftLineFOV = RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
+            this.rightLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+            this.leftLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
             Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
         }
     }
@@ -110,9 +107,9 @@ public class BaseEnemy : MonoBehaviour {
 
 	void ChangeDirection () {
 
-		// Every 2 seconds, change direction
-		// Note that newDirection could be the same as current one, on purpose
-		if(Time.time % 1.5f <= 0.1f) {                                                          
+        // Every 2 seconds, change direction
+        // Note that newDirection could be the same as current one, on purpose
+        if (Time.time % 1.5f <= 0.1f) {                                                          
 
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
@@ -120,7 +117,6 @@ public class BaseEnemy : MonoBehaviour {
 			mAnimator.SetInteger("move_direction", directionsIdx + 1);
 		}
 	}
-
 
     [Range(0.1f, 10f)]
     public float radius = 1;
@@ -134,12 +130,6 @@ public class BaseEnemy : MonoBehaviour {
 
     private Vector2 leftLineFOV;
     private Vector2 rightLineFOV;
-
-
-    private void FaceDirection(Vector2 direction0)
-    {
-        Quaternion rotation3D = direction0 == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
-    }
 
     public bool InsideFieldOfView(Vector2 playerPosition)
     {
@@ -179,6 +169,7 @@ public class BaseEnemy : MonoBehaviour {
 
     void OnDrawGizmos()
     {
+        this.fieldOfViewDirection = this.direction;
         Gizmos.color = Color.green;
         Gizmos.DrawRay(this.transform.position, this.fieldOfViewDirection.normalized * this.radius);
 
