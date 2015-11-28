@@ -40,11 +40,11 @@ public class BaseEnemy : MonoBehaviour {
 		
 		mAnimator = GetComponent<Animator>();
 		PartyMusic = (AudioSource)GameObject.Find ("PartyMusic").GetComponents<AudioSource>()[0];
+        player = GameObject.Find("AshFlashem(Clone)").transform;
+    }
 
-	}
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 		// Starting each enemy in a random direction
 		// Going from index 0 to 4 exclusively
@@ -73,7 +73,14 @@ public class BaseEnemy : MonoBehaviour {
 
 		ChangeDirection ();
 		LimitPosition ();
-	}
+
+        if (player != null)
+        {
+            rightLineFOV = RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+            leftLineFOV = RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
+            Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
+        }
+    }
 
 	void MoveCharacter () {
 		this.transform.Translate(this.direction * speed * Time.deltaTime);
@@ -105,13 +112,91 @@ public class BaseEnemy : MonoBehaviour {
 
 		// Every 2 seconds, change direction
 		// Note that newDirection could be the same as current one, on purpose
-		if(Time.time % 1.5f <= 0.1f) {
+		if(Time.time % 1.5f <= 0.1f) {                                                          
 
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
 			this.direction = newDirection;
 			mAnimator.SetInteger("move_direction", directionsIdx + 1);
 		}
-
 	}
+
+
+    [Range(0.1f, 10f)]
+    public float radius = 1;
+
+    [Range(1.0f, 360f)]
+    public int fieldOfViewAngle;
+
+    public Vector2 fieldOfViewDirection;
+
+    private Transform player;
+
+    private Vector2 leftLineFOV;
+    private Vector2 rightLineFOV;
+
+
+    private void FaceDirection(Vector2 direction0)
+    {
+        Quaternion rotation3D = direction0 == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
+    }
+
+    public bool InsideFieldOfView(Vector2 playerPosition)
+    {
+        float squaredDistance = ((playerPosition.x - this.transform.position.x) * (playerPosition.x - this.transform.position.x)) + ((playerPosition.y - this.transform.position.y) * (playerPosition.y - this.transform.position.y)); // a^2 + b^2 = c^2
+
+        if (this.radius * this.radius >= squaredDistance)
+        {
+            float signLeftLine = (this.leftLineFOV.x) * (playerPosition.y - this.transform.position.y) - (this.leftLineFOV.y) * (playerPosition.x - this.transform.position.x);
+            float signRightLine = (rightLineFOV.x) * (playerPosition.y - transform.position.y) - (rightLineFOV.y) * (playerPosition.x - transform.position.x);
+            if (fieldOfViewAngle <= 180)
+            {
+                //Debug.Log(signLeftLine + " " + signRightLine);
+                if (signLeftLine <= 0.0f && signRightLine >= 0.0f)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (!(signLeftLine >= 0.0f && signRightLine <= 0.0f))
+                {
+                    //return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //Rotate point (px, py) around point (ox, oy) by angle theta you'll get:
+    //p'x = cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox
+    //p'y = sin(theta) * (px-ox) + cos(theta) * (py-oy) + oy
+    private Vector2 RotatePointAroundTransform(Vector2 p, float angles)
+    {
+        return new Vector2(Mathf.Cos((angles) * Mathf.Deg2Rad) * (p.x) - Mathf.Sin((angles) * Mathf.Deg2Rad) * (p.y),
+                           Mathf.Sin((angles) * Mathf.Deg2Rad) * (p.x) + Mathf.Cos((angles) * Mathf.Deg2Rad) * (p.y));
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(this.transform.position, this.fieldOfViewDirection.normalized * this.radius);
+
+        this.rightLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+        this.leftLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(this.transform.position, this.rightLineFOV);
+        Gizmos.DrawRay(this.transform.position, this.leftLineFOV);
+
+        Vector2 p = rightLineFOV;
+        float step = this.fieldOfViewAngle / 20.0f;
+        for (int i = 1; i <= 20; ++i)
+        {
+            Vector2 p1 = this.RotatePointAroundTransform(fieldOfViewDirection.normalized * radius, -fieldOfViewAngle / 2.0f + step * (i));
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p, p1 - p);
+            p = p1;
+        }
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p, this.leftLineFOV - p);
+    }
 }

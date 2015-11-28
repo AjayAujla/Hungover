@@ -255,8 +255,5 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);
-		
 	}
-
-
 }
