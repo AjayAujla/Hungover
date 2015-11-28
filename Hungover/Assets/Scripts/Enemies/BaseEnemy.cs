@@ -29,7 +29,22 @@ public class BaseEnemy : MonoBehaviour {
 	// limiting character's movement by Camera's viewport coordinates
 	private float minX, maxX, minY, maxY;
 
-	void Awake () {
+    [Range(0.1f, 10f)]
+    public float radius = 1;
+
+    private float redZoneRadius;
+    private float orangeZoneRadius;
+
+    [Range(1.0f, 360f)]
+    public int fieldOfViewAngle;
+
+    private Transform player;
+
+    private Vector2 leftLineFOV;
+    private Vector2 rightLineFOV;
+
+
+    void Awake () {
 			
 		// If you want the min max values to update if the resolution changes 
 		// set them in update else set them in Start
@@ -53,7 +68,7 @@ public class BaseEnemy : MonoBehaviour {
 
         speed = 2.0f;
 		isDancing = false;
-	}
+    }
 	
 	void Update () {
 
@@ -74,8 +89,8 @@ public class BaseEnemy : MonoBehaviour {
 
         if (player != null)
         {
-            this.rightLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
-            this.leftLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
+            this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+            this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
             Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
         }
     }
@@ -108,7 +123,7 @@ public class BaseEnemy : MonoBehaviour {
 
 	void ChangeDirection () {
 
-        // Every 2 seconds, change direction
+        // Every few seconds, change direction
         // Note that newDirection could be the same as current one, on purpose
         this.directionChangeTimer -= Time.deltaTime;
 
@@ -120,19 +135,6 @@ public class BaseEnemy : MonoBehaviour {
             this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
         }
     }
-
-    [Range(0.1f, 10f)]
-    public float radius = 1;
-
-    [Range(1.0f, 360f)]
-    public int fieldOfViewAngle;
-
-    public Vector2 fieldOfViewDirection;
-
-    private Transform player;
-
-    private Vector2 leftLineFOV;
-    private Vector2 rightLineFOV;
 
     public bool InsideFieldOfView(Vector2 playerPosition)
     {
@@ -172,25 +174,42 @@ public class BaseEnemy : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        this.fieldOfViewDirection = this.direction;
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(this.transform.position, this.fieldOfViewDirection.normalized * this.radius);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawRay(this.transform.position, this.direction.normalized * this.radius);
 
-        this.rightLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
-        this.leftLineFOV = this.RotatePointAroundTransform(this.fieldOfViewDirection.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
+        this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+        this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.white;
         Gizmos.DrawRay(this.transform.position, this.rightLineFOV);
         Gizmos.DrawRay(this.transform.position, this.leftLineFOV);
 
-        Vector2 p = rightLineFOV;
-        float step = this.fieldOfViewAngle / 20.0f;
-        for (int i = 1; i <= 20; ++i)
+        Vector2 p0 = this.rightLineFOV;
+        float divisions = 20.0f;
+        float step = this.fieldOfViewAngle / divisions;
+        // leftmost and inner rays
+        for (int i = 1; i <= divisions; ++i)
         {
-            Vector2 p1 = this.RotatePointAroundTransform(fieldOfViewDirection.normalized * radius, -fieldOfViewAngle / 2.0f + step * (i));
-            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p, p1 - p);
-            p = p1;
+            Vector2 p1 = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f + step * (i));
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0, p1 - p0);
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0 / 2.0f, p1 - p0);
+
+            Gizmos.color = Color.red;
+            Vector2 p2 = this.RotatePointAroundTransform(direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * (i));
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p2, p2 - p1);
+
+            Gizmos.color = Color.yellow;
+            Vector2 p3 = this.RotatePointAroundTransform(direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * (i));
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
+
+            p0 = p1;
         }
-        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p, this.leftLineFOV - p);
+        // rightmost rays
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.rightLineFOV / 2.0f, this.rightLineFOV / 2.0f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(this.transform.position, this.rightLineFOV / 2.0f);
     }
 }
