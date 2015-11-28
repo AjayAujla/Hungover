@@ -15,8 +15,11 @@ public class BaseEnemy : MonoBehaviour {
 
 	Vector3 direction;
 	Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
+    float directionChangeTimer;
+    float minimumDirectionChangeTimer = 1.0f;
+    float maximumDirectionChangeTimer = 3.0f;
 
-	Animator mAnimator;
+    Animator mAnimator;
 	AudioSource PartyMusic;
 
 	[SerializeField]
@@ -41,16 +44,14 @@ public class BaseEnemy : MonoBehaviour {
 		mAnimator = GetComponent<Animator>();
 		PartyMusic = (AudioSource)GameObject.Find ("PartyMusic").GetComponents<AudioSource>()[0];
         this.player = GameObject.Find("AshFlashem(Clone)").transform;
-    }
-
-    void Start () {
 
 		// Starting each enemy in a random direction
 		// Going from index 0 to 4 exclusively
 		int directionsIdx = Random.Range(0, 4);
 		this.direction = directions[directionsIdx];
+        this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
-		speed = 2.0f;
+        speed = 2.0f;
 		isDancing = false;
 	}
 	
@@ -109,14 +110,16 @@ public class BaseEnemy : MonoBehaviour {
 
         // Every 2 seconds, change direction
         // Note that newDirection could be the same as current one, on purpose
-        if (Time.time % 1.5f <= 0.1f) {                                                          
+        this.directionChangeTimer -= Time.deltaTime;
 
+        if (this.directionChangeTimer <= 0.0f) {                                                          
 			int directionsIdx = Random.Range(0, 4);
 			Vector3 newDirection = directions[directionsIdx];
 			this.direction = newDirection;
 			mAnimator.SetInteger("move_direction", directionsIdx + 1);
-		}
-	}
+            this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+        }
+    }
 
     [Range(0.1f, 10f)]
     public float radius = 1;
