@@ -95,7 +95,7 @@ public class BaseEnemy : MonoBehaviour
         {
             this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
             this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
-            Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
+            //Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
         }
     }
 
