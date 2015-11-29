@@ -18,10 +18,13 @@ public class Player : MonoBehaviour
     public float speed;
 
     private Animator mAnimator;
+	private AudioSource mAudioSource;
+	private float footStepsPitch = 1.0f;
 
 	void Start ()
     {
         mAnimator = GetComponent<Animator>();
+		mAudioSource = GetComponent<AudioSource>();
 	}
 
 	void Update ()
@@ -37,7 +40,22 @@ public class Player : MonoBehaviour
 		Vector2 direction = new Vector2(h, v);
 		transform.Translate(direction * speed * Time.deltaTime);
 
-		SetAnimation(direction);	   
+		if(direction != Vector2.zero) {
+			if(!mAudioSource.isPlaying) {
+				if(Input.GetButton("Run")) {
+					footStepsPitch = 0.8f;
+				} else {
+					footStepsPitch = 0.4f;
+				}
+				mAudioSource.pitch = footStepsPitch;
+				mAudioSource.Play();
+			}
+		} else {
+			mAudioSource.Stop();
+		}
+
+		SetAnimation(direction);
+			   
     }
 
     void SetAnimation(Vector2 direction)
