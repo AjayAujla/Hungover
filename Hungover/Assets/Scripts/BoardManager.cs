@@ -126,17 +126,21 @@ public class BoardManager : MonoBehaviour {
 						
 						GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 						
-						roomsList.Add (r);
-						
 						instance.transform.SetParent (boardHolder);	
 					}
 				}
+				
+				roomsList.Add (r);
 			}	
 		}
 		
-		//Instantiate enter and exit tiles in the rooms.
-		SpawnDoors();
+		//Sort rooms from left to right
+		SortRoomsByPosition();
 		
+		//Instantiate enter and exit tiles in the rooms.
+		//SpawnDoors();
+		
+		//Create paths which connect the rooms.
 		ConnectRooms();
 	}
 	
@@ -168,40 +172,130 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 	
+	void SortRoomsByPosition()
+	{
+		Room temp = new Room();
+		
+		for(int i = 0; i < roomsList.Count - 1; i++)
+		{
+			for(int j = i + 1; j < roomsList.Count; j++)
+			{
+				if(roomsList[i].xCenterPos > roomsList[j].xCenterPos)
+				{
+					temp = roomsList[i];
+					roomsList[i] = roomsList[j];
+					roomsList[j] = temp;
+				}
+			}
+		}
+	}
+	
 	void ConnectRooms()
 	{
+		
 		for(int i = 0; i < roomsList.Count - 1; i++)
 		{
 			int xPath = roomsList[i].xCenterPos;
 			int yPath = roomsList[i].yCenterPos;
 			
-			while (xPath != roomsList[i+1].xCenterPos)
+			if(!(roomsList[i].yCenterPos == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) || roomsList[i+1].xCenterPos == (roomsList[i].xRoomPosition + roomsList[i].widthRoom)))
 			{
-				Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
-				
-				if(xPath < roomsList[i+1].xCenterPos)
+				while (xPath != roomsList[i+1].xCenterPos)
 				{
-					xPath++;
+					
+					// if you ran into a wall, place a door, else, place a floor tile.
+					if((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
+					{
+						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					else
+					{
+						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					
+					
+					if(xPath < roomsList[i+1].xCenterPos)
+					{
+						xPath++;
+					}
+					
+					else 
+					{
+						xPath--;
+					}
 				}
 				
-				else 
+				while (yPath != roomsList[i+1].yCenterPos)
 				{
-					xPath--;
+					// if you ran into a wall, place a door, else, place a floor tile.
+					if((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
+					{
+						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					else
+					{
+						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					
+					if(yPath < roomsList[i+1].yCenterPos)
+					{
+						yPath++;
+					}
+					
+					else 
+					{
+						yPath--;
+					}
 				}
+				
+				Debug.Log("Paths used: " + i);
 			}
-			
-			while (yPath != roomsList[i+1].yCenterPos)
-			{
-				Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
-				
-				if(yPath < roomsList[i+1].yCenterPos)
+			else //if(!(roomsList[i].yCenterPos == roomsList[i+1].yRoomPosition || roomsList[i+1].xCenterPos == (roomsList[i].xRoomPosition + roomsList[i].widthRoom)))
+			{	
+				while (yPath != roomsList[i+1].yCenterPos)
 				{
-					yPath++;
+					// if you ran into a wall, place a door, else, place a floor tile.
+					if((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
+					{
+						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					else
+					{
+						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					
+					if(yPath < roomsList[i+1].yCenterPos)
+					{
+						yPath++;
+					}
+					
+					else 
+					{
+						yPath--;
+					}
 				}
 				
-				else 
+				while (xPath != roomsList[i+1].xCenterPos)
 				{
-					yPath--;
+					// if you ran into a wall, place a door, else, place a floor tile.
+					if((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
+					{
+						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					else
+					{
+						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+					}
+					
+					if(xPath < roomsList[i+1].xCenterPos)
+					{
+						xPath++;
+					}
+					
+					else 
+					{
+						xPath--;
+					}
 				}
 			}
 		}	
@@ -248,7 +342,7 @@ public class BoardManager : MonoBehaviour {
 		Instantiate (player, new Vector3 (roomsList[0].xRoomPosition + 1, roomsList[0].yRoomPosition + 1, 0f), Quaternion.identity);
 		
 		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
+		//LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
 		
 		//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
