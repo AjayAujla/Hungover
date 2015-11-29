@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    public enum DetectionRange { greenZone, yellowZone, redZone };
 
 	/********************************************************************
 	 * 
@@ -22,29 +23,34 @@ public class Player : MonoBehaviour
 	private AudioSource mAudioSource;
 	private float footStepsPitch = 1.0f;
 
+    private int embarrassment;
+    private EmbarrassmentMeter embarrassmentMeter;
+
 	void Start ()
     {
         mAnimator = GetComponent<Animator>();
 		mAudioSource = GetComponent<AudioSource>();
-	}
+        this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+    }
 
-	void Update ()
+    void Update ()
     {
         MoveCharacter();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.tag == "Shirt" ||
-		   other.gameObject.tag == "Boxers" ||
-		   other.gameObject.tag == "Pants" ||
-		   other.gameObject.tag == "Shoes") {
-			PlayerReskin.ChangeSprite(other.gameObject.tag);
+		if(other.gameObject.layer == 9) {	// layer 9 is "Item"
 
-			// find the corresponding clothe UI (top-right corner)
+			// if it's a clothe (Boxers, Pants, Shirt, or Shoes), reskin player
+			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet") {
+				PlayerReskin.ChangeSprite(other.gameObject.tag);
+			}
+
+			// find the corresponding item UI (top-right corner)
 			GameObject clothe = GameObject.Find(other.gameObject.tag);
 			if(clothe) {
-				clothe.GetComponent<Image>().color = Color.white;	// set the clothe UI opacity to 1 (opaque)
-				Destroy(other.gameObject);	// remove the clothe object from the map
+				clothe.GetComponent<Image>().color = Color.white;	// set the item UI opacity to 1 (opaque)
+				Destroy(other.gameObject);	// remove the item object from the map
 			}
 
 		}
@@ -96,4 +102,19 @@ public class Player : MonoBehaviour
 		mAnimator.SetInteger("move_direction", animationIdx);
     }
 
+    private void getEmbarrassed(DetectionRange detectionRange)
+    {
+        switch (detectionRange)
+        {
+            case DetectionRange.greenZone:
+                break;
+            case DetectionRange.yellowZone:
+                break;
+        }
+    }
+
+    private void coolDownEmbarrassment()
+    {
+
+    }
 }

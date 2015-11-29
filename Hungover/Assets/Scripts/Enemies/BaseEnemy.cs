@@ -3,15 +3,12 @@ using System.Collections;
 
 public class BaseEnemy : MonoBehaviour
 {
-
     /********************************************************************
-	 * 
 	 *	Animation States:
 	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
 	 *	2 = Walk Right		6 = Run Right		10 = Dance move 2
 	 *	3 = Walk Down		7 = Run Down		11 = Dance move 3
 	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
-	 *
 	 ********************************************************************/
 
     Vector3 direction;
@@ -20,8 +17,10 @@ public class BaseEnemy : MonoBehaviour
     float minimumDirectionChangeTimer = 1.0f;
     float maximumDirectionChangeTimer = 3.0f;
 
+    private GameObject player;
     Animator mAnimator;
     AudioSource PartyMusic;
+    private Player playerScript;
 
     [SerializeField]
     public float speed;
@@ -30,22 +29,23 @@ public class BaseEnemy : MonoBehaviour
     // limiting character's movement by Camera's viewport coordinates
     private float minX, maxX, minY, maxY;
 
+    [SerializeField]
     [Range(0.1f, 10f)]
+    private float fieldOfViewRadius = 4;
     [SerializeField]
-    private float radius = 4;
-    [SerializeField]
-    private bool showFieldOfViewFill = false;
-
     [Range(1.0f, 360f)]
-    public int fieldOfViewAngle;
-    private Vector2 leftLineFOV;
-    private Vector2 rightLineFOV;
+    private int fieldOfViewAngle;
+    [SerializeField]
+    private bool showFieldOfViewAreaFill = false;
 
-    private Transform player;
+    private Vector2 leftLineFieldOfView;
+    private Vector2 rightLineFieldOfView;
+
+    Player.DetectionRange playerDetectionRange;
 
     void Awake()
     {
-        // If you want the min max values to update if the resolution changes 
+        // If you want the min max values to update if the resolution changes
         // set them in update else set them in Start
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
         Vector2 bottomCorner = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
@@ -57,7 +57,8 @@ public class BaseEnemy : MonoBehaviour
 
         mAnimator = GetComponent<Animator>();
         PartyMusic = (AudioSource)GameObject.Find("PartyMusic").GetComponents<AudioSource>()[0];
-        this.player = GameObject.Find("AshFlashem(Clone)").transform;
+        this.player = GameObject.Find("AshFlashem(Clone)");
+        this.playerScript = this.player.GetComponent<Player>();
 
         // Starting each enemy in a random direction
         // Going from index 0 to 4 exclusively
@@ -65,13 +66,11 @@ public class BaseEnemy : MonoBehaviour
         this.direction = directions[directionsIdx];
         this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
-        speed = 2.0f;
         isDancing = false;
     }
 
     void Update()
     {
-
         if (PartyMusic.isPlaying)
         {
             if (!isDancing)
@@ -91,11 +90,10 @@ public class BaseEnemy : MonoBehaviour
         ChangeDirection();
         LimitPosition();
 
-        if (player != null)
-        {
-            this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
-            this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
-            //Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
+        if (this.transform.name == "TestEnemy") {
+            if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight()) {
+                Debug.LogError("Player in " + this.playerDetectionRange);
+            }
         }
     }
 
@@ -130,7 +128,6 @@ public class BaseEnemy : MonoBehaviour
 
     void ChangeDirection()
     {
-
         // Every few seconds, change direction
         // Note that newDirection could be the same as current one, on purpose
         this.directionChangeTimer -= Time.deltaTime;
@@ -142,20 +139,30 @@ public class BaseEnemy : MonoBehaviour
             this.direction = newDirection;
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
             this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+
+            this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
+            this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
         }
     }
 
-    public bool InsideFieldOfView(Vector2 playerPosition)
+    private bool PlayerInsideFieldOfView()
     {
-        float squaredDistance = ((playerPosition.x - this.transform.position.x) * (playerPosition.x - this.transform.position.x)) + ((playerPosition.y - this.transform.position.y) * (playerPosition.y - this.transform.position.y)); // a^2 + b^2 = c^2
+        return this.InsideFieldOfView(this.player.transform.position);
+    }
 
-        if (this.radius * this.radius >= squaredDistance)
+    /*
+     *  Can be utlized to find anything within the field of view
+     */
+    public bool InsideFieldOfView(Vector3 position)
+    {
+        float squaredDistance = ((position.x - this.transform.position.x) * (position.x - this.transform.position.x)) + ((position.y - this.transform.position.y) * (position.y - this.transform.position.y)); // a^2 + b^2 = c^2
+
+        if (this.fieldOfViewRadius * this.fieldOfViewRadius >= squaredDistance)
         {
-            float signLeftLine = (this.leftLineFOV.x) * (playerPosition.y - this.transform.position.y) - (this.leftLineFOV.y) * (playerPosition.x - this.transform.position.x);
-            float signRightLine = (rightLineFOV.x) * (playerPosition.y - transform.position.y) - (rightLineFOV.y) * (playerPosition.x - transform.position.x);
-            if (fieldOfViewAngle <= 180)
+            float signLeftLine = (this.leftLineFieldOfView.x) * (position.y - this.transform.position.y) - (this.leftLineFieldOfView.y) * (position.x - this.transform.position.x);
+            float signRightLine = (rightLineFieldOfView.x) * (position.y - transform.position.y) - (rightLineFieldOfView.y) * (position.x - transform.position.x);
+            if (this.fieldOfViewAngle <= 180)
             {
-                //Debug.Log(signLeftLine + " " + signRightLine);
                 if (signLeftLine <= 0.0f && signRightLine >= 0.0f)
                 {
                     return true;
@@ -165,10 +172,47 @@ public class BaseEnemy : MonoBehaviour
             {
                 if (!(signLeftLine >= 0.0f && signRightLine <= 0.0f))
                 {
-                    //return true;
+                    return true;
                 }
             }
         }
+        return false;
+    }
+
+    private bool PlayerInLineOfSight()
+    {
+        return this.InLineOfSight(this.player.transform.position);
+    }
+
+    /* 
+     *  Changed Physics2D settings in Unity -> Edit -> Project Settings -> Queries Start in Colliders -> False to prevent ray from colliding with enemy's own collider
+     *  Can be utlized to check if anything is in line of sight within the field of view
+     */
+    private bool InLineOfSight(Vector3 position)
+    {
+        Vector2 rayDirection = position - this.transform.position;
+
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, rayDirection);
+        if (hit.collider != null)
+        {
+            Debug.DrawRay(this.transform.position, rayDirection);
+            Debug.LogError(this.transform.name + " --> " + hit.collider.transform.name);
+            if ((hit.transform.tag == "Player"))
+            {
+                if(rayDirection.sqrMagnitude <= (this.fieldOfViewRadius / 2.0f * this.fieldOfViewRadius / 2.0f))
+                {
+                    this.playerDetectionRange = Player.DetectionRange.redZone;
+                } else if(rayDirection.sqrMagnitude <= this.fieldOfViewRadius * this.fieldOfViewRadius)
+                {
+                    this.playerDetectionRange = Player.DetectionRange.yellowZone;
+                } else
+                {
+                    this.playerDetectionRange = Player.DetectionRange.greenZone;
+                }
+                return true;
+            }
+        }
+        this.playerDetectionRange = Player.DetectionRange.greenZone;
         return false;
     }
 
@@ -183,30 +227,30 @@ public class BaseEnemy : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
-        this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+        this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
+        this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
 
-        Vector2 p0 = this.rightLineFOV;
-        float divisions = 20.0f;
+        Vector2 p0 = this.rightLineFieldOfView;
+        float divisions = 120.0f; // greater number of divisions helps smooths the curve and also adds more rays within the fill area
         float step = this.fieldOfViewAngle / divisions;
 
         // inner rays
         for (int i = 1; i <= divisions; ++i)
         {
-            Vector2 p1 = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f + step * i);
+            Vector2 p1 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f + step * i);
             Gizmos.color = Color.yellow;
             Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0, p1 - p0);
             Gizmos.color = Color.red;
             Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0 / 2.0f, p1 - p0);
 
-            if (this.showFieldOfViewFill)
+            if (this.showFieldOfViewAreaFill)
             {
                 Gizmos.color = Color.red;
-                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p2, p2 - p1);
 
                 Gizmos.color = Color.yellow;
-                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
             }
             p0 = p1;
@@ -214,10 +258,10 @@ public class BaseEnemy : MonoBehaviour
 
         // outline rays
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.leftLineFOV / 2.0f, this.leftLineFOV / 2.0f);
-        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.rightLineFOV / 2.0f, this.rightLineFOV / 2.0f);
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.leftLineFieldOfView / 2.0f, this.leftLineFieldOfView / 2.0f);
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.rightLineFieldOfView / 2.0f, this.rightLineFieldOfView / 2.0f);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(this.transform.position, this.leftLineFOV / 2.0f);
-        Gizmos.DrawRay(this.transform.position, this.rightLineFOV / 2.0f);
+        Gizmos.DrawRay(this.transform.position, this.leftLineFieldOfView / 2.0f);
+        Gizmos.DrawRay(this.transform.position, this.rightLineFieldOfView / 2.0f);
     }
 }
