@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour
@@ -30,6 +31,23 @@ public class Player : MonoBehaviour
 	void Update ()
     {
         MoveCharacter();
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.tag == "Shirt" ||
+		   other.gameObject.tag == "Boxers" ||
+		   other.gameObject.tag == "Pants" ||
+		   other.gameObject.tag == "Shoes") {
+			PlayerReskin.ChangeSprite(other.gameObject.tag);
+
+			// find the corresponding clothe UI (top-right corner)
+			GameObject clothe = GameObject.Find(other.gameObject.tag);
+			if(clothe) {
+				clothe.GetComponent<Image>().color = Color.white;	// set the clothe UI opacity to 1 (opaque)
+				Destroy(other.gameObject);	// remove the clothe object from the map
+			}
+
+		}
 	}
 
 	void MoveCharacter()

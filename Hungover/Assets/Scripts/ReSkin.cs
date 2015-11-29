@@ -16,7 +16,7 @@ public class ReSkin : MonoBehaviour {
 
 
 	void Start() {
-		int SpriteSheetsEnumIdx = UnityEngine.Random.Range(0, 5);
+		int SpriteSheetsEnumIdx = UnityEngine.Random.Range(0, 4);
 		spriteSheetName = ((SpriteSheetsEnum)SpriteSheetsEnumIdx).ToString();
 	}
 
