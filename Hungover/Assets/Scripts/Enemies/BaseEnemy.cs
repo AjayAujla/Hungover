@@ -231,7 +231,7 @@ public class BaseEnemy : MonoBehaviour
         this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
 
         Vector2 p0 = this.rightLineFieldOfView;
-        float divisions = 20.0f;
+        float divisions = 120.0f; // greater number of divisions helps smooths the curve and also adds more rays within the fill area
         float step = this.fieldOfViewAngle / divisions;
 
         // inner rays
