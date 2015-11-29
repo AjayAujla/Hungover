@@ -3,15 +3,12 @@ using System.Collections;
 
 public class BaseEnemy : MonoBehaviour
 {
-
     /********************************************************************
-	 * 
 	 *	Animation States:
 	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
 	 *	2 = Walk Right		6 = Run Right		10 = Dance move 2
 	 *	3 = Walk Down		7 = Run Down		11 = Dance move 3
 	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
-	 *
 	 ********************************************************************/
 
     Vector3 direction;
@@ -20,8 +17,10 @@ public class BaseEnemy : MonoBehaviour
     float minimumDirectionChangeTimer = 1.0f;
     float maximumDirectionChangeTimer = 3.0f;
 
+    private GameObject player;
     Animator mAnimator;
     AudioSource PartyMusic;
+    private Player playerScript;
 
     [SerializeField]
     public float speed;
@@ -30,22 +29,21 @@ public class BaseEnemy : MonoBehaviour
     // limiting character's movement by Camera's viewport coordinates
     private float minX, maxX, minY, maxY;
 
+    [SerializeField]
     [Range(0.1f, 10f)]
+    private float fieldOfViewRadius = 4;
     [SerializeField]
-    private float radius = 4;
-    [SerializeField]
-    private bool showFieldOfViewFill = false;
-
     [Range(1.0f, 360f)]
-    public int fieldOfViewAngle;
+    private int fieldOfViewAngle;
+    [SerializeField]
+    private bool showFieldOfViewAreaFill = false;
+
     private Vector2 leftLineFOV;
     private Vector2 rightLineFOV;
 
-    private Transform player;
-
     void Awake()
     {
-        // If you want the min max values to update if the resolution changes 
+        // If you want the min max values to update if the resolution changes
         // set them in update else set them in Start
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
         Vector2 bottomCorner = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
@@ -57,7 +55,8 @@ public class BaseEnemy : MonoBehaviour
 
         mAnimator = GetComponent<Animator>();
         PartyMusic = (AudioSource)GameObject.Find("PartyMusic").GetComponents<AudioSource>()[0];
-        this.player = GameObject.Find("AshFlashem(Clone)").transform;
+        this.player = GameObject.Find("AshFlashem(Clone)");
+        this.playerScript = this.player.GetComponent<Player>();
 
         // Starting each enemy in a random direction
         // Going from index 0 to 4 exclusively
@@ -65,13 +64,11 @@ public class BaseEnemy : MonoBehaviour
         this.direction = directions[directionsIdx];
         this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
-        speed = 2.0f;
         isDancing = false;
     }
 
     void Update()
     {
-
         if (PartyMusic.isPlaying)
         {
             if (!isDancing)
@@ -83,19 +80,23 @@ public class BaseEnemy : MonoBehaviour
         else
         {
             isDancing = false;
-            MoveCharacter();
+            //MoveCharacter();
         }
 
         mAnimator.SetBool("is_dancing", isDancing);
 
-        ChangeDirection();
+        //ChangeDirection();
         LimitPosition();
 
-        if (player != null)
-        {
-            this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
-            this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
-            //Debug.Log(this.InsideFieldOfView(new Vector2(this.player.position.x, this.player.position.y)));
+        if (this.transform.name == "TestEnemy") {
+            bool playerInsideFOV = this.InsideFieldOfView(this.player.transform.position);
+            //Debug.LogError("player inside FOV " + playerInsideFOV);
+            if (playerInsideFOV)
+            {
+                //TODO embarrassment bar
+                bool enemyCanSeePlayer = this.CanSeePlayer();
+                //Debug.LogError("enemy can see palyer " + enemyCanSeePlayer);
+            }
         }
     }
 
@@ -130,7 +131,6 @@ public class BaseEnemy : MonoBehaviour
 
     void ChangeDirection()
     {
-
         // Every few seconds, change direction
         // Note that newDirection could be the same as current one, on purpose
         this.directionChangeTimer -= Time.deltaTime;
@@ -142,20 +142,22 @@ public class BaseEnemy : MonoBehaviour
             this.direction = newDirection;
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
             this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+
+            this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
+            this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
         }
     }
 
-    public bool InsideFieldOfView(Vector2 playerPosition)
+    public bool InsideFieldOfView(Vector3 position)
     {
-        float squaredDistance = ((playerPosition.x - this.transform.position.x) * (playerPosition.x - this.transform.position.x)) + ((playerPosition.y - this.transform.position.y) * (playerPosition.y - this.transform.position.y)); // a^2 + b^2 = c^2
+        float squaredDistance = ((position.x - this.transform.position.x) * (position.x - this.transform.position.x)) + ((position.y - this.transform.position.y) * (position.y - this.transform.position.y)); // a^2 + b^2 = c^2
 
-        if (this.radius * this.radius >= squaredDistance)
+        if (this.fieldOfViewRadius * this.fieldOfViewRadius >= squaredDistance)
         {
-            float signLeftLine = (this.leftLineFOV.x) * (playerPosition.y - this.transform.position.y) - (this.leftLineFOV.y) * (playerPosition.x - this.transform.position.x);
-            float signRightLine = (rightLineFOV.x) * (playerPosition.y - transform.position.y) - (rightLineFOV.y) * (playerPosition.x - transform.position.x);
-            if (fieldOfViewAngle <= 180)
+            float signLeftLine = (this.leftLineFOV.x) * (position.y - this.transform.position.y) - (this.leftLineFOV.y) * (position.x - this.transform.position.x);
+            float signRightLine = (rightLineFOV.x) * (position.y - transform.position.y) - (rightLineFOV.y) * (position.x - transform.position.x);
+            if (this.fieldOfViewAngle <= 180)
             {
-                //Debug.Log(signLeftLine + " " + signRightLine);
                 if (signLeftLine <= 0.0f && signRightLine >= 0.0f)
                 {
                     return true;
@@ -172,6 +174,26 @@ public class BaseEnemy : MonoBehaviour
         return false;
     }
 
+    private bool CanSeePlayer()
+    {
+        Vector2 rayDirection = this.player.transform.position - this.transform.position;
+
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, rayDirection);
+        if (hit.collider != null)
+        {
+            Debug.DrawRay(this.transform.position, rayDirection);
+
+            Debug.LogError("hit origin " + this.transform.name);
+            Debug.LogError("hit destination " + hit.collider.transform.name);
+            if ((hit.transform.tag == "Player"))
+            {
+                Debug.LogError("yellowZone");
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Rotate point (px, py) around point (ox, oy) by angle theta you'll get:
     //p'x = cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox
     //p'y = sin(theta) * (px-ox) + cos(theta) * (py-oy) + oy
@@ -183,8 +205,8 @@ public class BaseEnemy : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, this.fieldOfViewAngle / 2.0f);
-        this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f);
+        this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
+        this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
 
         Vector2 p0 = this.rightLineFOV;
         float divisions = 20.0f;
@@ -193,21 +215,21 @@ public class BaseEnemy : MonoBehaviour
         // inner rays
         for (int i = 1; i <= divisions; ++i)
         {
-            Vector2 p1 = this.RotatePointAroundTransform(this.direction.normalized * this.radius, -this.fieldOfViewAngle / 2.0f + step * i);
+            Vector2 p1 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f + step * i);
             Gizmos.color = Color.yellow;
             Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0, p1 - p0);
             Gizmos.color = Color.red;
             Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p0 / 2.0f, p1 - p0);
 
-            if (this.showFieldOfViewFill)
+            if (this.showFieldOfViewAreaFill)
             {
                 Gizmos.color = Color.red;
-                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p2, p2 - p1);
 
                 Gizmos.color = Color.yellow;
-                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.radius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
-                Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
+                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p3 - p1);
             }
             p0 = p1;
         }

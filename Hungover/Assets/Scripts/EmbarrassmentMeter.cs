@@ -8,15 +8,10 @@ public class EmbarrassmentMeter : MonoBehaviour {
 
     private float maximumCooldownTime = 10.0f;
     private float cooldownTimer;
-    private float embarrassmentCooldownDecrement = 1.0f;
-
-    private void prepareState()
-    {
-        this.cooldownTimer = this.maximumCooldownTime;
-    }
+    private int embarrassmentCooldownDecrement = 1;
 
     void Start () {
-        this.prepareState();
+        this.cooldownTimer = this.maximumCooldownTime;
 
         this.embarrassmentMeterSlider = this.GetComponentInChildren<Slider>();
     }
@@ -37,10 +32,10 @@ public class EmbarrassmentMeter : MonoBehaviour {
         return this.embarrassmentMeterSlider.value >= this.embarrassmentMeterSlider.maxValue;
     }
 
-	public void setEmbarrassment(float value)
-	{
-		this.embarrassmentMeterSlider.value = value;
-	}
+    private bool embarrassmentMeterEmpty()
+    {
+        return this.embarrassmentMeterSlider.value <= this.embarrassmentMeterSlider.minValue;
+    }
 
     public void increaseEmbarrassment(float value)
     {
@@ -72,7 +67,7 @@ public class EmbarrassmentMeter : MonoBehaviour {
         if(this.cooldownTimer <= 0.0f)
         {
             this.decreaseEmbarrassment(this.embarrassmentCooldownDecrement);
+            this.cooldownTimer = this.maximumCooldownTime;
         }
     }
-
 }
