@@ -38,8 +38,8 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     private bool showFieldOfViewAreaFill = false;
 
-    private Vector2 leftLineFOV;
-    private Vector2 rightLineFOV;
+    private Vector2 leftLineFieldOfView;
+    private Vector2 rightLineFieldOfView;
 
     void Awake()
     {
@@ -89,13 +89,8 @@ public class BaseEnemy : MonoBehaviour
         LimitPosition();
 
         if (this.transform.name == "TestEnemy") {
-            bool playerInsideFOV = this.InsideFieldOfView(this.player.transform.position);
-            //Debug.LogError("player inside FOV " + playerInsideFOV);
-            if (playerInsideFOV)
-            {
-                //TODO embarrassment bar
-                bool enemyCanSeePlayer = this.CanSeePlayer();
-                //Debug.LogError("enemy can see palyer " + enemyCanSeePlayer);
+            if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight()) {
+                Debug.LogError("Player in sight");
             }
         }
     }
@@ -143,19 +138,27 @@ public class BaseEnemy : MonoBehaviour
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
             this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
-            this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
-            this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
+            this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
+            this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
         }
     }
 
+    private bool PlayerInsideFieldOfView()
+    {
+        return this.InsideFieldOfView(this.player.transform.position);
+    }
+
+    /*
+     *  Can be utlized to find anything within the field of view
+     */
     public bool InsideFieldOfView(Vector3 position)
     {
         float squaredDistance = ((position.x - this.transform.position.x) * (position.x - this.transform.position.x)) + ((position.y - this.transform.position.y) * (position.y - this.transform.position.y)); // a^2 + b^2 = c^2
 
         if (this.fieldOfViewRadius * this.fieldOfViewRadius >= squaredDistance)
         {
-            float signLeftLine = (this.leftLineFOV.x) * (position.y - this.transform.position.y) - (this.leftLineFOV.y) * (position.x - this.transform.position.x);
-            float signRightLine = (rightLineFOV.x) * (position.y - transform.position.y) - (rightLineFOV.y) * (position.x - transform.position.x);
+            float signLeftLine = (this.leftLineFieldOfView.x) * (position.y - this.transform.position.y) - (this.leftLineFieldOfView.y) * (position.x - this.transform.position.x);
+            float signRightLine = (rightLineFieldOfView.x) * (position.y - transform.position.y) - (rightLineFieldOfView.y) * (position.x - transform.position.x);
             if (this.fieldOfViewAngle <= 180)
             {
                 if (signLeftLine <= 0.0f && signRightLine >= 0.0f)
@@ -167,27 +170,33 @@ public class BaseEnemy : MonoBehaviour
             {
                 if (!(signLeftLine >= 0.0f && signRightLine <= 0.0f))
                 {
-                    //return true;
+                    return true;
                 }
             }
         }
         return false;
     }
 
-    private bool CanSeePlayer()
+    private bool PlayerInLineOfSight()
     {
-        Vector2 rayDirection = this.player.transform.position - this.transform.position;
+        return this.InLineOfSight(this.player.transform.position);
+    }
+
+    /* 
+     *  Changed Physics2D settings in Unity -> Edit -> Project Settings -> Queries Start in Colliders -> False to prevent ray from colliding with enemy's own collider
+     *  Can be utlized to check if anything is in line of sight within the field of view
+     */
+    private bool InLineOfSight(Vector3 position)
+    {
+        Vector2 rayDirection = position - this.transform.position;
 
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, rayDirection);
         if (hit.collider != null)
         {
             Debug.DrawRay(this.transform.position, rayDirection);
-
-            Debug.LogError("hit origin " + this.transform.name);
-            Debug.LogError("hit destination " + hit.collider.transform.name);
+            Debug.LogError(this.transform.name + " --> " + hit.collider.transform.name);
             if ((hit.transform.tag == "Player"))
             {
-                Debug.LogError("yellowZone");
                 return true;
             }
         }
@@ -205,10 +214,10 @@ public class BaseEnemy : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        this.leftLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
-        this.rightLineFOV = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
+        this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
+        this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
 
-        Vector2 p0 = this.rightLineFOV;
+        Vector2 p0 = this.rightLineFieldOfView;
         float divisions = 20.0f;
         float step = this.fieldOfViewAngle / divisions;
 
@@ -229,17 +238,17 @@ public class BaseEnemy : MonoBehaviour
 
                 Gizmos.color = Color.yellow;
                 Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
-                Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p3 - p1);
+                Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
             }
             p0 = p1;
         }
 
         // outline rays
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.leftLineFOV / 2.0f, this.leftLineFOV / 2.0f);
-        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.rightLineFOV / 2.0f, this.rightLineFOV / 2.0f);
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.leftLineFieldOfView / 2.0f, this.leftLineFieldOfView / 2.0f);
+        Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + this.rightLineFieldOfView / 2.0f, this.rightLineFieldOfView / 2.0f);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(this.transform.position, this.leftLineFOV / 2.0f);
-        Gizmos.DrawRay(this.transform.position, this.rightLineFOV / 2.0f);
+        Gizmos.DrawRay(this.transform.position, this.leftLineFieldOfView / 2.0f);
+        Gizmos.DrawRay(this.transform.position, this.rightLineFieldOfView / 2.0f);
     }
 }
