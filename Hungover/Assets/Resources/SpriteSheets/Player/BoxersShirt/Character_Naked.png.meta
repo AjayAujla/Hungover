@@ -1,0 +1,1629 @@
+fileFormatVersion: 2
+guid: 49f2d7cfdf9cd45a881b9058f82ba1ee
+timeCreated: 1448785231
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Character_Naked_0
+    21300002: Character_Naked_1
+    21300004: Character_Naked_2
+    21300006: Character_Naked_3
+    21300008: Character_Naked_4
+    21300010: Character_Naked_5
+    21300012: Character_Naked_6
+    21300014: Character_Naked_7
+    21300016: Character_Naked_8
+    21300018: Character_Naked_9
+    21300020: Character_Naked_10
+    21300022: Character_Naked_11
+    21300024: Character_Naked_12
+    21300026: Character_Naked_13
+    21300028: Character_Naked_14
+    21300030: Character_Naked_15
+    21300032: Character_Naked_16
+    21300034: Character_Naked_17
+    21300036: Character_Naked_18
+    21300038: Character_Naked_19
+    21300040: Character_Naked_20
+    21300042: Character_Naked_21
+    21300044: Character_Naked_22
+    21300046: Character_Naked_23
+    21300048: Character_Naked_24
+    21300050: Character_Naked_25
+    21300052: Character_Naked_26
+    21300054: Character_Naked_27
+    21300056: Character_Naked_28
+    21300058: Character_Naked_29
+    21300060: Character_Naked_30
+    21300062: Character_Naked_31
+    21300064: Character_Naked_32
+    21300066: Character_Naked_33
+    21300068: Character_Naked_34
+    21300070: Character_Naked_35
+    21300072: Character_Naked_36
+    21300074: Character_Naked_37
+    21300076: Character_Naked_38
+    21300078: Character_Naked_39
+    21300080: Character_Naked_40
+    21300082: Character_Naked_41
+    21300084: Character_Naked_42
+    21300086: Character_Naked_43
+    21300088: Character_Naked_44
+    21300090: Character_Naked_45
+    21300092: Character_Naked_46
+    21300094: Character_Naked_47
+    21300096: Character_Naked_48
+    21300098: Character_Naked_49
+    21300100: Character_Naked_50
+    21300102: Character_Naked_51
+    21300104: Character_Naked_52
+    21300106: Character_Naked_53
+    21300108: Character_Naked_54
+    21300110: Character_Naked_55
+    21300112: Character_Naked_56
+    21300114: Character_Naked_57
+    21300116: Character_Naked_58
+    21300118: Character_Naked_59
+    21300120: Character_Naked_60
+    21300122: Character_Naked_61
+    21300124: Character_Naked_62
+    21300126: Character_Naked_63
+    21300128: Character_Naked_64
+    21300130: Character_Naked_65
+    21300132: Character_Naked_66
+    21300134: Character_Naked_67
+    21300136: Character_Naked_68
+    21300138: Character_Naked_69
+    21300140: Character_Naked_70
+    21300142: Character_Naked_71
+    21300144: Character_Naked_72
+    21300146: Character_Naked_73
+    21300148: Character_Naked_74
+    21300150: Character_Naked_75
+    21300152: Character_Naked_76
+    21300154: Character_Naked_77
+    21300156: Character_Naked_78
+    21300158: Character_Naked_79
+    21300160: Character_Naked_80
+    21300162: Character_Naked_81
+    21300164: Character_Naked_82
+    21300166: Character_Naked_83
+    21300168: Character_Naked_84
+    21300170: Character_Naked_85
+    21300172: Character_Naked_86
+    21300174: Character_Naked_87
+    21300176: Character_Naked_88
+    21300178: Character_Naked_89
+    21300180: Character_Naked_90
+    21300182: Character_Naked_91
+    21300184: Character_Naked_92
+    21300186: Character_Naked_93
+    21300188: Character_Naked_94
+    21300190: Character_Naked_95
+    21300192: Character_Naked_96
+    21300194: Character_Naked_97
+    21300196: Character_Naked_98
+    21300198: Character_Naked_99
+    21300200: Character_Naked_100
+    21300202: Character_Naked_101
+    21300204: Character_Naked_102
+    21300206: Character_Naked_103
+    21300208: Character_Naked_104
+    21300210: Character_Naked_105
+    21300212: Character_Naked_106
+    21300214: Character_Naked_107
+    21300216: Character_Naked_108
+    21300218: Character_Naked_109
+    21300220: Character_Naked_110
+    21300222: Character_Naked_111
+    21300224: Character_Naked_112
+    21300226: Character_Naked_113
+    21300228: Character_Naked_114
+    21300230: Character_Naked_115
+    21300232: Character_Naked_116
+    21300234: Character_Naked_117
+    21300236: Character_Naked_118
+    21300238: Character_Naked_119
+    21300240: Character_Naked_120
+    21300242: Character_Naked_121
+    21300244: Character_Naked_122
+    21300246: Character_Naked_123
+    21300248: Character_Naked_124
+    21300250: Character_Naked_125
+    21300252: Character_Naked_126
+    21300254: Character_Naked_127
+    21300256: Character_Naked_128
+    21300258: Character_Naked_129
+    21300260: Character_Naked_130
+    21300262: Character_Naked_131
+    21300264: Character_Naked_132
+    21300266: Character_Naked_133
+    21300268: Character_Naked_134
+    21300270: Character_Naked_135
+    21300272: Character_Naked_136
+    21300274: Character_Naked_137
+    21300276: Character_Naked_138
+    21300278: Character_Naked_139
+    21300280: Character_Naked_140
+    21300282: Character_Naked_141
+    21300284: Character_Naked_142
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Character_Naked_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 511
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 511
+        width: 29
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 511
+        width: 29
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_3
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 512
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 512
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_5
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 512
+        width: 36
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_6
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 512
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_7
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 512
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_8
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 512
+        width: 30
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_9
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 514
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_10
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 511
+        width: 29
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_11
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 516
+        width: 39
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_12
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 512
+        width: 37
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_13
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 511
+        width: 33
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_14
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 512
+        width: 34
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_15
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 514
+        width: 30
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_16
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 515
+        width: 31
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_17
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 514
+        width: 30
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_18
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 515
+        width: 30
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_19
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 425
+        width: 23
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_20
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 428
+        width: 45
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 428
+        width: 44
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_22
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 425
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_23
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 425
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_24
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 425
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_25
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 425
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_26
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 425
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_27
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 425
+        width: 34
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_28
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 425
+        width: 33
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_29
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 425
+        width: 41
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_30
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 428
+        width: 27
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_31
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 425
+        width: 25
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_32
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 425
+        width: 52
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_33
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 425
+        width: 43
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_34
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 425
+        width: 25
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_35
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 427
+        width: 65
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_36
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 426
+        width: 27
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_37
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 427
+        width: 62
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_38
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 340
+        width: 23
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_39
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 343
+        width: 45
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_40
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 343
+        width: 44
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_41
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 340
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_42
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 340
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_43
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 340
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_44
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 340
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_45
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 340
+        width: 25
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_46
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 340
+        width: 34
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_47
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 340
+        width: 39
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_48
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 340
+        width: 39
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_49
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 344
+        width: 28
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_50
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 340
+        width: 25
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_51
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 340
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_52
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 340
+        width: 43
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_53
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 340
+        width: 26
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_54
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 342
+        width: 65
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_55
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 341
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_56
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 342
+        width: 62
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_57
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 256
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_58
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 255
+        width: 32
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_59
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 255
+        width: 32
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_60
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 257
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_61
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 257
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_62
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 257
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_63
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 257
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_64
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 257
+        width: 31
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_65
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 269
+        width: 31
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_66
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 252
+        width: 33
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_67
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 255
+        width: 29
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_68
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 260
+        width: 39
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_69
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 257
+        width: 38
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_70
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 255
+        width: 28
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_71
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 256
+        width: 34
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_72
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 256
+        width: 32
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_73
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 258
+        width: 30
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_74
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 256
+        width: 32
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_75
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 258
+        width: 30
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_76
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 172
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_77
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 172
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_78
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 172
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_79
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 173
+        width: 34
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_80
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 173
+        width: 36
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_81
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 173
+        width: 35
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_82
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 173
+        width: 33
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_83
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 173
+        width: 33
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_84
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 173
+        width: 29
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_85
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 173
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_86
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 172
+        width: 29
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_87
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 176
+        width: 39
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_88
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 202
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_89
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 173
+        width: 35
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_90
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 173
+        width: 36
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_91
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 173
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_92
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 173
+        width: 29
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_93
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 173
+        width: 28
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_94
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 173
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_95
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 91
+        width: 24
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_96
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 90
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_97
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 90
+        width: 35
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_98
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 91
+        width: 25
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_99
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 91
+        width: 26
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_100
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 91
+        width: 26
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_101
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 91
+        width: 25
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_102
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 91
+        width: 24
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_103
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 91
+        width: 33
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_104
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 91
+        width: 33
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_105
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 96
+        width: 34
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_106
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 96
+        width: 39
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_107
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 96
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_108
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 96
+        width: 39
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_109
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 143
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_110
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 143
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_111
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 91
+        width: 33
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_112
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 90
+        width: 49
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_113
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 91
+        width: 50
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_114
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 90
+        width: 32
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_115
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 115
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_116
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 115
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_117
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 87
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_118
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 87
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_119
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 6
+        width: 23
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_120
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 5
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_121
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 5
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_122
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 6
+        width: 25
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_123
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 6
+        width: 26
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_124
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 6
+        width: 25
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_125
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 6
+        width: 26
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_126
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 6
+        width: 24
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_127
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 6
+        width: 32
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_128
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 6
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_129
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 16
+        width: 35
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_130
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 13
+        width: 43
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_131
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 12
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_132
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 12
+        width: 39
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_133
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 59
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_134
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 60
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_135
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 6
+        width: 31
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_136
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 6
+        width: 45
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_137
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 5
+        width: 48
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_138
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 5
+        width: 31
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_139
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 31
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_140
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 33
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_141
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 3
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Naked_142
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 6
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

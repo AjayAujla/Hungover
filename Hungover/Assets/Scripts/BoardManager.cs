@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour {
-
+	
 	[Serializable]
 	public class Count
 	{
@@ -13,9 +13,9 @@ public class BoardManager : MonoBehaviour {
 		
 		public Count (int min, int max)
 		{
-            minimum = min;
-            maximum = max;
-        }
+			minimum = min;
+			maximum = max;
+		}
 		
 	}
 	
@@ -44,44 +44,44 @@ public class BoardManager : MonoBehaviour {
 		public bool CollidesWith(Room otherRoom)
 		{
 			if(xRoomPosition > (otherRoom.xRoomPosition + otherRoom.widthRoom - 1)) // this room's left > the other room's right
-			  return false;
-		 
+				return false;
+			
 			if(yRoomPosition > (otherRoom.yRoomPosition + otherRoom.heightRoom + 1)) // this room's bottom > the other room's top
-			  return false;
-		 
-		 	if((xRoomPosition + widthRoom - 1) < otherRoom.xRoomPosition) // this room's right < the other room's left
-			  return false;
-					
+				return false;
+			
+			if((xRoomPosition + widthRoom - 1) < otherRoom.xRoomPosition) // this room's right < the other room's left
+				return false;
+			
 			if((yRoomPosition + heightRoom + 1) < otherRoom.yRoomPosition) // this room's top < the other room's bottom
-			  return false;
-			 
+				return false;
+			
 			
 			return true;
-		
+			
 		}
 		
 	}
 	
 	public int columns = 80;                                         //Number of columns in our game board.
-    public int rows = 80;                                            //Number of rows in our game board.
+	public int rows = 80;                                            //Number of rows in our game board.
 	public int roomNumber = 25;
-    public Count wallCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
-    public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
+	public Count wallCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
+	public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
 	public Count enemyCount = new Count (5, 10);
-    public GameObject exit;                                         //Prefab to spawn for exit.
+	public GameObject exit;                                         //Prefab to spawn for exit.
 	public GameObject enter;                                         //Prefab to spawn for enter.
-    public GameObject[] floorTiles;                                 //Array of floor prefabs.
-    public GameObject[] wallTiles;                                  //Array of wall prefabs.
-    public GameObject[] foodTiles;                                  //Array of food prefabs.
-    public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
-    public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
+	public GameObject[] floorTiles;                                 //Array of floor prefabs.
+	public GameObject[] wallTiles;                                  //Array of wall prefabs.
+	public GameObject[] foodTiles;                                  //Array of food prefabs.
+	public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
+	public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
 	public GameObject player;										//Player prefab.
 	
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
 	
 	public List<Room> roomsList = new List<Room>();
-
+	
 	
 	void InitialiseList () //Clears our list gridPositions and prepares it to generate a new board.
 	{
@@ -100,7 +100,7 @@ public class BoardManager : MonoBehaviour {
 	void BoardSetup () //Sets up the outer walls and floor (background) of the game board.
 	{
 		boardHolder = new GameObject ("Board").transform;
-			
+		
 		//Room Generation
 		for(int i = 0; i < roomNumber; i++)
 		{

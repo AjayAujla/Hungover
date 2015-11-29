@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    public enum DetectionRange { greenZone, yellowZone, redZone };
 
 	/********************************************************************
 	 * 
@@ -18,15 +20,40 @@ public class Player : MonoBehaviour
     public float speed;
 
     private Animator mAnimator;
+	private AudioSource mAudioSource;
+	private float footStepsPitch = 1.0f;
+
+    private int embarrassment;
+    private EmbarrassmentMeter embarrassmentMeter;
 
 	void Start ()
     {
         mAnimator = GetComponent<Animator>();
-	}
+		mAudioSource = GetComponent<AudioSource>();
+        this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+    }
 
-	void Update ()
+    void Update ()
     {
         MoveCharacter();
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.layer == 9) {	// layer 9 is "Item"
+
+			// if it's a clothe (Boxers, Pants, Shirt, or Shoes), reskin player
+			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet") {
+				PlayerReskin.ChangeSprite(other.gameObject.tag);
+			}
+
+			// find the corresponding item UI (top-right corner)
+			GameObject clothe = GameObject.Find(other.gameObject.tag);
+			if(clothe) {
+				clothe.GetComponent<Image>().color = Color.white;	// set the item UI opacity to 1 (opaque)
+				Destroy(other.gameObject);	// remove the item object from the map
+			}
+
+		}
 	}
 
 	void MoveCharacter()
@@ -37,7 +64,22 @@ public class Player : MonoBehaviour
 		Vector2 direction = new Vector2(h, v);
 		transform.Translate(direction * speed * Time.deltaTime);
 
-		SetAnimation(direction);	   
+		if(direction != Vector2.zero) {
+			if(!mAudioSource.isPlaying) {
+				if(Input.GetButton("Run")) {
+					footStepsPitch = 0.8f;
+				} else {
+					footStepsPitch = 0.4f;
+				}
+				mAudioSource.pitch = footStepsPitch;
+				mAudioSource.Play();
+			}
+		} else {
+			mAudioSource.Stop();
+		}
+
+		SetAnimation(direction);
+			   
     }
 
     void SetAnimation(Vector2 direction)
@@ -60,4 +102,19 @@ public class Player : MonoBehaviour
 		mAnimator.SetInteger("move_direction", animationIdx);
     }
 
+    private void getEmbarrassed(DetectionRange detectionRange)
+    {
+        switch (detectionRange)
+        {
+            case DetectionRange.greenZone:
+                break;
+            case DetectionRange.yellowZone:
+                break;
+        }
+    }
+
+    private void coolDownEmbarrassment()
+    {
+
+    }
 }
