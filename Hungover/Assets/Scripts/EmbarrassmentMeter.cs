@@ -10,14 +10,19 @@ public class EmbarrassmentMeter : MonoBehaviour {
     private float cooldownTimer;
     private int embarrassmentCooldownDecrement = 1;
 
+    private Sprite greenZone;
+    private Sprite yellowZone;
+    private Sprite redZone;
+
     void Start () {
         this.cooldownTimer = this.maximumCooldownTime;
 
         this.embarrassmentMeterSlider = this.GetComponentInChildren<Slider>();
     }
-	
-	void Update () {
+
+    void Update () {
 		Image embarrassmentMeterImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[1];
+		Image embarrassmentMeterHandleImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[2];
 		if(embarrassmentMeterSlider.value <= 1 && embarrassmentMeterSlider.value >= 0.8) {
 			embarrassmentMeterImage.color = Color.green;
 		} else if(embarrassmentMeterSlider.value < 0.8 && embarrassmentMeterSlider.value >= 0.4) {

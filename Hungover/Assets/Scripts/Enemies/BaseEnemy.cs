@@ -41,6 +41,8 @@ public class BaseEnemy : MonoBehaviour
     private Vector2 leftLineFieldOfView;
     private Vector2 rightLineFieldOfView;
 
+    Player.DetectionRange playerDetectionRange;
+
     void Awake()
     {
         // If you want the min max values to update if the resolution changes
@@ -90,7 +92,7 @@ public class BaseEnemy : MonoBehaviour
 
         if (this.transform.name == "TestEnemy") {
             if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight()) {
-                Debug.LogError("Player in sight");
+                Debug.LogError("Player in " + this.playerDetectionRange);
             }
         }
     }
@@ -197,9 +199,20 @@ public class BaseEnemy : MonoBehaviour
             Debug.LogError(this.transform.name + " --> " + hit.collider.transform.name);
             if ((hit.transform.tag == "Player"))
             {
+                if(rayDirection.sqrMagnitude <= (this.fieldOfViewRadius / 2.0f * this.fieldOfViewRadius / 2.0f))
+                {
+                    this.playerDetectionRange = Player.DetectionRange.redZone;
+                } else if(rayDirection.sqrMagnitude <= this.fieldOfViewRadius * this.fieldOfViewRadius)
+                {
+                    this.playerDetectionRange = Player.DetectionRange.yellowZone;
+                } else
+                {
+                    this.playerDetectionRange = Player.DetectionRange.greenZone;
+                }
                 return true;
             }
         }
+        this.playerDetectionRange = Player.DetectionRange.greenZone;
         return false;
     }
 

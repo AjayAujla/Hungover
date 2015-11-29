@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    public enum DetectionRange { greenZone, yellowZone, redZone };
 
 	/********************************************************************
 	 * 
@@ -19,12 +20,16 @@ public class Player : MonoBehaviour
 
     private Animator mAnimator;
 
+    private int embarrassment;
+    private EmbarrassmentMeter embarrassmentMeter;
+
 	void Start ()
     {
         mAnimator = GetComponent<Animator>();
-	}
+        this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+    }
 
-	void Update ()
+    void Update ()
     {
         MoveCharacter();
 	}
@@ -60,4 +65,19 @@ public class Player : MonoBehaviour
 		mAnimator.SetInteger("move_direction", animationIdx);
     }
 
+    private void getEmbarrassed(DetectionRange detectionRange)
+    {
+        switch (detectionRange)
+        {
+            case DetectionRange.greenZone:
+                break;
+            case DetectionRange.yellowZone:
+                break;
+        }
+    }
+
+    private void coolDownEmbarrassment()
+    {
+
+    }
 }
