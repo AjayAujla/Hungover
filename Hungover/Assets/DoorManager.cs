@@ -8,7 +8,8 @@ public class DoorManager : MonoBehaviour {
 		
 		if (coll.gameObject.tag == "OuterWall")
 		{
-			Destroy(coll.gameObject);
+			// Destroy(coll.gameObject);
+			coll.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 		}  
 	}
 }

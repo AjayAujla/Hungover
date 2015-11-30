@@ -118,15 +118,38 @@ public class BoardManager : MonoBehaviour {
 					for(int y = r.yRoomPosition; y <= (r.yRoomPosition + r.heightRoom); y++)
 					{
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-						
+
+						if(y == r.yRoomPosition) 	// top wall
+							toInstantiate = outerWallTiles [1];
+						if(x == (r.xRoomPosition + r.widthRoom))	// right wall
+							toInstantiate = outerWallTiles [3];
+						if(y == (r.yRoomPosition + r.heightRoom))	// bottom wall
+							toInstantiate = outerWallTiles [5];
+						if(x == r.xRoomPosition) 	// left wall
+							toInstantiate = outerWallTiles [7];
+						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// top left corner
+//							toInstantiate = Resources.Load("Prefabs/Walls/top-left-wall") as GameObject;
+							toInstantiate = outerWallTiles [0];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// top right corner
+//							toInstantiate = Resources.Load("Prefabs/Walls/top-right-wall") as GameObject;
+							toInstantiate = outerWallTiles [2];
+						if(x == r.xRoomPosition && y == (r.yRoomPosition + r.heightRoom))	// bottom left corner
+//							toInstantiate = Resources.Load("Prefabs/Walls/bottom-left-wall") as GameObject;
+							toInstantiate = outerWallTiles [4];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == (r.yRoomPosition + r.heightRoom))	// bottom right corner
+//							toInstantiate = Resources.Load("Prefabs/Walls/bottom-right-wall") as GameObject;
+							toInstantiate = outerWallTiles [6];
+
 						if(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))
 						{
-							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+//							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 						}
-						
-						GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-						
-						instance.transform.SetParent (boardHolder);	
+
+						if(toInstantiate != null) {
+							GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+							instance.transform.SetParent (boardHolder);	
+						}
+
 					}
 				}
 				
