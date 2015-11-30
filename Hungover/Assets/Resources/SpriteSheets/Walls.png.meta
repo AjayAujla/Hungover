@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 5e70ce6e0ab604ab5aefd27a37ec7534
-timeCreated: 1448859656
+guid: 5a40c3de8d50746f5afe121396a82c34
+timeCreated: 1448910326
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Wall_0
-    21300002: Wall_1
-    21300004: Wall_2
-    21300006: Wall_3
-    21300008: Wall_4
-    21300010: Wall_5
-    21300012: Wall_6
-    21300014: Wall_7
+    21300000: Walls_0
+    21300002: Walls_1
+    21300004: Walls_2
+    21300006: Walls_3
+    21300008: Walls_4
+    21300010: Walls_5
+    21300012: Walls_6
+    21300014: Walls_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -58,7 +58,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Wall_0
+    - name: Walls_0
       rect:
         serializedVersion: 2
         x: 0
@@ -68,7 +68,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_1
+    - name: Walls_1
       rect:
         serializedVersion: 2
         x: 32
@@ -78,7 +78,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_2
+    - name: Walls_2
       rect:
         serializedVersion: 2
         x: 64
@@ -88,7 +88,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_3
+    - name: Walls_3
       rect:
         serializedVersion: 2
         x: 96
@@ -98,7 +98,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_4
+    - name: Walls_4
       rect:
         serializedVersion: 2
         x: 128
@@ -108,7 +108,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_5
+    - name: Walls_5
       rect:
         serializedVersion: 2
         x: 160
@@ -118,7 +118,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_6
+    - name: Walls_6
       rect:
         serializedVersion: 2
         x: 192
@@ -128,7 +128,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Wall_7
+    - name: Walls_7
       rect:
         serializedVersion: 2
         x: 224

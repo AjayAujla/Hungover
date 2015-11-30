@@ -119,26 +119,22 @@ public class BoardManager : MonoBehaviour {
 					{
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 
-						if(y == r.yRoomPosition) 	// top wall
-							toInstantiate = outerWallTiles [1];
+						if(y == r.yRoomPosition) 	// bottom wall
+							toInstantiate = outerWallTiles [5];
 						if(x == (r.xRoomPosition + r.widthRoom))	// right wall
 							toInstantiate = outerWallTiles [3];
-						if(y == (r.yRoomPosition + r.heightRoom))	// bottom wall
-							toInstantiate = outerWallTiles [5];
+						if(y == (r.yRoomPosition + r.heightRoom))	// top wall
+							toInstantiate = outerWallTiles [1];
 						if(x == r.xRoomPosition) 	// left wall
 							toInstantiate = outerWallTiles [7];
-						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// top left corner
-//							toInstantiate = Resources.Load("Prefabs/Walls/top-left-wall") as GameObject;
-							toInstantiate = outerWallTiles [0];
-						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// top right corner
-//							toInstantiate = Resources.Load("Prefabs/Walls/top-right-wall") as GameObject;
-							toInstantiate = outerWallTiles [2];
-						if(x == r.xRoomPosition && y == (r.yRoomPosition + r.heightRoom))	// bottom left corner
-//							toInstantiate = Resources.Load("Prefabs/Walls/bottom-left-wall") as GameObject;
-							toInstantiate = outerWallTiles [4];
-						if(x == (r.xRoomPosition + r.widthRoom) && y == (r.yRoomPosition + r.heightRoom))	// bottom right corner
-//							toInstantiate = Resources.Load("Prefabs/Walls/bottom-right-wall") as GameObject;
+						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// bottom left corner
 							toInstantiate = outerWallTiles [6];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// bottom right corner
+							toInstantiate = outerWallTiles [4];
+						if(x == r.xRoomPosition && y == (r.yRoomPosition + r.heightRoom))	// top left corner
+							toInstantiate = outerWallTiles [0];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == (r.yRoomPosition + r.heightRoom))	// top right corner
+							toInstantiate = outerWallTiles [2];
 
 						if(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))
 						{
