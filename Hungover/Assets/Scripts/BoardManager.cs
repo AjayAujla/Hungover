@@ -118,15 +118,34 @@ public class BoardManager : MonoBehaviour {
 					for(int y = r.yRoomPosition; y <= (r.yRoomPosition + r.heightRoom); y++)
 					{
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-						
+
+						if(y == r.yRoomPosition) 	// bottom wall
+							toInstantiate = outerWallTiles [5];
+						if(x == (r.xRoomPosition + r.widthRoom))	// right wall
+							toInstantiate = outerWallTiles [3];
+						if(y == (r.yRoomPosition + r.heightRoom))	// top wall
+							toInstantiate = outerWallTiles [1];
+						if(x == r.xRoomPosition) 	// left wall
+							toInstantiate = outerWallTiles [7];
+						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// bottom left corner
+							toInstantiate = outerWallTiles [6];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// bottom right corner
+							toInstantiate = outerWallTiles [4];
+						if(x == r.xRoomPosition && y == (r.yRoomPosition + r.heightRoom))	// top left corner
+							toInstantiate = outerWallTiles [0];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == (r.yRoomPosition + r.heightRoom))	// top right corner
+							toInstantiate = outerWallTiles [2];
+
 						if(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))
 						{
-							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+//							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 						}
-						
-						GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-						
-						instance.transform.SetParent (boardHolder);	
+
+						if(toInstantiate != null) {
+							GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+							instance.transform.SetParent (boardHolder);	
+						}
+
 					}
 				}
 				
@@ -156,8 +175,26 @@ public class BoardManager : MonoBehaviour {
 		
 		return false;	
 	}
-	
-	void SpawnDoors()
+
+    public Room getCurrentRoom()
+    {
+        this.player = GameObject.Find("AshFlashem(Clone)");
+
+        foreach (Room room in roomsList)
+        {
+            if (
+                this.player.transform.position.x >= room.xRoomPosition &&
+                this.player.transform.position.x <= room.xRoomPosition + room.widthRoom &&
+                this.player.transform.position.y >= room.yRoomPosition &&
+                this.player.transform.position.y <= room.yRoomPosition + room.heightRoom)
+            {
+                return room;
+            }
+        }
+        return null;
+    }
+
+    void SpawnDoors()
 	{
 		foreach(Room r in roomsList)
 		{
