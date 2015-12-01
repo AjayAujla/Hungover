@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
@@ -18,7 +19,15 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 	}
-	
+
+	public enum Level {
+		Frosh,
+		Pool,
+		Dorm,
+		Office,
+		Wedding
+	}
+
 	public class Room 
 	{
 		public int widthRoom;
@@ -30,7 +39,30 @@ public class BoardManager : MonoBehaviour {
 		public int yEnterPosition;
 		public int xExitPosition;
 		public int yExitPosition;
-		
+
+		private static Room biggestRoom;
+
+		public static Room GetBiggest()
+		{
+			if(biggestRoom != null) {
+				return biggestRoom;
+			}
+
+			foreach(Room r in BoardManager.roomsList) {
+				if(biggestRoom == null) {
+					biggestRoom = r;
+				} else {
+					if((r.widthRoom * r.heightRoom) > (biggestRoom.widthRoom * biggestRoom.heightRoom)) {
+						biggestRoom = r;
+					}
+
+
+				}
+			}
+			return biggestRoom;
+
+		}
+
 		public int xCenterPos
 		{
 			get {return xRoomPosition + (widthRoom/2);}
@@ -39,6 +71,11 @@ public class BoardManager : MonoBehaviour {
 		public int yCenterPos
 		{
 			get {return yRoomPosition + (heightRoom/2);}
+		}
+
+		public Vector2 xyCenterPos
+		{
+			get{return new Vector2(xCenterPos, yCenterPos);}
 		}
 		
 		public bool CollidesWith(Room otherRoom)
@@ -72,17 +109,24 @@ public class BoardManager : MonoBehaviour {
 	public GameObject enter;                                         //Prefab to spawn for enter.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
 	public GameObject[] wallTiles;                                  //Array of wall prefabs.
-	public GameObject[] foodTiles;                                  //Array of food prefabs.
+	public GameObject[] clotheTiles;                                //Array of food prefabs.
 	public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
 	public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
 	public GameObject player;										//Player prefab.
-	
+	public GameObject[] foodTiles;
+
+	// Wedding specefic objects
+	public GameObject weddingTable;
+	public GameObject danceFloor;
+	private List<GameObject> weddingTables = new List<GameObject>();
+
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
-	
-	public List<Room> roomsList = new List<Room>();
-	
-	
+
+	private Level currentLevel = Level.Wedding;
+
+	public static List<Room> roomsList = new List<Room>();
+
 	void InitialiseList () //Clears our list gridPositions and prepares it to generate a new board.
 	{
 		gridPositions.Clear ();
@@ -108,9 +152,16 @@ public class BoardManager : MonoBehaviour {
 			
 			r.widthRoom = Random.Range(4,8);
 			r.heightRoom = Random.Range(4,8);
+			
+			if(currentLevel == Level.Wedding && roomsList.Count == 0) {
+				r.widthRoom = 13;
+				r.heightRoom = 18;
+			}
+
 			r.xRoomPosition = Random.Range(0, rows - r.widthRoom);
 			r.yRoomPosition = Random.Range(0, columns - r.heightRoom);
-			
+
+
 			if(!RoomCollides(r))
 			{
 				for(int x = r.xRoomPosition; x <= (r.xRoomPosition + r.widthRoom); x++)
@@ -120,21 +171,21 @@ public class BoardManager : MonoBehaviour {
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 
 						if(y == r.yRoomPosition) 	// bottom wall
-							toInstantiate = outerWallTiles [5];
+							toInstantiate = outerWallTiles [x % 2 == 0 ? 7 : 8];
 						if(x == (r.xRoomPosition + r.widthRoom))	// right wall
-							toInstantiate = outerWallTiles [3];
+							toInstantiate = outerWallTiles [y % 2 == 0 ? 4 : 5];
 						if(y == (r.yRoomPosition + r.heightRoom))	// top wall
-							toInstantiate = outerWallTiles [1];
+							toInstantiate = outerWallTiles [x % 2 == 0 ? 1 : 2];
 						if(x == r.xRoomPosition) 	// left wall
-							toInstantiate = outerWallTiles [7];
-						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// bottom left corner
-							toInstantiate = outerWallTiles [6];
-						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// bottom right corner
-							toInstantiate = outerWallTiles [4];
+							toInstantiate = outerWallTiles [y % 2 == 0 ? 10 : 11];
 						if(x == r.xRoomPosition && y == (r.yRoomPosition + r.heightRoom))	// top left corner
 							toInstantiate = outerWallTiles [0];
 						if(x == (r.xRoomPosition + r.widthRoom) && y == (r.yRoomPosition + r.heightRoom))	// top right corner
-							toInstantiate = outerWallTiles [2];
+							toInstantiate = outerWallTiles [3];
+						if(x == (r.xRoomPosition + r.widthRoom) && y == r.yRoomPosition)	// bottom right corner
+							toInstantiate = outerWallTiles [6];
+						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// bottom left corner
+							toInstantiate = outerWallTiles [9];
 
 						if(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))
 						{
@@ -348,7 +399,61 @@ public class BoardManager : MonoBehaviour {
 			Instantiate(tileChoice, randomPosition, Quaternion.identity);
 		}
 	}
+
+	void LayoutClothes(GameObject[] clothes, List<Room> rooms) {
+
+		foreach(GameObject clothe in clothes) {
+			Utils.Print ("Placing... " + clothe.tag + " in " + rooms.Count + " Rooms");
+			Vector3 randomPosition = RandomPosition();
+
+			Instantiate(clothe, randomPosition, Quaternion.identity);
+
+			if(clothe.gameObject.tag == "Wallet" && currentLevel == Level.Wedding) {
+				// put wallet on dancefloor in the Wedding Level (muahaha)
+				GameObject wallet = GameObject.FindGameObjectWithTag("Wallet");
+				wallet.transform.position = Room.GetBiggest().xyCenterPos;
+			}
+
+		}
+
+	}
 	
+	public void SetupUpWedding(List<Room> rooms)
+	{
+		BoardManager.Room biggestRoom = Room.GetBiggest();
+
+		// Place tables in biggestRoom
+		for(int x = biggestRoom.xRoomPosition; x < (biggestRoom.xRoomPosition + biggestRoom.widthRoom); ++x) {
+			for(int y = biggestRoom.yRoomPosition; y < (biggestRoom.yRoomPosition + biggestRoom.heightRoom); ++y) {
+				int offset = 2;
+
+				if(x >= biggestRoom.xRoomPosition + offset && x <= biggestRoom.xRoomPosition+biggestRoom.widthRoom - offset
+				   && ((y >= biggestRoom.yRoomPosition + offset && y <= biggestRoom.yRoomPosition + 2*offset) || 
+				   (y <= biggestRoom.yRoomPosition + biggestRoom.heightRoom - offset && y >= biggestRoom.yRoomPosition + biggestRoom.heightRoom - 2*offset)))
+					if(x % 3 == 0) {
+						GameObject table = (GameObject)Instantiate(weddingTable, new Vector3(x, y), Quaternion.identity);
+						weddingTables.Add (table);
+					}
+					
+			}
+		}
+
+		// Place dancefloor in biggestRoom's center
+		danceFloor = (GameObject)Instantiate(danceFloor, biggestRoom.xyCenterPos, Quaternion.identity);
+
+		// Place enemies on the dancefloor, twice as much as number of tables we have
+		BoxCollider2D danceFloorBoxCollider = danceFloor.GetComponent<BoxCollider2D>();
+		for(int i = 0; i < 2*weddingTables.Count; ++i) {
+			// random position within dance floor
+			float offset = 0.5f;
+			float x = Random.Range(danceFloorBoxCollider.bounds.min.x + offset, danceFloorBoxCollider.bounds.max.x - offset);
+			float y = Random.Range(danceFloorBoxCollider.bounds.min.y + offset, danceFloorBoxCollider.bounds.max.y - offset);
+			GameObject dancer = (GameObject)Instantiate(enemyTiles[0], new Vector3(x, y), Quaternion.identity);
+
+		}
+		
+	}
+
 	public void SetupScene (int level)
 	{
 		//Creates the outer walls and floor.
@@ -368,5 +473,12 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);
+
+		// Let's setup the wedding level, shall we?
+		if(currentLevel == Level.Wedding)
+			SetupUpWedding(roomsList);
+
+		// After level is setup, place clothes 'randomly' on it
+		LayoutClothes(clotheTiles, roomsList);
 	}
 }

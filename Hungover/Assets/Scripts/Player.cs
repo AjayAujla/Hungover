@@ -26,11 +26,14 @@ public class Player : MonoBehaviour
     private int embarrassment;
     private EmbarrassmentMeter embarrassmentMeter;
 
+	private PlayerStats playerStats;
+
 	void Start ()
     {
         mAnimator = GetComponent<Animator>();
 		mAudioSource = GetComponent<AudioSource>();
         this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+		playerStats = GameObject.Find("PlayerStats").GetComponent<PlayerStats>();
     }
 
     void Update ()
@@ -42,7 +45,7 @@ public class Player : MonoBehaviour
 		if(other.gameObject.layer == 9) {	// layer 9 is "Item"
 
 			// if it's a clothe (Boxers, Pants, Shirt, or Shoes), reskin player
-			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet") {
+			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet" && other.gameObject.tag != "Can") {
 				PlayerReskin.ChangeSprite(other.gameObject.tag);
 			}
 
@@ -51,6 +54,13 @@ public class Player : MonoBehaviour
 			if(clothe) {
 				clothe.GetComponent<Image>().color = Color.white;	// set the item UI opacity to 1 (opaque)
 				Destroy(other.gameObject);	// remove the item object from the map
+			}
+
+			// else, check if it is a beer can
+			if(other.gameObject.tag == "Can") {
+				playerStats.incrementBeerCans();
+				playerStats.incrementCash(0.05f);
+				Destroy(other.gameObject);
 			}
 
 		}

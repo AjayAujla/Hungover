@@ -71,7 +71,7 @@ public class BaseEnemy : MonoBehaviour
 
     void Update()
     {
-        if (PartyMusic.isPlaying)
+		if (PartyMusic.isPlaying || IsOnDanceFloor())
         {
             if (!isDancing)
             {
@@ -101,6 +101,19 @@ public class BaseEnemy : MonoBehaviour
     {
         this.transform.Translate(this.direction * speed * Time.deltaTime);
     }
+
+	bool IsOnDanceFloor() {
+		GameObject dancefloor = GameObject.FindGameObjectWithTag("DanceFloor");
+		BoxCollider2D danceFloorRect = dancefloor.GetComponent<BoxCollider2D>();
+		if(this.transform.position.x >=  danceFloorRect.bounds.min.x &&
+		   this.transform.position.x <=  danceFloorRect.bounds.max.x &&
+		   this.transform.position.y >=  danceFloorRect.bounds.min.y &&
+		   this.transform.position.y <=  danceFloorRect.bounds.max.y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     void DanceCharacter()
     {
