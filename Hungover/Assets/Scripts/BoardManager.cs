@@ -175,8 +175,26 @@ public class BoardManager : MonoBehaviour {
 		
 		return false;	
 	}
-	
-	void SpawnDoors()
+
+    public Room getCurrentRoom()
+    {
+        this.player = GameObject.Find("AshFlashem(Clone)");
+
+        foreach (Room room in roomsList)
+        {
+            if (
+                this.player.transform.position.x >= room.xRoomPosition &&
+                this.player.transform.position.x <= room.xRoomPosition + room.widthRoom &&
+                this.player.transform.position.y >= room.yRoomPosition &&
+                this.player.transform.position.y <= room.yRoomPosition + room.heightRoom)
+            {
+                return room;
+            }
+        }
+        return null;
+    }
+
+    void SpawnDoors()
 	{
 		foreach(Room r in roomsList)
 		{
