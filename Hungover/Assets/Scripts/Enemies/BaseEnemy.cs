@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class BaseEnemy : MonoBehaviour
@@ -20,6 +21,8 @@ public class BaseEnemy : MonoBehaviour
     private GameObject player;
     Animator mAnimator;
     AudioSource PartyMusic;
+	AudioSource AlarmSound;
+	GameObject tableToHideUnderIfAlarmIsRinging;
     private Player playerScript;
 
     [SerializeField]
@@ -32,6 +35,8 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 10f)]
     private float fieldOfViewRadius = 4;
+    private float yellowZoneRadius;
+    private float redZoneRadius;
     [SerializeField]
     [Range(1.0f, 360f)]
     private int fieldOfViewAngle;
@@ -41,7 +46,8 @@ public class BaseEnemy : MonoBehaviour
     private Vector2 leftLineFieldOfView;
     private Vector2 rightLineFieldOfView;
 
-    Player.DetectionRange playerDetectionRange;
+    private Player.DetectionRange playerDetectionRange;
+	private BoardManager boardManager;
 
     void Awake()
     {
@@ -57,21 +63,27 @@ public class BaseEnemy : MonoBehaviour
 
         mAnimator = GetComponent<Animator>();
         PartyMusic = (AudioSource)GameObject.Find("PartyMusic").GetComponents<AudioSource>()[0];
+		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
+		tableToHideUnderIfAlarmIsRinging = null;
+		boardManager = GameObject.Find("GameManager").GetComponent<BoardManager>();
         this.player = GameObject.Find("AshFlashem(Clone)");
         this.playerScript = this.player.GetComponent<Player>();
 
         // Starting each enemy in a random direction
         // Going from index 0 to 4 exclusively
-        int directionsIdx = Random.Range(0, 4);
+        int directionsIdx = UnityEngine.Random.Range(0, 4);
         this.direction = directions[directionsIdx];
-        this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+        this.directionChangeTimer = UnityEngine.Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+
+        this.yellowZoneRadius = this.fieldOfViewRadius;
+        this.redZoneRadius = this.fieldOfViewRadius / 2.0f;
 
         isDancing = false;
     }
 
     void Update()
     {
-        if (PartyMusic.isPlaying)
+		if (PartyMusic.isPlaying || IsOnDanceFloor() && !AlarmSound.isPlaying)
         {
             if (!isDancing)
             {
@@ -79,7 +91,29 @@ public class BaseEnemy : MonoBehaviour
                 DanceCharacter();
             }
         }
-        else
+        else if(AlarmSound.isPlaying)
+		{
+			isDancing = false;
+
+			// find a random table
+			if(tableToHideUnderIfAlarmIsRinging == null) {
+				int tableIndex = UnityEngine.Random.Range (0, boardManager.weddingTables.Count);
+				tableToHideUnderIfAlarmIsRinging = boardManager.weddingTables[tableIndex];
+			}
+			// Run toward the random table and hide under it...
+			this.gameObject.transform.position = Vector3.MoveTowards(this.transform.position, tableToHideUnderIfAlarmIsRinging.transform.position, 10.0f*Time.deltaTime);
+
+			if(this.transform.position == tableToHideUnderIfAlarmIsRinging.transform.position) {
+				Utils.Print ("PHEW! I'm Safe...");
+				Sprite[] subSprites = Resources.LoadAll<Sprite>("SpriteSheets/Character_Naked/Character_Naked");
+				Sprite hidingSprite = Array.Find (subSprites, item => item.name == "Character_Naked_88");
+				if(hidingSprite != null) {
+					this.GetComponent<Animator>().enabled = false;
+					this.GetComponent<SpriteRenderer>().sprite = hidingSprite;
+				}
+			}
+
+		} else
         {
             isDancing = false;
             MoveCharacter();
@@ -90,10 +124,10 @@ public class BaseEnemy : MonoBehaviour
         ChangeDirection();
         LimitPosition();
 
-        if (this.transform.name == "TestEnemy") {
-            if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight()) {
-                Debug.LogError("Player in " + this.playerDetectionRange);
-            }
+        if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight())
+        {
+            this.playerScript.updateEmbarrassment(this.playerDetectionRange);
+            //this.playerScript.setInsideEnemyFieldOfView(true);
         }
     }
 
@@ -102,9 +136,22 @@ public class BaseEnemy : MonoBehaviour
         this.transform.Translate(this.direction * speed * Time.deltaTime);
     }
 
+	bool IsOnDanceFloor() {
+		GameObject dancefloor = GameObject.FindGameObjectWithTag("DanceFloor");
+		BoxCollider2D danceFloorRect = dancefloor.GetComponent<BoxCollider2D>();
+		if(this.transform.position.x >=  danceFloorRect.bounds.min.x &&
+		   this.transform.position.x <=  danceFloorRect.bounds.max.x &&
+		   this.transform.position.y >=  danceFloorRect.bounds.min.y &&
+		   this.transform.position.y <=  danceFloorRect.bounds.max.y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
     void DanceCharacter()
     {
-        int dance_move = Random.Range(9, 12);   // will generate 9, 10, or 11
+        int dance_move = UnityEngine.Random.Range(9, 12);   // will generate 9, 10, or 11
         mAnimator.SetInteger("move_direction", dance_move);
     }
 
@@ -134,18 +181,18 @@ public class BaseEnemy : MonoBehaviour
 
         if (this.directionChangeTimer <= 0.0f)
         {
-            int directionsIdx = Random.Range(0, 4);
+            int directionsIdx = UnityEngine.Random.Range(0, 4);
             Vector3 newDirection = directions[directionsIdx];
             this.direction = newDirection;
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
-            this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+            this.directionChangeTimer = UnityEngine.Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
             this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
             this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);
         }
     }
 
-    private bool PlayerInsideFieldOfView()
+    public bool PlayerInsideFieldOfView()
     {
         return this.InsideFieldOfView(this.player.transform.position);
     }
@@ -179,7 +226,7 @@ public class BaseEnemy : MonoBehaviour
         return false;
     }
 
-    private bool PlayerInLineOfSight()
+    public bool PlayerInLineOfSight()
     {
         return this.InLineOfSight(this.player.transform.position);
     }
@@ -196,16 +243,17 @@ public class BaseEnemy : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.DrawRay(this.transform.position, rayDirection);
-            Debug.LogError(this.transform.name + " --> " + hit.collider.transform.name);
             if ((hit.transform.tag == "Player"))
             {
-                if(rayDirection.sqrMagnitude <= (this.fieldOfViewRadius / 2.0f * this.fieldOfViewRadius / 2.0f))
+                if (rayDirection.sqrMagnitude <= this.redZoneRadius * this.redZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.redZone;
-                } else if(rayDirection.sqrMagnitude <= this.fieldOfViewRadius * this.fieldOfViewRadius)
+                }
+                else if (rayDirection.sqrMagnitude <= this.yellowZoneRadius * this.yellowZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.yellowZone;
-                } else
+                }
+                else
                 {
                     this.playerDetectionRange = Player.DetectionRange.greenZone;
                 }
@@ -246,11 +294,11 @@ public class BaseEnemy : MonoBehaviour
             if (this.showFieldOfViewAreaFill)
             {
                 Gizmos.color = Color.red;
-                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.redZoneRadius, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p2, p2 - p1);
 
                 Gizmos.color = Color.yellow;
-                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.yellowZoneRadius, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
             }
             p0 = p1;

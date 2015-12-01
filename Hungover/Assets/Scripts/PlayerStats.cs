@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour {
 
-    private int cash;
+    private float cash;
     private int experience;
     private int beerCans;
 
@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour {
     private Text experienceText;
     private Text beerCansText;
 
-    public void setCash(int cash)
+    public void setCash(float cash)
     {
         this.cash = cash;
     }
@@ -23,10 +23,22 @@ public class PlayerStats : MonoBehaviour {
         this.experience = experience;
     }
 
+	public void incrementExperience(int exp) {
+		this.experience += exp;
+	}
+
     public void setBeerCans(int beerCans)
     {
         this.beerCans = beerCans;
     }
+
+	public void incrementCash(float cash) {
+		this.cash += cash;
+	}
+
+	public void incrementBeerCans() {
+		++this.beerCans;
+	}
 
     /**
      *  Acquiring handle on text components.
@@ -44,7 +56,7 @@ public class PlayerStats : MonoBehaviour {
      */
     void Update()
     {
-        this.cashText.text = "$" + this.cash.ToString();
+		this.cashText.text = "$" + this.cash.ToString("F");
         this.experienceText.text = this.experience.ToString();
         this.beerCansText.text = this.beerCans.ToString();
     }
