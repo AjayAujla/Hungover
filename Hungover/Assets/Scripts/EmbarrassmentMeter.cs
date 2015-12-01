@@ -2,35 +2,44 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class EmbarrassmentMeter : MonoBehaviour {
+public class EmbarrassmentMeter : MonoBehaviour
+{
 
     private Slider embarrassmentMeterSlider;
-
-    private float maximumCooldownTime = 10.0f;
-    private float cooldownTimer;
-    private int embarrassmentCooldownDecrement = 1;
 
     private Sprite greenZone;
     private Sprite yellowZone;
     private Sprite redZone;
 
-    void Start () {
-        this.cooldownTimer = this.maximumCooldownTime;
-
+    void Start()
+    {
         this.embarrassmentMeterSlider = this.GetComponentInChildren<Slider>();
+
+        this.greenZone = Resources.Load<Sprite>("Sprites/green_zone");
+        this.yellowZone = Resources.Load<Sprite>("Sprites/yellow_zone");
+        this.redZone = Resources.Load<Sprite>("Sprites/red_zone");
     }
 
-    void Update () {
-		Image embarrassmentMeterImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[1];
-		Image embarrassmentMeterHandleImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[2];
-		if(embarrassmentMeterSlider.value <= 1 && embarrassmentMeterSlider.value >= 0.8) {
-			embarrassmentMeterImage.color = Color.green;
-		} else if(embarrassmentMeterSlider.value < 0.8 && embarrassmentMeterSlider.value >= 0.4) {
-			embarrassmentMeterImage.color = Color.yellow;
-		} else {
-			embarrassmentMeterImage.color = Color.red;
-		}
-	}
+    void Update()
+    {
+        Image embarrassmentMeterFill = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[1];
+        Image embarrassmentMeterHandleImage = this.embarrassmentMeterSlider.GetComponentsInChildren<Image>()[2];
+        if (this.embarrassmentMeterSlider.value <= this.embarrassmentMeterSlider.maxValue / 3.0f)
+        {
+            embarrassmentMeterFill.color = Color.green;
+            embarrassmentMeterHandleImage.sprite = this.greenZone;
+        }
+        else if (this.embarrassmentMeterSlider.value <= this.embarrassmentMeterSlider.maxValue * 2.0f / 3.0f)
+        {
+            embarrassmentMeterFill.color = Color.yellow;
+            embarrassmentMeterHandleImage.sprite = this.yellowZone;
+        }
+        else
+        {
+            embarrassmentMeterFill.color = Color.red;
+            embarrassmentMeterHandleImage.sprite = this.redZone;
+        }
+    }
 
     private bool embarrassmentMeterFilled()
     {
@@ -66,13 +75,18 @@ public class EmbarrassmentMeter : MonoBehaviour {
         }
     }
 
-    private void embarrassmentCooldown()
+    public float getMaximumEmbarrassmentValue()
     {
-        this.cooldownTimer -= Time.deltaTime;
-        if(this.cooldownTimer <= 0.0f)
-        {
-            this.decreaseEmbarrassment(this.embarrassmentCooldownDecrement);
-            this.cooldownTimer = this.maximumCooldownTime;
-        }
+        return this.embarrassmentMeterSlider.maxValue;
+    }
+
+    public float getMinimumEmbarrassmentValue()
+    {
+        return this.embarrassmentMeterSlider.minValue;
+    }
+
+    public void setEmbarrassmentMeterValue(float value)
+    {
+        this.embarrassmentMeterSlider.value = value;
     }
 }

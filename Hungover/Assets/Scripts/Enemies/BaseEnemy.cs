@@ -32,6 +32,8 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 10f)]
     private float fieldOfViewRadius = 4;
+    private float yellowZoneRadius;
+    private float redZoneRadius;
     [SerializeField]
     [Range(1.0f, 360f)]
     private int fieldOfViewAngle;
@@ -41,7 +43,7 @@ public class BaseEnemy : MonoBehaviour
     private Vector2 leftLineFieldOfView;
     private Vector2 rightLineFieldOfView;
 
-    Player.DetectionRange playerDetectionRange;
+    private Player.DetectionRange playerDetectionRange;
 
     void Awake()
     {
@@ -66,6 +68,9 @@ public class BaseEnemy : MonoBehaviour
         this.direction = directions[directionsIdx];
         this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
+        this.yellowZoneRadius = this.fieldOfViewRadius;
+        this.redZoneRadius = this.fieldOfViewRadius / 2.0f;
+
         isDancing = false;
     }
 
@@ -82,18 +87,18 @@ public class BaseEnemy : MonoBehaviour
         else
         {
             isDancing = false;
-            MoveCharacter();
+            //MoveCharacter();
         }
 
         mAnimator.SetBool("is_dancing", isDancing);
 
-        ChangeDirection();
+        //ChangeDirection();
         LimitPosition();
 
-        if (this.transform.name == "TestEnemy") {
-            if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight()) {
-                Debug.LogError("Player in " + this.playerDetectionRange);
-            }
+        if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight())
+        {
+            this.playerScript.updateEmbarrassment(this.playerDetectionRange);
+            //this.playerScript.setInsideEnemyFieldOfView(true);
         }
     }
 
@@ -145,7 +150,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    private bool PlayerInsideFieldOfView()
+    public bool PlayerInsideFieldOfView()
     {
         return this.InsideFieldOfView(this.player.transform.position);
     }
@@ -179,7 +184,7 @@ public class BaseEnemy : MonoBehaviour
         return false;
     }
 
-    private bool PlayerInLineOfSight()
+    public bool PlayerInLineOfSight()
     {
         return this.InLineOfSight(this.player.transform.position);
     }
@@ -196,16 +201,17 @@ public class BaseEnemy : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.DrawRay(this.transform.position, rayDirection);
-            Debug.LogError(this.transform.name + " --> " + hit.collider.transform.name);
             if ((hit.transform.tag == "Player"))
             {
-                if(rayDirection.sqrMagnitude <= (this.fieldOfViewRadius / 2.0f * this.fieldOfViewRadius / 2.0f))
+                if (rayDirection.sqrMagnitude <= this.redZoneRadius * this.redZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.redZone;
-                } else if(rayDirection.sqrMagnitude <= this.fieldOfViewRadius * this.fieldOfViewRadius)
+                }
+                else if (rayDirection.sqrMagnitude <= this.yellowZoneRadius * this.yellowZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.yellowZone;
-                } else
+                }
+                else
                 {
                     this.playerDetectionRange = Player.DetectionRange.greenZone;
                 }
@@ -246,11 +252,11 @@ public class BaseEnemy : MonoBehaviour
             if (this.showFieldOfViewAreaFill)
             {
                 Gizmos.color = Color.red;
-                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p2 = this.RotatePointAroundTransform(this.direction.normalized * this.redZoneRadius, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p2, p2 - p1);
 
                 Gizmos.color = Color.yellow;
-                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius / 2.0f, -this.fieldOfViewAngle / 2.0f + step * i);
+                Vector2 p3 = this.RotatePointAroundTransform(this.direction.normalized * this.yellowZoneRadius, -this.fieldOfViewAngle / 2.0f + step * i);
                 Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y) + p1, p2 - p1);
             }
             p0 = p1;
