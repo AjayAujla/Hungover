@@ -4,9 +4,9 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public enum DetectionRange { greenZone, yellowZone, redZone };
-
-    /********************************************************************
+	public enum DetectionRange { greenZone, yellowZone, redZone };
+	
+	/********************************************************************
 	 * 
 	 *	Animation States:
 	 *	1 = Walk Up			5 = Run Up			9 = Dance Move 1
@@ -15,115 +15,133 @@ public class Player : MonoBehaviour
 	 *	4 = Walk Left		8 = Run Left		12 = Squat (Coming Soon)
 	 *
 	 ********************************************************************/
-
-    [SerializeField]
-    public float speed;
-
-    private Animator mAnimator;
-    private AudioSource mAudioSource;
-    private float footStepsPitch = 1.0f;
-
-    private int embarrassment = 0;
-    private EmbarrassmentMeter embarrassmentMeter;
-    private bool insideEnemyFieldOfView;
-
+	
+	[SerializeField]
+	public float speed;
+	
+	private Animator mAnimator;
+	private AudioSource mAudioSource;
+	private float footStepsPitch = 1.0f;
+	
+	private int embarrassment = 0;
+	private EmbarrassmentMeter embarrassmentMeter;
+	private bool insideEnemyFieldOfView;
+	
 	private PlayerStats playerStats;
-
-    private float allowCooldownTime = 1.0f;
-    private float cooldownTimer;
-
-    private GameObject[] enemyList;
-    private BaseEnemy enemyScript;
+	
+	private float allowCooldownTime = 1.0f;
+	private float cooldownTimer;
+	
+	private GameObject[] enemyList;
+	private BaseEnemy enemyScript;
 	AudioSource AlarmSound;
-
-    public bool isInsideEnemyFieldOfView()
-    {
-        return this.insideEnemyFieldOfView;
-    }
-
-    public void setInsideEnemyFieldOfView(bool insideEnemyFieldOfView)
-    {
-        this.insideEnemyFieldOfView = insideEnemyFieldOfView;
-    }
-
-    void Start()
-    {
-        mAnimator = GetComponent<Animator>();
-        mAudioSource = GetComponent<AudioSource>();
-        this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+	
+	private bool foundShirt = false;
+	private bool foundPants = false;
+	private bool foundShoes = false;
+	
+	public bool isInsideEnemyFieldOfView()
+	{
+		return this.insideEnemyFieldOfView;
+	}
+	
+	public void setInsideEnemyFieldOfView(bool insideEnemyFieldOfView)
+	{
+		this.insideEnemyFieldOfView = insideEnemyFieldOfView;
+	}
+	
+	void Start()
+	{
+		mAnimator = GetComponent<Animator>();
+		mAudioSource = GetComponent<AudioSource>();
+		this.embarrassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
 		playerStats = GameObject.Find("PlayerStats").GetComponent<PlayerStats>();
-        this.cooldownTimer = this.allowCooldownTime;
-
-        this.enemyList = GameObject.FindGameObjectsWithTag("Enemy");
-        this.enemyScript = this.enemyList[0].GetComponent<BaseEnemy>();
+		this.cooldownTimer = this.allowCooldownTime;
+		
+		this.enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+		this.enemyScript = this.enemyList[0].GetComponent<BaseEnemy>();
 		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-		if(Input.GetButtonDown ("Alarm") && !AlarmSound.isPlaying)
+	}
+	
+	void Update()
+	{
+		if(Input.GetButtonDown ("Alarm") && !AlarmSound.isPlaying) {
 			AlarmSound.Play ();
-
-        MoveCharacter();
-
-        this.CooldownEmbarrassment();
-        this.embarrassmentMeter.setEmbarrassmentMeterValue(this.embarrassment);
-
+			Physics2D.IgnoreLayerCollision(11, 12);
+		}
+		
+		MoveCharacter();
+		
+		this.CooldownEmbarrassment();
+		this.embarrassmentMeter.setEmbarrassmentMeterValue(this.embarrassment);
+		
 		if(this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 		{
-//			Application.LoadLevel(Application.loadedLevel);
-			GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+			//Application.LoadLevel(Application.loadedLevel);
+			//GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
 		}
-
-    }
-
-    private void CooldownEmbarrassment()
-    {
-        bool canCooldown = false;
-
-        foreach (GameObject enemy in this.enemyList)
-        {
-            if (!(enemyScript.PlayerInsideFieldOfView() && enemyScript.PlayerInLineOfSight()))
-            {
-                canCooldown = true;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        this.cooldownTimer -= Time.deltaTime;
-        //if (this.cooldownTimer <= 0.0f)
-        if (canCooldown)
-        {
-            this.updateEmbarrassment(DetectionRange.greenZone);
-            this.cooldownTimer = this.allowCooldownTime;
-        }
 	}
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
+	
+	private void CooldownEmbarrassment()
+	{
+		bool canCooldown = false;
+		
+		foreach (GameObject enemy in this.enemyList)
+		{
+			if (!(enemyScript.PlayerInsideFieldOfView() && enemyScript.PlayerInLineOfSight()))
+			{
+				canCooldown = true;
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		this.cooldownTimer -= Time.deltaTime;
+		//if (this.cooldownTimer <= 0.0f)
+		if (canCooldown)
+		{
+			this.updateEmbarrassment(DetectionRange.greenZone);
+			this.cooldownTimer = this.allowCooldownTime;
+		}
+	}
+	
+	void OnTriggerEnter2D(Collider2D other)
+	{
 		if (other.gameObject.layer == 9) // layer 9 is "Item"
 		{   
-		
-		
 			// if it's a clothe (Boxers, Pants, Shirt, or Shoes), reskin player
 			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet" && other.gameObject.tag != "Can") {
 				PlayerReskin.ChangeSprite(other.gameObject.tag);
 			}
-
-	        // find the corresponding item UI (top-right corner)
-	        GameObject clothe = GameObject.Find(other.gameObject.tag);
-	        if (clothe)
-	        {
-	            clothe.GetComponent<Image>().color = Color.white;   // set the item UI opacity to 1 (opaque)
-				if(other.gameObject.tag == "Pants" || other.gameObject.tag == "Shirt" || other.gameObject.tag == "Shoes")
+			
+			// find the corresponding item UI (top-right corner)
+			GameObject clothe = GameObject.Find(other.gameObject.tag);
+			if (clothe)
+			{
+				clothe.GetComponent<Image>().color = Color.white;   // set the item UI opacity to 1 (opaque)
+				if (other.gameObject.tag == "Pants")
+				{
+					this.foundPants = true;
 					playerStats.incrementExperience(30);
+				}
+				else if (other.gameObject.tag == "Shirt")
+				{
+					this.foundShirt = true;
+					playerStats.incrementExperience(30);
+				}
+				else if (other.gameObject.tag == "Shoes")
+				{
+					this.foundShoes = true;
+					playerStats.incrementExperience(30);
+				}
 				else
+				{
 					playerStats.incrementExperience(15);
-	            Destroy(other.gameObject);  // remove the item object from the map
-	        }
+				}
+				Destroy(other.gameObject);  // remove the item object from the map
+			}
 			
 			// else, check if it is a beer can
 			if(other.gameObject.tag == "Can") {
@@ -131,102 +149,109 @@ public class Player : MonoBehaviour
 				playerStats.incrementCash(0.05f);
 				Destroy(other.gameObject);
 			}
-		
 		}
-    }
-
-    void MoveCharacter()
-    {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        Vector2 direction = new Vector2(h, v);
-        transform.Translate(direction * speed * Time.deltaTime);
-
-        if (direction != Vector2.zero)
-        {
-            if (!mAudioSource.isPlaying)
-            {
-                if (Input.GetButton("Run"))
-                {
-                    footStepsPitch = 0.8f;
-                }
-                else
-                {
-                    footStepsPitch = 0.4f;
-                }
-                mAudioSource.pitch = footStepsPitch;
-                mAudioSource.Play();
-            }
-        }
-        else
-        {
-            mAudioSource.Stop();
-        }
-
-        SetAnimation(direction);
-
-    }
-
-    void SetAnimation(Vector2 direction)
-    {
-        int animationIdx = 0;
-
-        if (direction.y > 0.0f) animationIdx = 1;       // Up
-        else if (direction.x > 0.0f) animationIdx = 2;  // Right
-        else if (direction.y < 0.0f) animationIdx = 3;  // Down
-        else if (direction.x < 0.0f) animationIdx = 4;  // Left
-        else { mAnimator.Play("Character_Idle"); }
-
-        if (direction != Vector2.zero && Input.GetButton("Run"))
-        {
-            animationIdx += 4;  // Will be in Run range
-            speed = 3;
-        }
-        else
-        {
-            speed = 2;
-        }
-
-        mAnimator.SetInteger("move_direction", animationIdx);
-    }
-
-    public void updateEmbarrassment(DetectionRange detectionRange)
-    {
-        if (detectionRange == DetectionRange.redZone)
-        {
-            this.insideEnemyFieldOfView = true;
-            if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
-            {
-                this.embarrassment += 4;
-            }
-            else
-            {
-                this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
-            }
-        }
-        else if (detectionRange == DetectionRange.yellowZone)
-        {
-            this.insideEnemyFieldOfView = true;
-            if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
-            {
-                this.embarrassment += 2;
-            }
-            else
-            {
-                this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
-            }
-        }
-        else if (detectionRange == DetectionRange.greenZone)
-        {
-            if (this.embarrassment > this.embarrassmentMeter.getMinimumEmbarrassmentValue())
-            {
-                this.embarrassment -= 1;
-            }
-            else
-            {
-                this.embarrassment = (int)this.embarrassmentMeter.getMinimumEmbarrassmentValue();
-            }
-        }
-    }
+		
+		if(other.gameObject.tag == "Exit")
+		{
+			if (this.foundShirt && this.foundPants && this.foundShoes)
+			{
+				Utils.Print ("VICTORY");
+			}
+		}
+	}
+	
+	void MoveCharacter()
+	{
+		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
+		
+		Vector2 direction = new Vector2(h, v);
+		transform.Translate(direction * speed * Time.deltaTime);
+		
+		if (direction != Vector2.zero)
+		{
+			if (!mAudioSource.isPlaying)
+			{
+				if (Input.GetButton("Run"))
+				{
+					footStepsPitch = 0.8f;
+				}
+				else
+				{
+					footStepsPitch = 0.4f;
+				}
+				mAudioSource.pitch = footStepsPitch;
+				mAudioSource.Play();
+			}
+		}
+		else
+		{
+			mAudioSource.Stop();
+		}
+		
+		SetAnimation(direction);
+		
+	}
+	
+	void SetAnimation(Vector2 direction)
+	{
+		int animationIdx = 0;
+		
+		if (direction.y > 0.0f) animationIdx = 1;       // Up
+		else if (direction.x > 0.0f) animationIdx = 2;  // Right
+		else if (direction.y < 0.0f) animationIdx = 3;  // Down
+		else if (direction.x < 0.0f) animationIdx = 4;  // Left
+		else { mAnimator.Play("Character_Idle"); }
+		
+		if (direction != Vector2.zero && Input.GetButton("Run"))
+		{
+			animationIdx += 4;  // Will be in Run range
+			speed = 3;
+		}
+		else
+		{
+			speed = 2;
+		}
+		
+		mAnimator.SetInteger("move_direction", animationIdx);
+	}
+	
+	public void updateEmbarrassment(DetectionRange detectionRange)
+	{
+		if (detectionRange == DetectionRange.redZone)
+		{
+			this.insideEnemyFieldOfView = true;
+			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
+			{
+				this.embarrassment += 4;
+			}
+			else
+			{
+				this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
+			}
+		}
+		else if (detectionRange == DetectionRange.yellowZone)
+		{
+			this.insideEnemyFieldOfView = true;
+			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
+			{
+				this.embarrassment += 2;
+			}
+			else
+			{
+				this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
+			}
+		}
+		else if (detectionRange == DetectionRange.greenZone)
+		{
+			if (this.embarrassment > this.embarrassmentMeter.getMinimumEmbarrassmentValue())
+			{
+				this.embarrassment -= 1;
+			}
+			else
+			{
+				this.embarrassment = (int)this.embarrassmentMeter.getMinimumEmbarrassmentValue();
+			}
+		}
+	}
 }

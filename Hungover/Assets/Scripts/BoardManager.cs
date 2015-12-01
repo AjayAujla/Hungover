@@ -19,7 +19,7 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 	}
-
+	
 	public enum Level {
 		Frosh,
 		Pool,
@@ -27,7 +27,7 @@ public class BoardManager : MonoBehaviour {
 		Office,
 		Wedding
 	}
-
+	
 	public class Room 
 	{
 		public int widthRoom;
@@ -39,15 +39,16 @@ public class BoardManager : MonoBehaviour {
 		public int yEnterPosition;
 		public int xExitPosition;
 		public int yExitPosition;
-
+		
 		private static Room biggestRoom;
-
+		private static Room smallestRoom;
+		
 		public static Room GetBiggest()
 		{
 			if(biggestRoom != null) {
 				return biggestRoom;
 			}
-
+			
 			foreach(Room r in BoardManager.roomsList) {
 				if(biggestRoom == null) {
 					biggestRoom = r;
@@ -55,12 +56,34 @@ public class BoardManager : MonoBehaviour {
 					if((r.widthRoom * r.heightRoom) > (biggestRoom.widthRoom * biggestRoom.heightRoom)) {
 						biggestRoom = r;
 					}
-
-
+					
+					
 				}
 			}
 			return biggestRoom;
+			
+		}
 
+		public static Room SmallestRoom()
+		{
+			if(smallestRoom != null) {
+				return smallestRoom;
+			}
+			
+			foreach(Room r in BoardManager.roomsList) {
+				if(smallestRoom == null) {
+					smallestRoom = r;
+				} else {
+					if((r.widthRoom * r.heightRoom) < (smallestRoom.widthRoom * smallestRoom.heightRoom)) {
+						smallestRoom = r;
+					}
+					
+					
+				}
+			}
+
+			return smallestRoom;
+			
 		}
 
 		public int xCenterPos
@@ -72,7 +95,7 @@ public class BoardManager : MonoBehaviour {
 		{
 			get {return yRoomPosition + (heightRoom/2);}
 		}
-
+		
 		public Vector2 xyCenterPos
 		{
 			get{return new Vector2(xCenterPos, yCenterPos);}
@@ -114,21 +137,21 @@ public class BoardManager : MonoBehaviour {
 	public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
 	public GameObject player;										//Player prefab.
 	public GameObject[] foodTiles;
-
+	
 	// Wedding specefic objects
 	public GameObject weddingTable;
 	public GameObject danceFloor;
 	public List<GameObject> weddingTables = new List<GameObject>();
 	public List<GameObject> dancers = new List<GameObject>();
 	public GameObject alarmSwitch;
-
+	
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
 	
 	public Level currentLevel = Level.Wedding;
-
+	
 	public static List<Room> roomsList = new List<Room>();
-
+	
 	void InitialiseList () //Clears our list gridPositions and prepares it to generate a new board.
 	{
 		gridPositions.Clear ();
@@ -159,11 +182,11 @@ public class BoardManager : MonoBehaviour {
 				r.widthRoom = 13;
 				r.heightRoom = 18;
 			}
-
+			
 			r.xRoomPosition = Random.Range(0, rows - r.widthRoom);
 			r.yRoomPosition = Random.Range(0, columns - r.heightRoom);
-
-
+			
+			
 			if(!RoomCollides(r))
 			{
 				for(int x = r.xRoomPosition; x <= (r.xRoomPosition + r.widthRoom); x++)
@@ -171,7 +194,7 @@ public class BoardManager : MonoBehaviour {
 					for(int y = r.yRoomPosition; y <= (r.yRoomPosition + r.heightRoom); y++)
 					{
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
-
+						
 						if(y == r.yRoomPosition) 	// bottom wall
 							toInstantiate = outerWallTiles [x % 2 == 0 ? 7 : 8];
 						if(x == (r.xRoomPosition + r.widthRoom))	// right wall
@@ -188,17 +211,17 @@ public class BoardManager : MonoBehaviour {
 							toInstantiate = outerWallTiles [6];
 						if(x == r.xRoomPosition && y == r.yRoomPosition) 	// bottom left corner
 							toInstantiate = outerWallTiles [9];
-
+						
 						if(x == r.xRoomPosition || x == (r.xRoomPosition + r.widthRoom) || y == r.yRoomPosition || y == (r.yRoomPosition + r.heightRoom))
 						{
-//							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+							//							toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 						}
-
+						
 						if(toInstantiate != null) {
 							GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 							instance.transform.SetParent (boardHolder);	
 						}
-
+						
 					}
 				}
 				
@@ -211,6 +234,7 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiate enter and exit tiles in the rooms.
 		//SpawnDoors();
+		this.SpawnExit();
 		
 		//Create paths which connect the rooms.
 		ConnectRooms();
@@ -228,26 +252,26 @@ public class BoardManager : MonoBehaviour {
 		
 		return false;	
 	}
-
-    public Room getCurrentRoom()
-    {
-        this.player = GameObject.Find("AshFlashem(Clone)");
-
-        foreach (Room room in roomsList)
-        {
-            if (
-                this.player.transform.position.x >= room.xRoomPosition &&
-                this.player.transform.position.x <= room.xRoomPosition + room.widthRoom &&
-                this.player.transform.position.y >= room.yRoomPosition &&
-                this.player.transform.position.y <= room.yRoomPosition + room.heightRoom)
-            {
-                return room;
-            }
-        }
-        return null;
-    }
-
-    void SpawnDoors()
+	
+	public Room getCurrentRoom()
+	{
+		this.player = GameObject.Find("AshFlashem(Clone)");
+		
+		foreach (Room room in roomsList)
+		{
+			if (
+				this.player.transform.position.x >= room.xRoomPosition &&
+				this.player.transform.position.x <= room.xRoomPosition + room.widthRoom &&
+				this.player.transform.position.y >= room.yRoomPosition &&
+				this.player.transform.position.y <= room.yRoomPosition + room.heightRoom)
+			{
+				return room;
+			}
+		}
+		return null;
+	}
+	
+	void SpawnDoors()
 	{
 		foreach(Room r in roomsList)
 		{
@@ -260,6 +284,14 @@ public class BoardManager : MonoBehaviour {
 			Instantiate (exit, new Vector3 (r.xExitPosition, r.yExitPosition, 0f), Quaternion.identity);
 		}
 		
+	}
+	
+	private void SpawnExit()
+	{
+		Room lastRoom = roomsList[roomsList.Count - 1];
+		lastRoom.xExitPosition = lastRoom.xRoomPosition + lastRoom.widthRoom - 1;
+		lastRoom.yExitPosition = lastRoom.yRoomPosition + lastRoom.heightRoom - 1;
+		Instantiate(exit, new Vector3 (lastRoom.xExitPosition, lastRoom.yExitPosition, 0.0f), Quaternion.identity);
 	}
 	
 	void SortRoomsByPosition()
@@ -410,8 +442,13 @@ public class BoardManager : MonoBehaviour {
 		for(int i = 0; i < objectCount; i++)
 		{
 			//Choose a position for randomPosition by getting a random position from our list of available Vector3s stored in gridPosition
-			Vector3 randomPosition = RandomPosition();
-			
+			Vector3 randomPosition = Vector3.zero;
+			do {
+				randomPosition = RandomPosition();
+			} while((randomPosition.x > Room.SmallestRoom().xRoomPosition && 
+			          randomPosition.x < Room.SmallestRoom().xRoomPosition + Room.SmallestRoom().widthRoom && 
+			          randomPosition.y > Room.SmallestRoom().yRoomPosition && 
+			          randomPosition.y < Room.SmallestRoom().yRoomPosition + Room.SmallestRoom().heightRoom ));
 			//Choose a random tile from tileArray and assign it to tileChoice
 			GameObject tileChoice = tileArray[Random.Range (0, tileArray.Length)];
 			
@@ -419,48 +456,54 @@ public class BoardManager : MonoBehaviour {
 			Instantiate(tileChoice, randomPosition, Quaternion.identity);
 		}
 	}
-
+	
 	void LayoutClothes(GameObject[] clothes, List<Room> rooms) {
-
+		
 		foreach(GameObject clothe in clothes) {
 			Utils.Print ("Placing... " + clothe.tag + " in " + rooms.Count + " Rooms");
-			Vector3 randomPosition = RandomPosition();
-
+			Vector3 randomPosition = Vector3.zero;
+			do {
+				randomPosition = RandomPosition();
+			} while((randomPosition.x > Room.SmallestRoom().xRoomPosition && 
+			         randomPosition.x < Room.SmallestRoom().xRoomPosition + Room.SmallestRoom().widthRoom && 
+			         randomPosition.y > Room.SmallestRoom().yRoomPosition && 
+			         randomPosition.y < Room.SmallestRoom().yRoomPosition + Room.SmallestRoom().heightRoom ));
+			
 			Instantiate(clothe, randomPosition, Quaternion.identity);
-
+			
 			if(clothe.gameObject.tag == "Wallet" && currentLevel == Level.Wedding) {
 				// put wallet on dancefloor in the Wedding Level (muahaha)
 				GameObject wallet = GameObject.FindGameObjectWithTag("Wallet");
 				wallet.transform.position = danceFloor.transform.position;
 			}
-
+			
 		}
-
+		
 	}
 	
 	public void SetupUpWedding(List<Room> rooms)
 	{
 		BoardManager.Room biggestRoom = Room.GetBiggest();
-
+		
 		// Place tables in biggestRoom
 		for(int x = biggestRoom.xRoomPosition; x < (biggestRoom.xRoomPosition + biggestRoom.widthRoom); ++x) {
 			for(int y = biggestRoom.yRoomPosition; y < (biggestRoom.yRoomPosition + biggestRoom.heightRoom); ++y) {
 				int offset = 2;
-
+				
 				if(x >= biggestRoom.xRoomPosition + offset && x <= biggestRoom.xRoomPosition+biggestRoom.widthRoom - offset
 				   && ((y >= biggestRoom.yRoomPosition + offset && y <= biggestRoom.yRoomPosition + 2*offset) || 
-				   (y <= biggestRoom.yRoomPosition + biggestRoom.heightRoom - offset && y >= biggestRoom.yRoomPosition + biggestRoom.heightRoom - 2*offset)))
-					if(x % 3 == 0) {
-						GameObject table = (GameObject)Instantiate(weddingTable, new Vector3(x, y), Quaternion.identity);
-						weddingTables.Add (table);
-					}
-					
+				    (y <= biggestRoom.yRoomPosition + biggestRoom.heightRoom - offset && y >= biggestRoom.yRoomPosition + biggestRoom.heightRoom - 2*offset)))
+				if(x % 3 == 0) {
+					GameObject table = (GameObject)Instantiate(weddingTable, new Vector3(x, y), Quaternion.identity);
+					weddingTables.Add (table);
+				}
+				
 			}
 		}
-
+		
 		// Place dancefloor in biggestRoom's center
 		danceFloor = (GameObject)Instantiate(danceFloor, biggestRoom.xyCenterPos, Quaternion.identity);
-
+		
 		// Place enemies on the dancefloor, same number of tables we have
 		BoxCollider2D danceFloorBoxCollider = danceFloor.GetComponent<BoxCollider2D>();
 		for(int i = 0; i < weddingTables.Count; ++i) {
@@ -471,12 +514,12 @@ public class BoardManager : MonoBehaviour {
 			GameObject dancer = (GameObject)Instantiate(enemyTiles[0], new Vector3(x, y), Quaternion.identity);
 			dancers.Add(dancer);
 		}
-
+		
 		// Place the Alarm switch near the entrance door
-//		biggestRoom.
+		//		biggestRoom.
 		
 	}
-
+	
 	public void SetupScene (int level)
 	{
 		//Creates the outer walls and floor.
@@ -486,7 +529,7 @@ public class BoardManager : MonoBehaviour {
 		InitialiseList ();
 		
 		//Instantiates Player.
-		Instantiate (player, new Vector3 (roomsList[0].xRoomPosition + 1, roomsList[0].yRoomPosition + 1, 0f), Quaternion.identity);
+		Instantiate (player, new Vector3 (Room.SmallestRoom().xRoomPosition + 1, Room.SmallestRoom().yRoomPosition + 1, 0f), Quaternion.identity);
 		
 		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
 		//LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
@@ -496,11 +539,11 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);
-
+		
 		// Let's setup the wedding level, shall we?
 		if(currentLevel == Level.Wedding)
 			SetupUpWedding(roomsList);
-
+		
 		// After level is setup, place clothes 'randomly' on it
 		LayoutClothes(clotheTiles, roomsList);
 	}
