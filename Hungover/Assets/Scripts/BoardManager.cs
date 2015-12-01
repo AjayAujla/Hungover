@@ -118,12 +118,14 @@ public class BoardManager : MonoBehaviour {
 	// Wedding specefic objects
 	public GameObject weddingTable;
 	public GameObject danceFloor;
-	private List<GameObject> weddingTables = new List<GameObject>();
+	public List<GameObject> weddingTables = new List<GameObject>();
+	public List<GameObject> dancers = new List<GameObject>();
+	public GameObject alarmSwitch;
 
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
-
-	private Level currentLevel = Level.Wedding;
+	
+	public Level currentLevel = Level.Wedding;
 
 	public static List<Room> roomsList = new List<Room>();
 
@@ -429,7 +431,7 @@ public class BoardManager : MonoBehaviour {
 			if(clothe.gameObject.tag == "Wallet" && currentLevel == Level.Wedding) {
 				// put wallet on dancefloor in the Wedding Level (muahaha)
 				GameObject wallet = GameObject.FindGameObjectWithTag("Wallet");
-				wallet.transform.position = Room.GetBiggest().xyCenterPos;
+				wallet.transform.position = danceFloor.transform.position;
 			}
 
 		}
@@ -459,16 +461,19 @@ public class BoardManager : MonoBehaviour {
 		// Place dancefloor in biggestRoom's center
 		danceFloor = (GameObject)Instantiate(danceFloor, biggestRoom.xyCenterPos, Quaternion.identity);
 
-		// Place enemies on the dancefloor, twice as much as number of tables we have
+		// Place enemies on the dancefloor, same number of tables we have
 		BoxCollider2D danceFloorBoxCollider = danceFloor.GetComponent<BoxCollider2D>();
-		for(int i = 0; i < 2*weddingTables.Count; ++i) {
+		for(int i = 0; i < weddingTables.Count; ++i) {
 			// random position within dance floor
 			float offset = 0.5f;
 			float x = Random.Range(danceFloorBoxCollider.bounds.min.x + offset, danceFloorBoxCollider.bounds.max.x - offset);
 			float y = Random.Range(danceFloorBoxCollider.bounds.min.y + offset, danceFloorBoxCollider.bounds.max.y - offset);
 			GameObject dancer = (GameObject)Instantiate(enemyTiles[0], new Vector3(x, y), Quaternion.identity);
-
+			dancers.Add(dancer);
 		}
+
+		// Place the Alarm switch near the entrance door
+//		biggestRoom.
 		
 	}
 

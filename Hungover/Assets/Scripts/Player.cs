@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     private GameObject[] enemyList;
     private BaseEnemy enemyScript;
+	AudioSource AlarmSound;
 
     public bool isInsideEnemyFieldOfView()
     {
@@ -55,14 +56,25 @@ public class Player : MonoBehaviour
 
         this.enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         this.enemyScript = this.enemyList[0].GetComponent<BaseEnemy>();
+		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
     }
 
     void Update()
     {
+		if(Input.GetButtonDown ("Alarm") && !AlarmSound.isPlaying)
+			AlarmSound.Play ();
+
         MoveCharacter();
 
         this.CooldownEmbarrassment();
         this.embarrassmentMeter.setEmbarrassmentMeterValue(this.embarrassment);
+
+		if(this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
+		{
+//			Application.LoadLevel(Application.loadedLevel);
+			GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+		}
+
     }
 
     private void CooldownEmbarrassment()
@@ -106,6 +118,10 @@ public class Player : MonoBehaviour
 	        if (clothe)
 	        {
 	            clothe.GetComponent<Image>().color = Color.white;   // set the item UI opacity to 1 (opaque)
+				if(other.gameObject.tag == "Pants" || other.gameObject.tag == "Shirt" || other.gameObject.tag == "Shoes")
+					playerStats.incrementExperience(30);
+				else
+					playerStats.incrementExperience(15);
 	            Destroy(other.gameObject);  // remove the item object from the map
 	        }
 			

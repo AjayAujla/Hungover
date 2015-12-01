@@ -44,7 +44,6 @@ public class PlayerReskin : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		
-		
 		Sprite[] subSprites = Resources.LoadAll<Sprite>("SpriteSheets/Player/" + spriteSheetName + "/Character_Naked");
 		
 		foreach(SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {

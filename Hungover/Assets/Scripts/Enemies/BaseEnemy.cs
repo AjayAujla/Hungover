@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class BaseEnemy : MonoBehaviour
@@ -20,6 +21,8 @@ public class BaseEnemy : MonoBehaviour
     private GameObject player;
     Animator mAnimator;
     AudioSource PartyMusic;
+	AudioSource AlarmSound;
+	GameObject tableToHideUnderIfAlarmIsRinging;
     private Player playerScript;
 
     [SerializeField]
@@ -44,6 +47,7 @@ public class BaseEnemy : MonoBehaviour
     private Vector2 rightLineFieldOfView;
 
     private Player.DetectionRange playerDetectionRange;
+	private BoardManager boardManager;
 
     void Awake()
     {
@@ -59,14 +63,17 @@ public class BaseEnemy : MonoBehaviour
 
         mAnimator = GetComponent<Animator>();
         PartyMusic = (AudioSource)GameObject.Find("PartyMusic").GetComponents<AudioSource>()[0];
+		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
+		tableToHideUnderIfAlarmIsRinging = null;
+		boardManager = GameObject.Find("GameManager").GetComponent<BoardManager>();
         this.player = GameObject.Find("AshFlashem(Clone)");
         this.playerScript = this.player.GetComponent<Player>();
 
         // Starting each enemy in a random direction
         // Going from index 0 to 4 exclusively
-        int directionsIdx = Random.Range(0, 4);
+        int directionsIdx = UnityEngine.Random.Range(0, 4);
         this.direction = directions[directionsIdx];
-        this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+        this.directionChangeTimer = UnityEngine.Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
         this.yellowZoneRadius = this.fieldOfViewRadius;
         this.redZoneRadius = this.fieldOfViewRadius / 2.0f;
@@ -76,7 +83,7 @@ public class BaseEnemy : MonoBehaviour
 
     void Update()
     {
-		if (PartyMusic.isPlaying || IsOnDanceFloor())
+		if (PartyMusic.isPlaying || IsOnDanceFloor() && !AlarmSound.isPlaying)
         {
             if (!isDancing)
             {
@@ -84,15 +91,37 @@ public class BaseEnemy : MonoBehaviour
                 DanceCharacter();
             }
         }
-        else
+        else if(AlarmSound.isPlaying)
+		{
+			isDancing = false;
+
+			// find a random table
+			if(tableToHideUnderIfAlarmIsRinging == null) {
+				int tableIndex = UnityEngine.Random.Range (0, boardManager.weddingTables.Count);
+				tableToHideUnderIfAlarmIsRinging = boardManager.weddingTables[tableIndex];
+			}
+			// Run toward the random table and hide under it...
+			this.gameObject.transform.position = Vector3.MoveTowards(this.transform.position, tableToHideUnderIfAlarmIsRinging.transform.position, 10.0f*Time.deltaTime);
+
+			if(this.transform.position == tableToHideUnderIfAlarmIsRinging.transform.position) {
+				Utils.Print ("PHEW! I'm Safe...");
+				Sprite[] subSprites = Resources.LoadAll<Sprite>("SpriteSheets/Character_Naked/Character_Naked");
+				Sprite hidingSprite = Array.Find (subSprites, item => item.name == "Character_Naked_88");
+				if(hidingSprite != null) {
+					this.GetComponent<Animator>().enabled = false;
+					this.GetComponent<SpriteRenderer>().sprite = hidingSprite;
+				}
+			}
+
+		} else
         {
             isDancing = false;
-            //MoveCharacter();
+            MoveCharacter();
         }
 
         mAnimator.SetBool("is_dancing", isDancing);
 
-        //ChangeDirection();
+        ChangeDirection();
         LimitPosition();
 
         if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight())
@@ -122,7 +151,7 @@ public class BaseEnemy : MonoBehaviour
 
     void DanceCharacter()
     {
-        int dance_move = Random.Range(9, 12);   // will generate 9, 10, or 11
+        int dance_move = UnityEngine.Random.Range(9, 12);   // will generate 9, 10, or 11
         mAnimator.SetInteger("move_direction", dance_move);
     }
 
@@ -152,11 +181,11 @@ public class BaseEnemy : MonoBehaviour
 
         if (this.directionChangeTimer <= 0.0f)
         {
-            int directionsIdx = Random.Range(0, 4);
+            int directionsIdx = UnityEngine.Random.Range(0, 4);
             Vector3 newDirection = directions[directionsIdx];
             this.direction = newDirection;
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
-            this.directionChangeTimer = Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
+            this.directionChangeTimer = UnityEngine.Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
             this.rightLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, -this.fieldOfViewAngle / 2.0f);
             this.leftLineFieldOfView = this.RotatePointAroundTransform(this.direction.normalized * this.fieldOfViewRadius, this.fieldOfViewAngle / 2.0f);

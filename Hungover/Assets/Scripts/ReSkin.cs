@@ -35,6 +35,8 @@ public class ReSkin : MonoBehaviour {
 				if(newSprite)
 					renderer.sprite = newSprite;
 
+				if(GameObject.Find ("AlarmSound").GetComponent<AudioSource>().isPlaying)
+					renderer.sprite = Array.Find (subSprites, item => item.name == "Character_Naked_88");
 			}
 
 		}

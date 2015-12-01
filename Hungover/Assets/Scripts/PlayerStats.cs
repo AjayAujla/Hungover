@@ -23,6 +23,10 @@ public class PlayerStats : MonoBehaviour {
         this.experience = experience;
     }
 
+	public void incrementExperience(int exp) {
+		this.experience += exp;
+	}
+
     public void setBeerCans(int beerCans)
     {
         this.beerCans = beerCans;
