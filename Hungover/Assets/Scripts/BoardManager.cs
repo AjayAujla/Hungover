@@ -369,8 +369,6 @@ public class BoardManager : MonoBehaviour {
 						yPath--;
 					}
 				}
-				
-				Debug.Log("Paths used: " + i);
 			}
 			else //if(!(roomsList[i].yCenterPos == roomsList[i+1].yRoomPosition || roomsList[i+1].xCenterPos == (roomsList[i].xRoomPosition + roomsList[i].widthRoom)))
 			{	
@@ -460,7 +458,7 @@ public class BoardManager : MonoBehaviour {
 	void LayoutClothes(GameObject[] clothes, List<Room> rooms) {
 		
 		foreach(GameObject clothe in clothes) {
-			Utils.Print ("Placing... " + clothe.tag + " in " + rooms.Count + " Rooms");
+			Utils.Print ("Placing... " + clothe.tag + " in one of " + rooms.Count + " rooms");
 			Vector3 randomPosition = Vector3.zero;
 			do {
 				randomPosition = RandomPosition();
