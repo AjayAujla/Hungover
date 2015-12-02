@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
 		
 		if(this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 		{
+            Utils.Print("DEFEAT");
 			//Application.LoadLevel(Application.loadedLevel);
 			//GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
 		}
@@ -155,9 +156,9 @@ public class Player : MonoBehaviour
 		{
 			if (this.foundShirt && this.foundPants && this.foundShoes)
 			{
-				Utils.Print ("VICTORY");
-			}
-		}
+                Utils.Print("VICTORY");
+            }
+        }
 	}
 	
 	void MoveCharacter()

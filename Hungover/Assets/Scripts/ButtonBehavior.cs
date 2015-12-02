@@ -17,7 +17,7 @@ public class ButtonBehavior : MonoBehaviour {
 
         if (Input.GetButtonDown("Submit") && Application.loadedLevel <= 1)
         {
-            Application.LoadLevel("FroshParty");
+            Application.LoadLevel(2);
         }
     }
 }

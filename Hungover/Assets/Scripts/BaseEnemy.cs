@@ -104,7 +104,6 @@ public class BaseEnemy : MonoBehaviour
 			this.gameObject.transform.position = Vector3.MoveTowards(this.transform.position, tableToHideUnderIfAlarmIsRinging.transform.position, 10.0f*Time.deltaTime);
 
 			if(this.transform.position == tableToHideUnderIfAlarmIsRinging.transform.position) {
-				Utils.Print ("PHEW! I'm Safe...");
 				Sprite[] subSprites = Resources.LoadAll<Sprite>("SpriteSheets/Character_Naked/Character_Naked");
 				Sprite hidingSprite = Array.Find (subSprites, item => item.name == "Character_Naked_88");
 				if(hidingSprite != null) {
