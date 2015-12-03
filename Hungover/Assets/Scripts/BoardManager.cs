@@ -458,7 +458,7 @@ public class BoardManager : MonoBehaviour {
 	void LayoutClothes(GameObject[] clothes, List<Room> rooms) {
 		
 		foreach(GameObject clothe in clothes) {
-			Utils.Print ("Placing... " + clothe.tag + " in one of " + rooms.Count + " rooms");
+			//Utils.Print ("Placing... " + clothe.tag + " in one of " + rooms.Count + " rooms");
 			Vector3 randomPosition = Vector3.zero;
 			do {
 				randomPosition = RandomPosition();
@@ -491,7 +491,7 @@ public class BoardManager : MonoBehaviour {
 				if(x >= biggestRoom.xRoomPosition + offset && x <= biggestRoom.xRoomPosition+biggestRoom.widthRoom - offset
 				   && ((y >= biggestRoom.yRoomPosition + offset && y <= biggestRoom.yRoomPosition + 2*offset) || 
 				    (y <= biggestRoom.yRoomPosition + biggestRoom.heightRoom - offset && y >= biggestRoom.yRoomPosition + biggestRoom.heightRoom - 2*offset)))
-				if(x % 3 == 0) {
+				if(x % 3 == 0 && y % 2 == 0) {
 					GameObject table = (GameObject)Instantiate(weddingTable, new Vector3(x, y), Quaternion.identity);
 					weddingTables.Add (table);
 				}
@@ -528,12 +528,12 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiates Player.
 		Instantiate (player, new Vector3 (Room.SmallestRoom().xRoomPosition + 1, Room.SmallestRoom().yRoomPosition + 1, 0f), Quaternion.identity);
-		
-		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		//LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
-		
-		//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
+
+        //Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
+        //LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
+
+        //Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
+        LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);

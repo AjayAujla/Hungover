@@ -35,12 +35,21 @@ public class Player : MonoBehaviour
 	private GameObject[] enemyList;
 	private BaseEnemy enemyScript;
 	AudioSource AlarmSound;
-	
-	private bool foundShirt = false;
+
+    [SerializeField]
+    private GameObject actionButtonE;
+    private GameObject actionButtonInstance;
+
+    private bool foundShirt = false;
 	private bool foundPants = false;
 	private bool foundShoes = false;
-	
-	public bool isInsideEnemyFieldOfView()
+    private bool hidden = false;
+
+    private GameObject objectHiddenIn;
+
+    private PlayerReskin playerReskinScript;
+
+    public bool isInsideEnemyFieldOfView()
 	{
 		return this.insideEnemyFieldOfView;
 	}
@@ -49,6 +58,11 @@ public class Player : MonoBehaviour
 	{
 		this.insideEnemyFieldOfView = insideEnemyFieldOfView;
 	}
+
+    public bool isHidden()
+    {
+        return this.hidden;
+    }
 	
 	void Start()
 	{
@@ -61,29 +75,34 @@ public class Player : MonoBehaviour
 		this.enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 		this.enemyScript = this.enemyList[0].GetComponent<BaseEnemy>();
 		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
-	}
-	
-	void Update()
-	{
-		if(Input.GetButtonDown ("Alarm") && !AlarmSound.isPlaying) {
-			AlarmSound.Play ();
-			Physics2D.IgnoreLayerCollision(11, 12);
-		}
-		
-		MoveCharacter();
-		
-		this.CooldownEmbarrassment();
-		this.embarrassmentMeter.setEmbarrassmentMeterValue(this.embarrassment);
-		
-		if(this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
-		{
+
+        this.playerReskinScript = this.GetComponent<PlayerReskin>();
+
+        //this.actionButtonE = GameObject.Find("ActionButtonE");
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Alarm") && !AlarmSound.isPlaying)
+        {
+            AlarmSound.Play();
+            Physics2D.IgnoreLayerCollision(11, 12);
+        }
+
+        MoveCharacter();
+
+        this.CooldownEmbarrassment();
+        this.embarrassmentMeter.setEmbarrassmentMeterValue(this.embarrassment);
+
+        if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
+        {
             Utils.Print("DEFEAT");
-			//Application.LoadLevel(Application.loadedLevel);
-			//GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
-		}
-	}
-	
-	private void CooldownEmbarrassment()
+            //Application.LoadLevel(Application.loadedLevel);
+            //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+        }
+    }
+
+    private void CooldownEmbarrassment()
 	{
 		bool canCooldown = false;
 		
@@ -151,17 +170,53 @@ public class Player : MonoBehaviour
 				Destroy(other.gameObject);
 			}
 		}
-		
-		if(other.gameObject.tag == "Exit")
-		{
-			if (this.foundShirt && this.foundPants && this.foundShoes)
-			{
+
+        if (other.gameObject.tag == "Exit")
+        {
+            if (this.foundShirt && this.foundPants && this.foundShoes)
+            {
                 Utils.Print("VICTORY");
             }
         }
 	}
-	
-	void MoveCharacter()
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Table")
+        {
+            if (this.actionButtonInstance == null)
+            {
+                this.actionButtonInstance = (GameObject)Instantiate(this.actionButtonE, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1.0f, other.gameObject.transform.position.z), Quaternion.identity);
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Table")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                this.objectHiddenIn = other.gameObject;
+                this.transform.position = new Vector3 (other.transform.position.x, other.transform.position.y - 0.25f, other.transform.position.z);
+                this.GetComponent<Animator>().enabled = false;
+                this.playerReskinScript.UnderTable();
+                this.hidden = true;
+                Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>(), true);
+                Destroy(this.actionButtonInstance);
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Table")
+        {
+            Destroy(this.actionButtonInstance);
+        }
+    }
+
+    void MoveCharacter()
 	{
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
@@ -184,17 +239,24 @@ public class Player : MonoBehaviour
 				mAudioSource.pitch = footStepsPitch;
 				mAudioSource.Play();
 			}
-		}
+
+            if (this.hidden)
+            {
+                this.GetComponent<Animator>().enabled = true;
+                Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), this.objectHiddenIn.GetComponent<Collider2D>(), false);
+                Destroy(this.actionButtonInstance);
+                this.hidden = false;
+            }
+        }
 		else
 		{
 			mAudioSource.Stop();
 		}
-		
-		SetAnimation(direction);
-		
-	}
-	
-	void SetAnimation(Vector2 direction)
+
+        SetAnimation(direction);
+    }
+
+    void SetAnimation(Vector2 direction)
 	{
 		int animationIdx = 0;
 		
