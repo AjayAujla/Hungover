@@ -23,12 +23,19 @@ public class Player : MonoBehaviour
 	private AudioSource mAudioSource;
 	private float footStepsPitch = 1.0f;
 	
-	private int embarrassment = 0;
+	private float embarrassment = 0.0f;
 	private EmbarrassmentMeter embarrassmentMeter;
 	private bool insideEnemyFieldOfView;
-	
-	private PlayerStats playerStats;
-	
+    [SerializeField]
+    [Range(1, 5)]
+    private int redZoneEmbarrassmentIncrement = 4;
+    [SerializeField]
+    [Range(1, 5)]
+    private int yellowZoneEmbarrassmentIncrement = 2;
+    [SerializeField]
+    [Range(0.5f, 5.0f)]
+    private float cooldownEmbarrassmentDecrement = 0.5f;
+
 	private float allowCooldownTime = 1.0f;
 	private float cooldownTimer;
 	
@@ -36,13 +43,16 @@ public class Player : MonoBehaviour
 	private BaseEnemy enemyScript;
 	AudioSource AlarmSound;
 
+    private PlayerStats playerStats;
+
     [SerializeField]
     private GameObject actionButtonE;
     private GameObject actionButtonInstance;
 
-    private bool foundShirt = false;
+	private bool foundBoxers = false;
 	private bool foundPants = false;
-	private bool foundShoes = false;
+    private bool foundShirt = false;
+    private bool foundShoes = false;
     private bool hidden = false;
 
     private GameObject objectHiddenIn;
@@ -96,10 +106,16 @@ public class Player : MonoBehaviour
 
         if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
         {
-            Utils.Print("DEFEAT");
+            Utils.Print("YOU DIED OF EMBARRASSMENT");
             //Application.LoadLevel(Application.loadedLevel);
             //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
         }
+
+        Debug.LogError("red zone embarrassment increment: " + this.redZoneEmbarrassmentIncrement);
+        Debug.LogError("yellow zone embarrassment increment: " + this.yellowZoneEmbarrassmentIncrement);
+        Debug.LogError("absolute reduction: " + this.absoluteReduction);
+        Debug.LogError("redzone - absolute reduction: " + (this.redZoneEmbarrassmentIncrement - this.absoluteReduction));
+        Debug.LogError("yellowzone - absolute reduction: " + (this.yellowZoneEmbarrassmentIncrement - this.absoluteReduction));
     }
 
     private void CooldownEmbarrassment()
@@ -126,10 +142,12 @@ public class Player : MonoBehaviour
 			this.cooldownTimer = this.allowCooldownTime;
 		}
 	}
-	
-	void OnTriggerEnter2D(Collider2D other)
+
+    private float absoluteReduction = 0.0f;
+
+    void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.layer == 9) // layer 9 is "Item"
+        if (other.gameObject.layer == 9) // layer 9 is "Item"
 		{   
 			// if it's a clothe (Boxers, Pants, Shirt, or Shoes), reskin player
 			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet" && other.gameObject.tag != "Can") {
@@ -151,27 +169,40 @@ public class Player : MonoBehaviour
 			if (clothe)
 			{
 				clothe.GetComponent<Image>().color = Color.white;   // set the item UI opacity to 1 (opaque)
-				if (other.gameObject.tag == "Pants")
-				{
-					this.foundPants = true;
-					playerStats.incrementExperience(30);
-				}
-				else if (other.gameObject.tag == "Shirt")
+                if (other.gameObject.tag == "Boxers")
+                {
+                    this.foundBoxers = true;
+                    if (!this.foundPants)
+                    {
+                        //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 4.0f / 10.0f; //0.4
+                    }
+                    playerStats.incrementExperience(15);
+                }
+                else if (other.gameObject.tag == "Pants")
+                {
+                    this.foundPants = true;
+                    //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 9.0f / 10.0f / 2.0f; //0.9
+
+                    playerStats.incrementExperience(30);
+                }
+                else if (other.gameObject.tag == "Shirt")
 				{
 					this.foundShirt = true;
-					playerStats.incrementExperience(30);
+                    //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 7.0f / 10.0f / 2.0f; //0.7
+                    playerStats.incrementExperience(30);
 				}
 				else if (other.gameObject.tag == "Shoes")
 				{
 					this.foundShoes = true;
-					playerStats.incrementExperience(30);
+                    //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 4.0f / 10.0f / 2.0f; //0.4
+                    playerStats.incrementExperience(30);
 				}
 				else
 				{
 					playerStats.incrementExperience(15);
 				}
 				Destroy(other.gameObject);  // remove the item object from the map
-			}
+            }
 			
 			// else, check if it is a beer can
 			if(other.gameObject.tag == "Can") {
@@ -295,13 +326,24 @@ public class Player : MonoBehaviour
 	
 	public void updateEmbarrassment(DetectionRange detectionRange)
 	{
-		if (detectionRange == DetectionRange.redZone)
+        if (detectionRange == DetectionRange.greenZone/* || (this.foundShirt && this.foundShirt && this.foundShoes)*/)
+        {
+            if (this.embarrassment > this.embarrassmentMeter.getMinimumEmbarrassmentValue())
+            {
+                this.embarrassment -= this.cooldownEmbarrassmentDecrement;
+            }
+            else
+            {
+                this.embarrassment = (int)this.embarrassmentMeter.getMinimumEmbarrassmentValue();
+            }
+        }
+        else if (detectionRange == DetectionRange.redZone)
 		{
 			this.insideEnemyFieldOfView = true;
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 			{
-				this.embarrassment += 4;
-			}
+                this.embarrassment += this.redZoneEmbarrassmentIncrement - this.absoluteReduction;
+            }
 			else
 			{
 				this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
@@ -312,22 +354,11 @@ public class Player : MonoBehaviour
 			this.insideEnemyFieldOfView = true;
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 			{
-				this.embarrassment += 2;
+				this.embarrassment += this.yellowZoneEmbarrassmentIncrement - this.absoluteReduction;
 			}
 			else
 			{
 				this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
-			}
-		}
-		else if (detectionRange == DetectionRange.greenZone)
-		{
-			if (this.embarrassment > this.embarrassmentMeter.getMinimumEmbarrassmentValue())
-			{
-				this.embarrassment -= 1;
-			}
-			else
-			{
-				this.embarrassment = (int)this.embarrassmentMeter.getMinimumEmbarrassmentValue();
 			}
 		}
 	}
