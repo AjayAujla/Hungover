@@ -126,7 +126,6 @@ public class BaseEnemy : MonoBehaviour
         if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight())
         {
             this.playerScript.updateEmbarrassment(this.playerDetectionRange);
-            //this.playerScript.setInsideEnemyFieldOfView(true);
         }
     }
 

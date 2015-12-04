@@ -8,6 +8,7 @@ public class PlayerReskin : MonoBehaviour {
 	private static string[] clothes = new string[4];
 	
 	private static int clothesNbr = 0;
+    private Player playerScript;
 
 	private enum SpriteSheetsEnum {
 		Character_Brown,
@@ -15,13 +16,12 @@ public class PlayerReskin : MonoBehaviour {
 		Character_Red,
 		Character_Yellow
 	}
-	
-	
-	
-	void Start() {
+
+    void Start() {
 		int SpriteSheetsEnumIdx = UnityEngine.Random.Range(0, 5);
 		spriteSheetName = ((SpriteSheetsEnum)SpriteSheetsEnumIdx).ToString();
-	}
+        this.playerScript = GameObject.Find("AshFlashem(Clone)").GetComponent<Player>();
+    }
 
 	public static void ChangeSprite(string clothe) {
 
@@ -38,10 +38,8 @@ public class PlayerReskin : MonoBehaviour {
 			spriteSheetName = s;
 			Utils.Print(s);
 		}
-
 	}
 	
-	// Update is called once per frame
 	void LateUpdate () {
 		
 		Sprite[] subSprites = Resources.LoadAll<Sprite>("SpriteSheets/Player/" + spriteSheetName + "/Character_Naked");
@@ -54,12 +52,12 @@ public class PlayerReskin : MonoBehaviour {
 				
 				if(newSprite)
 					renderer.sprite = newSprite;
-				
-			}
-			
+            }
 		}
-		
-		
-		
 	}
+
+    public void UnderTable()
+    {
+        this.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/hidden");
+    }
 }
