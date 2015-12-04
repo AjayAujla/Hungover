@@ -135,9 +135,19 @@ public class Player : MonoBehaviour
 			if(other.gameObject.tag != "Phone" && other.gameObject.tag != "Wallet" && other.gameObject.tag != "Can") {
 				PlayerReskin.ChangeSprite(other.gameObject.tag);
 			}
-			
-			// find the corresponding item UI (top-right corner)
-			GameObject clothe = GameObject.Find(other.gameObject.tag);
+
+            if (other.gameObject.tag == "Wallet")
+            {
+                float cashInWallet = Random.Range(0.0f, 5.0f);
+                if(cashInWallet > 1.0f)
+                {
+                    //play cha-ching sound when you get a lot of money
+                }
+                this.playerStats.incrementCash(cashInWallet);
+            }
+
+            // find the corresponding item UI (top-right corner)
+            GameObject clothe = GameObject.Find(other.gameObject.tag);
 			if (clothe)
 			{
 				clothe.GetComponent<Image>().color = Color.white;   // set the item UI opacity to 1 (opaque)
@@ -176,6 +186,10 @@ public class Player : MonoBehaviour
             if (this.foundShirt && this.foundPants && this.foundShoes)
             {
                 Utils.Print("VICTORY");
+            }
+            else
+            {
+                Utils.Print("Still missing some clothes.");
             }
         }
 	}
