@@ -7,11 +7,13 @@ public class PlayerStats : MonoBehaviour {
     private float cash;
     private int experience;
     private int beerCans;
+    private float timer = 0.1f * 60.0f; //60.0f is conversion to seconds. only modify minutes
 
     private Text[] playerStatText;
     private Text cashText;
     private Text experienceText;
     private Text beerCansText;
+    private Text timerText;
 
     public void setCash(float cash)
     {
@@ -40,6 +42,11 @@ public class PlayerStats : MonoBehaviour {
 		++this.beerCans;
 	}
 
+    public bool timerEnded()
+    {
+        return this.timer <= 0.0f;
+    }
+
     /**
      *  Acquiring handle on text components.
      */
@@ -49,6 +56,17 @@ public class PlayerStats : MonoBehaviour {
         this.cashText = this.playerStatText[0];
         this.experienceText = this.playerStatText[1];
         this.beerCansText = this.playerStatText[3];
+        this.timerText = this.playerStatText[4];
+
+        if (Application.loadedLevelName == "WeddingParty")
+        {
+            this.timerText.enabled = true;
+        }
+        else
+        {
+            this.gameObject.GetComponentsInChildren<Image>()[3].enabled = false;
+            this.timerText.enabled = false;
+        }
     }
 
     /**
@@ -59,5 +77,18 @@ public class PlayerStats : MonoBehaviour {
 		this.cashText.text = "$" + this.cash.ToString("F");
         this.experienceText.text = this.experience.ToString();
         this.beerCansText.text = this.beerCans.ToString();
+
+        if (Application.loadedLevelName == "WeddingParty")
+        {
+            this.timer -= Time.deltaTime;
+            string minutes = Mathf.Floor(this.timer / 60).ToString("00");
+            string seconds = (this.timer % 60).ToString("00");
+            this.timerText.text = minutes + ":" + seconds;
+
+            if (this.timerEnded())
+            {
+                this.timerText.text = "Time to Get Married!";
+            }
+        }
     }
 }
