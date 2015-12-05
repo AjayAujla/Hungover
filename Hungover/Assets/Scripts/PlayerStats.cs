@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerStats : MonoBehaviour {
+public class PlayerStats : MonoBehaviour
+{
 
     private float cash;
     private int experience;
@@ -25,22 +26,25 @@ public class PlayerStats : MonoBehaviour {
         this.experience = experience;
     }
 
-	public void incrementExperience(int exp) {
-		this.experience += exp;
-	}
+    public void incrementExperience(int exp)
+    {
+        this.experience += exp;
+    }
 
     public void setBeerCans(int beerCans)
     {
         this.beerCans = beerCans;
     }
 
-	public void incrementCash(float cash) {
-		this.cash += cash;
-	}
+    public void incrementCash(float cash)
+    {
+        this.cash += cash;
+    }
 
-	public void incrementBeerCans() {
-		++this.beerCans;
-	}
+    public void incrementBeerCans()
+    {
+        ++this.beerCans;
+    }
 
     public bool timerEnded()
     {
@@ -74,20 +78,29 @@ public class PlayerStats : MonoBehaviour {
      */
     void Update()
     {
-		this.cashText.text = "$" + this.cash.ToString("F");
+        this.cashText.text = "$" + this.cash.ToString("F");
         this.experienceText.text = this.experience.ToString();
         this.beerCansText.text = this.beerCans.ToString();
 
         if (Application.loadedLevelName == "WeddingParty")
         {
             this.timer -= Time.deltaTime;
-            string minutes = Mathf.Floor(this.timer / 60).ToString("00");
-            string seconds = (this.timer % 60).ToString("00");
-            this.timerText.text = minutes + ":" + seconds;
+
+            if (this.timer <= 3.0f)
+            {
+                this.timerText.color = Color.red;
+            }
 
             if (this.timerEnded())
             {
                 this.timerText.text = "Time to Get Married!";
+                GameObject.Find("AshFlashem(Clone)").GetComponent<Player>().PlayerDieOfEmbarrassment();
+            }
+            else
+            {
+                string minutes = Mathf.Floor(this.timer / 60).ToString("00");
+                string seconds = (this.timer % 60).ToString("00");
+                this.timerText.text = minutes + ":" + seconds;
             }
         }
     }
