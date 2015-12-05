@@ -56,6 +56,9 @@ public class OutlineEffect : MonoBehaviour
     Material[] originalEraseMaterials = new Material[1];
     int[] originalEraseLayers = new int[1];
 
+    [SerializeField]
+    private GameObject[] clothes = new GameObject[6];
+
 	void OnEnable()
 	{   
 		CreateMaterialsIfNeeded();
@@ -98,6 +101,10 @@ public class OutlineEffect : MonoBehaviour
 
 	void Start () 
 	{
+        foreach (GameObject clothing in this.clothes)
+        {
+            //this.outlineRenderers.Add(GameObject.Find(clothing.tag + "(Clone)").GetComponent<Renderer>());
+        }
         this.outlineRenderers.Add(GameObject.Find("AshFlashem(Clone)").GetComponent<Renderer>());
         CreateMaterialsIfNeeded();
 	}
