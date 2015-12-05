@@ -54,8 +54,9 @@ public class Player : MonoBehaviour
     private bool foundShirt = false;
     private bool foundShoes = false;
     private bool hidden = false;
+    private bool isFullyClothed = false;
 
-    private GameObject objectHiddenIn;
+    private GameObject objecthiddenInEnvironmentIn;
 
     private PlayerReskin playerReskinScript;
 
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
 		this.insideEnemyFieldOfView = insideEnemyFieldOfView;
 	}
 
-    public bool isHidden()
+    public bool ishiddenInEnvironment()
     {
         return this.hidden;
     }
@@ -110,12 +111,6 @@ public class Player : MonoBehaviour
             //Application.LoadLevel(Application.loadedLevel);
             //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
         }
-
-        Debug.LogError("red zone embarrassment increment: " + this.redZoneEmbarrassmentIncrement);
-        Debug.LogError("yellow zone embarrassment increment: " + this.yellowZoneEmbarrassmentIncrement);
-        Debug.LogError("absolute reduction: " + this.absoluteReduction);
-        Debug.LogError("redzone - absolute reduction: " + (this.redZoneEmbarrassmentIncrement - this.absoluteReduction));
-        Debug.LogError("yellowzone - absolute reduction: " + (this.yellowZoneEmbarrassmentIncrement - this.absoluteReduction));
     }
 
     private void CooldownEmbarrassment()
@@ -182,7 +177,6 @@ public class Player : MonoBehaviour
                 {
                     this.foundPants = true;
                     //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 9.0f / 10.0f / 2.0f; //0.9
-
                     playerStats.incrementExperience(30);
                 }
                 else if (other.gameObject.tag == "Shirt")
@@ -202,6 +196,11 @@ public class Player : MonoBehaviour
 					playerStats.incrementExperience(15);
 				}
 				Destroy(other.gameObject);  // remove the item object from the map
+
+                if (this.foundShirt && this.foundPants && this.foundShoes)
+                {
+                    this.isFullyClothed = true;
+                }
             }
 			
 			// else, check if it is a beer can
@@ -242,7 +241,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                this.objectHiddenIn = other.gameObject;
+                this.objecthiddenInEnvironmentIn = other.gameObject;
                 this.transform.position = new Vector3 (other.transform.position.x, other.transform.position.y - 0.25f, other.transform.position.z);
                 this.GetComponent<Animator>().enabled = false;
                 this.playerReskinScript.UnderTable();
@@ -288,7 +287,7 @@ public class Player : MonoBehaviour
             if (this.hidden)
             {
                 this.GetComponent<Animator>().enabled = true;
-                Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), this.objectHiddenIn.GetComponent<Collider2D>(), false);
+                Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), this.objecthiddenInEnvironmentIn.GetComponent<Collider2D>(), false);
                 Destroy(this.actionButtonInstance);
                 this.hidden = false;
             }
@@ -337,7 +336,7 @@ public class Player : MonoBehaviour
                 this.embarrassment = (int)this.embarrassmentMeter.getMinimumEmbarrassmentValue();
             }
         }
-        else if (detectionRange == DetectionRange.redZone)
+        else if (detectionRange == DetectionRange.redZone && !this.hidden && !this.isFullyClothed)
 		{
 			this.insideEnemyFieldOfView = true;
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
@@ -349,7 +348,7 @@ public class Player : MonoBehaviour
 				this.embarrassment = (int)this.embarrassmentMeter.getMaximumEmbarrassmentValue();
 			}
 		}
-		else if (detectionRange == DetectionRange.yellowZone)
+		else if (detectionRange == DetectionRange.yellowZone && !this.hidden && !this.isFullyClothed)
 		{
 			this.insideEnemyFieldOfView = true;
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
