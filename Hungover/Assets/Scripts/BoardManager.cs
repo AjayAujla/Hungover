@@ -6,6 +6,15 @@ using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour {
 	
+    void Awake()
+    {
+        //DontDestroyOnLoad(this);
+        if (GameObject.FindObjectsOfType(GetType()).Length > 1)
+        {
+            //Destroy(this.gameObject);
+        }
+    }
+
 	[Serializable]
 	public class Count
 	{
@@ -17,15 +26,6 @@ public class BoardManager : MonoBehaviour {
 			minimum = min;
 			maximum = max;
 		}
-		
-	}
-	
-	public enum Level {
-		Frosh,
-		Pool,
-		Dorm,
-		Office,
-		Wedding
 	}
 	
 	public class Room 
@@ -148,8 +148,6 @@ public class BoardManager : MonoBehaviour {
 	private Transform boardHolder; 
 	private List <Vector3> gridPositions = new List <Vector3> ();
 	
-	public Level currentLevel = Level.Wedding;
-	
 	public static List<Room> roomsList = new List<Room>();
 	
 	void InitialiseList () //Clears our list gridPositions and prepares it to generate a new board.
@@ -183,14 +181,14 @@ public class BoardManager : MonoBehaviour {
 		boardHolder = new GameObject ("Board").transform;
 		
 		//Room Generation
-		for(int i = 0; i < roomNumber; i++)
+		for(int i = 0; i < roomNumber; ++i)
 		{
 			Room r = new Room();
 			
 			r.widthRoom = Random.Range(this.minimumRoomWidth, this.maximumRoomWidth);
 			r.heightRoom = Random.Range(this.minimumRoomHeight, this.maximumRoomHeight);
 			
-			if(this.currentLevel == Level.Wedding && roomsList.Count == 0) {
+			if(Application.loadedLevelName == "WeddingParty" && roomsList.Count == 0) {
 				r.widthRoom = 13;
 				r.heightRoom = 18;
 			}
@@ -201,9 +199,9 @@ public class BoardManager : MonoBehaviour {
 			
 			if(!RoomCollides(r))
 			{
-				for(int x = r.xRoomPosition; x <= (r.xRoomPosition + r.widthRoom); x++)
+				for(int x = r.xRoomPosition; x <= (r.xRoomPosition + r.widthRoom); ++x)
 				{
-					for(int y = r.yRoomPosition; y <= (r.yRoomPosition + r.heightRoom); y++)
+					for(int y = r.yRoomPosition; y <= (r.yRoomPosition + r.heightRoom); ++y)
 					{
 						GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 						
@@ -228,15 +226,13 @@ public class BoardManager : MonoBehaviour {
 						{
 							//toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 						}
-						
+
 						if(toInstantiate != null) {
 							GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 							instance.transform.SetParent (boardHolder);	
 						}
-						
 					}
 				}
-				
 				roomsList.Add (r);
 			}	
 		}
@@ -336,49 +332,51 @@ public class BoardManager : MonoBehaviour {
 			{
 				while (xPath != roomsList[i+1].xCenterPos)
 				{
-					
-					// if you ran into a wall, place a door, else, place a floor tile.
-					if((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
+                    GameObject instance;
+                    // if you ran into a wall, place a door, else, place a floor tile.
+                    if ((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
 					{
-						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+						instance = (GameObject)Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                    }
+                    else
+					{
+						instance = (GameObject)Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
-					else
+                    instance.transform.SetParent (boardHolder);
+
+                    if (xPath < roomsList[i+1].xCenterPos)
 					{
-						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
-					}
-					
-					
-					if(xPath < roomsList[i+1].xCenterPos)
-					{
-						xPath++;
+						++xPath;
 					}
 					
 					else 
 					{
-						xPath--;
+						--xPath;
 					}
 				}
 				
 				while (yPath != roomsList[i+1].yCenterPos)
 				{
-					// if you ran into a wall, place a door, else, place a floor tile.
-					if((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
+                    GameObject instance;
+                    // if you ran into a wall, place a door, else, place a floor tile.
+                    if ((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
 					{
-						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
 					else
 					{
-						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
-					
-					if(yPath < roomsList[i+1].yCenterPos)
+                    instance.transform.SetParent (boardHolder);
+
+                    if (yPath < roomsList[i+1].yCenterPos)
 					{
-						yPath++;
+						++yPath;
 					}
 					
 					else 
 					{
-						yPath--;
+						--yPath;
 					}
 				}
 			}
@@ -386,47 +384,51 @@ public class BoardManager : MonoBehaviour {
 			{	
 				while (yPath != roomsList[i+1].yCenterPos)
 				{
-					// if you ran into a wall, place a door, else, place a floor tile.
-					if((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
+                    GameObject instance;
+                    // if you ran into a wall, place a door, else, place a floor tile.
+                    if ((yPath == (roomsList[i].yRoomPosition + roomsList[i].heightRoom) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom)) || (yPath == (roomsList[i].yRoomPosition) && xPath > (roomsList[i].xRoomPosition) && xPath < (roomsList[i].xRoomPosition + roomsList[i].widthRoom))  || (yPath == (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)) || (yPath == (roomsList[i+1].yRoomPosition) && xPath > (roomsList[i+1].xRoomPosition) && xPath < (roomsList[i+1].xRoomPosition + roomsList[i+1].widthRoom)))
 					{
-						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
 					else
 					{
-						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
-					
-					if(yPath < roomsList[i+1].yCenterPos)
+                    instance.transform.SetParent(boardHolder);
+
+                    if (yPath < roomsList[i+1].yCenterPos)
 					{
-						yPath++;
+						++yPath;
 					}
 					
 					else 
 					{
-						yPath--;
+						--yPath;
 					}
 				}
 				
 				while (xPath != roomsList[i+1].xCenterPos)
 				{
-					// if you ran into a wall, place a door, else, place a floor tile.
-					if((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
+                    GameObject instance;
+                    // if you ran into a wall, place a door, else, place a floor tile.
+                    if ((xPath == (roomsList[i].xRoomPosition + roomsList[i].widthRoom) && yPath > (roomsList[i].yRoomPosition) && yPath < (roomsList[i].yRoomPosition + roomsList[i].heightRoom)) || (xPath == (roomsList[i+1].xRoomPosition) && yPath > (roomsList[i+1].yRoomPosition) && yPath < (roomsList[i+1].yRoomPosition + roomsList[i+1].heightRoom)))
 					{
-						Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (enter, new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
 					else
 					{
-						Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
+                        instance = (GameObject)Instantiate (floorTiles[Random.Range (0,floorTiles.Length)], new Vector3 (xPath, yPath, 0f), Quaternion.identity);
 					}
-					
-					if(xPath < roomsList[i+1].xCenterPos)
+                    instance.transform.SetParent(boardHolder);
+
+                    if (xPath < roomsList[i+1].xCenterPos)
 					{
-						xPath++;
+						++xPath;
 					}
 					
 					else 
 					{
-						xPath--;
+						--xPath;
 					}
 				}
 			}
@@ -481,7 +483,7 @@ public class BoardManager : MonoBehaviour {
 			
 			Instantiate(clothe, randomPosition, Quaternion.identity);
 			
-			if(clothe.gameObject.tag == "Wallet" && currentLevel == Level.Wedding) {
+			if(Application.loadedLevelName == "WeddingParty" && clothe.gameObject.tag == "Wallet") {
 				// put wallet on dancefloor in the Wedding Level (muahaha)
 				GameObject wallet = GameObject.FindGameObjectWithTag("Wallet");
 				wallet.transform.position = danceFloor.transform.position;
@@ -530,7 +532,7 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 	
-	public void SetupScene (int level)
+	public void SetupScene ()
 	{
 		//Creates the outer walls and floor.
 		BoardSetup ();
@@ -549,11 +551,13 @@ public class BoardManager : MonoBehaviour {
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount.minimum, enemyCount.maximum);
-		
-		// Let's setup the wedding level, shall we?
-		if(currentLevel == Level.Wedding)
-			SetupUpWedding(roomsList);
-		
+
+        // Let's setup the wedding level, shall we?
+        if (Application.loadedLevelName == "WeddingParty")
+        {
+            SetupUpWedding(roomsList);
+        }
+
 		// After level is setup, place clothes 'randomly' on it
 		LayoutClothes(clotheTiles, roomsList);
 	}

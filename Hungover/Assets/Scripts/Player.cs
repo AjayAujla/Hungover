@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     private GameObject objecthiddenInEnvironmentIn;
 
     private PlayerReskin playerReskinScript;
+    private HeadsUpDisplay headsUpDisplayScript;
 
     public bool isInsideEnemyFieldOfView()
 	{
@@ -75,6 +76,14 @@ public class Player : MonoBehaviour
         return this.hidden;
     }
 	
+    void Awake()
+    {
+        if (GameObject.FindObjectsOfType(GetType()).Length > 1)
+        {
+            //Destroy(this.gameObject);
+        }
+    }
+
 	void Start()
 	{
 		mAnimator = GetComponent<Animator>();
@@ -88,6 +97,7 @@ public class Player : MonoBehaviour
 		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
 
         this.playerReskinScript = this.GetComponent<PlayerReskin>();
+        this.headsUpDisplayScript = GameObject.Find("HeadsUpDisplay").GetComponent<HeadsUpDisplay>();
 
         //this.actionButtonE = GameObject.Find("ActionButtonE");
     }
@@ -107,7 +117,8 @@ public class Player : MonoBehaviour
 
         if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
         {
-            Utils.Print("YOU DIED OF EMBARRASSMENT");
+            this.headsUpDisplayScript.PlayerDieOfEmbarrassment();
+            //Utils.Print("YOU DIED OF EMBARRASSMENT");
             //Application.LoadLevel(Application.loadedLevel);
             //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
         }
