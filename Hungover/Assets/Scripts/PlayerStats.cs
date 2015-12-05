@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     private float cash;
     private int experience;
     private int beerCans;
-    private float timer = 0.1f * 60.0f; //60.0f is conversion to seconds. only modify minutes
+    private float timer = 5.0f * 60.0f; //60.0f is conversion to seconds. only modify minutes
 
     private Text[] playerStatText;
     private Text cashText;
@@ -86,7 +86,7 @@ public class PlayerStats : MonoBehaviour
         {
             this.timer -= Time.deltaTime;
 
-            if (this.timer <= 3.0f)
+            if (this.timer <= 30.0f)
             {
                 this.timerText.color = Color.red;
             }
@@ -98,8 +98,8 @@ public class PlayerStats : MonoBehaviour
             }
             else
             {
-                string minutes = Mathf.Floor(this.timer / 60).ToString("00");
-                string seconds = (this.timer % 60).ToString("00");
+                string minutes = Mathf.Floor(this.timer / 60.0f).ToString("00");
+                string seconds = (this.timer % 60.0f).ToString("00");
                 this.timerText.text = minutes + ":" + seconds;
             }
         }
