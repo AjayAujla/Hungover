@@ -7,9 +7,9 @@ public class ReSkin : MonoBehaviour {
 	public string spriteSheetName;
 
 	private enum SpriteSheetsEnum {
-		Character_Brown,
+		Character_Black,
 		Character_Green,
-		Character_Red,
+		Character_Blue,
 		Character_Yellow
 	}
 
