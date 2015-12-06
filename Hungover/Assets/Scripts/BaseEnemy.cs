@@ -275,7 +275,7 @@ public class BaseEnemy : MonoBehaviour
                 if (rayDirection.sqrMagnitude <= this.redZoneRadius * this.redZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.redZone;
-					ewwManager.Ewwwwwwww();
+					ewwManager.Play();
                 }
                 else if (rayDirection.sqrMagnitude <= this.yellowZoneRadius * this.yellowZoneRadius)
                 {

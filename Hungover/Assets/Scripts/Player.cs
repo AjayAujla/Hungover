@@ -58,7 +58,10 @@ public class Player : MonoBehaviour
 
     private GameObject objecthiddenInEnvironmentIn;
 
-    private PlayerReskin playerReskinScript;
+	private PlayerReskin playerReskinScript;
+
+	// Ewwwww sound when player dies
+	EwwManager ewwManager;
 
     public bool isInsideEnemyFieldOfView()
 	{
@@ -88,6 +91,8 @@ public class Player : MonoBehaviour
 		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
 
         this.playerReskinScript = this.GetComponent<PlayerReskin>();
+		
+		ewwManager = GameObject.Find ("EwwManager").GetComponent<EwwManager>();
 
         //this.actionButtonE = GameObject.Find("ActionButtonE");
     }
@@ -108,6 +113,8 @@ public class Player : MonoBehaviour
         if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
         {
             Utils.Print("YOU DIED OF EMBARRASSMENT");
+			ewwManager.Ewwwwwwww();
+
             //Application.LoadLevel(Application.loadedLevel);
             //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
         }
