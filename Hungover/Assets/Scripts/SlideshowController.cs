@@ -64,7 +64,7 @@ public class SlideshowController : MonoBehaviour {
 		}
 
 		// load next level when last image is shown
-		if(currentImageIndex == images.Length)
+		if(currentImageIndex == images.Length - 1)
 			--currentImageIndex;
 
 	}
