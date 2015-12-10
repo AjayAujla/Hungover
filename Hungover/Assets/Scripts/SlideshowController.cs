@@ -11,7 +11,7 @@ public class SlideshowController : MonoBehaviour {
 	private float TOGGLE_TIMEOUT = 1f;	// change image every 3 seconds
 	private float currentTimeout = 0f;
 
-	private string nextLevel;
+	private int nextLevel;
 
 	private GameObject slideshowImage;
 	private GameObject cameraFlash;
@@ -30,9 +30,9 @@ public class SlideshowController : MonoBehaviour {
 		cameraFlash = GameObject.Find ("CameraFlash");
 		ResizeSpriteToScreen(cameraFlash, mainCamera);
 
-		// get level slideshow from PlayerPrefs
-		PlayerPrefs.SetString("SlideshowLevel", "PoolParty");
-		string slideshowLevel = PlayerPrefs.GetString("SlideshowLevel");
+		// get level slideshow from PlayerPrefs, which is set to previously won level in GameManager
+		string slideshowLevel = PlayerPrefs.GetString("CurrentLevel");
+		nextLevel = PlayerPrefs.GetInt("AfterSlideshowLeve");
 		
 		images = Resources.LoadAll<Sprite>("Slideshows/" + slideshowLevel);
 		Utils.Print("Loaded " + images.Length + " " + slideshowLevel + " images");
@@ -66,7 +66,7 @@ public class SlideshowController : MonoBehaviour {
 
 		// load next level when last image is shown
 		if(currentImageIndex == images.Length - 1)
-			--currentImageIndex;
+			Application.LoadLevel(nextLevel);
 
 	}
 

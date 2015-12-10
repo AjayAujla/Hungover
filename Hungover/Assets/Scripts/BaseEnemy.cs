@@ -49,9 +49,6 @@ public class BaseEnemy : MonoBehaviour
     private Player.DetectionRange playerDetectionRange;
 	private BoardManager boardManager;
 
-	// Eww sounds
-	EwwManager ewwManager;
-
     void Awake()
     {
         // If you want the min max values to update if the resolution changes
@@ -83,7 +80,6 @@ public class BaseEnemy : MonoBehaviour
 
         isDancing = false;
 
-		ewwManager = GameObject.Find ("EwwManager").GetComponent<EwwManager>();
     }
 
     void Update()
@@ -275,12 +271,10 @@ public class BaseEnemy : MonoBehaviour
                 if (rayDirection.sqrMagnitude <= this.redZoneRadius * this.redZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.redZone;
-					ewwManager.Play();
                 }
                 else if (rayDirection.sqrMagnitude <= this.yellowZoneRadius * this.yellowZoneRadius)
                 {
                     this.playerDetectionRange = Player.DetectionRange.yellowZone;
-					ewwManager.Play();
                 }
                 else
                 {
