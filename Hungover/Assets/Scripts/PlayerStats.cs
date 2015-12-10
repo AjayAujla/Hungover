@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        this.embarassmentMeter = this.transform.root.GetComponent<EmbarrassmentMeter>();
+        this.embarassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
     }
     /**
      *  Acquiring handle on text components.
@@ -130,33 +130,28 @@ public class PlayerStats : MonoBehaviour
         // 90 180 270 360 450
         if (this.experience >= 700)
         {
-            
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
         }
         else if (this.experience >= 600)
         {
-
         }
         else if (this.experience >= 500)
         {
-
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
         }
         else if (this.experience >= 400)
         {
-
         }
         else if (this.experience >= 300)
         {
-
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
         }
         else if (this.experience >= 200)
         {
-
         }
         else if (this.experience >= 100)
         {
-            float before = this.embarassmentMeter.getMaximumEmbarrassmentValue();
             this.embarassmentMeter.upgradeEmbarrassmentMeter();
-            Utils.Print("upgraded embarrassment from " + before +" to " + this.embarassmentMeter.getMaximumEmbarrassmentValue());
         }
     }
 
