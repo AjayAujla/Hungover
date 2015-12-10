@@ -53,12 +53,17 @@ public class Player : MonoBehaviour
 	private bool foundPants = false;
     private bool foundShirt = false;
     private bool foundShoes = false;
+	private bool foundPhone = false;
     private bool hidden = false;
     private bool isFullyClothed = false;
 
     private GameObject objecthiddenInEnvironmentIn;
 
+	// Ewwwww sound when player dies
+	EwwManager ewwManager;
+	
     private PlayerReskin playerReskinScript;
+    private HeadsUpDisplay headsUpDisplayScript;
 
     public bool isInsideEnemyFieldOfView()
 	{
@@ -75,6 +80,14 @@ public class Player : MonoBehaviour
         return this.hidden;
     }
 	
+    void Awake()
+    {
+        if (GameObject.FindObjectsOfType(GetType()).Length > 1)
+        {
+            //Destroy(this.gameObject);
+        }
+    }
+
 	void Start()
 	{
 		mAnimator = GetComponent<Animator>();
@@ -88,6 +101,11 @@ public class Player : MonoBehaviour
 		AlarmSound = (AudioSource)GameObject.Find("AlarmSound").GetComponent<AudioSource>();
 
         this.playerReskinScript = this.GetComponent<PlayerReskin>();
+		
+		ewwManager = GameObject.Find ("EwwManager").GetComponent<EwwManager>();
+	
+        this.headsUpDisplayScript = GameObject.Find("HeadsUpDisplay").GetComponent<HeadsUpDisplay>();
+
 
         //this.actionButtonE = GameObject.Find("ActionButtonE");
     }
@@ -107,10 +125,20 @@ public class Player : MonoBehaviour
 
         if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
         {
-            Utils.Print("YOU DIED OF EMBARRASSMENT");
-            //Application.LoadLevel(Application.loadedLevel);
-            //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+            this.PlayerDieOfEmbarrassment();
         }
+    }
+
+    public void PlayerDieOfEmbarrassment()
+    {
+		Utils.Print("YOU DIED OF EMBARRASSMENT");
+		ewwManager.Ewwwwwwww();
+		
+		this.headsUpDisplayScript.PlayerDieOfEmbarrassment();
+		
+		//Application.LoadLevel(Application.loadedLevel);
+		//GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+
     }
 
     private void CooldownEmbarrassment()
@@ -191,6 +219,12 @@ public class Player : MonoBehaviour
                     //this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 4.0f / 10.0f / 2.0f; //0.4
                     playerStats.incrementExperience(30);
 				}
+				else if (other.gameObject.tag == "Phone")
+				{
+					this.foundPhone = true;
+					//this.absoluteReduction += this.yellowZoneEmbarrassmentIncrement * 4.0f / 10.0f / 2.0f; //0.4
+					playerStats.incrementExperience(15);
+				}
 				else
 				{
 					playerStats.incrementExperience(15);
@@ -215,7 +249,16 @@ public class Player : MonoBehaviour
         {
             if (this.foundShirt && this.foundPants && this.foundShoes)
             {
-                Utils.Print("VICTORY");
+				// if already last level... reload it, else load next level
+				int nextLevel = Application.loadedLevel + 1 == Application.levelCount ? Application.loadedLevel : Application.loadedLevel + 1;
+				if(this.foundPhone) {
+					// set next level in PlayerPrefs, and load the slideshow
+					PlayerPrefs.SetInt("AfterSlideshowLevel", nextLevel);
+					Application.LoadLevel("Slideshow");
+				} else {
+                	Utils.Print("VICTORY");
+					Application.LoadLevel(nextLevel);
+				}
             }
             else
             {
@@ -342,6 +385,7 @@ public class Player : MonoBehaviour
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 			{
                 this.embarrassment += this.redZoneEmbarrassmentIncrement - this.absoluteReduction;
+				ewwManager.Play();
             }
 			else
 			{
@@ -354,6 +398,7 @@ public class Player : MonoBehaviour
 			if (this.embarrassment < this.embarrassmentMeter.getMaximumEmbarrassmentValue())
 			{
 				this.embarrassment += this.yellowZoneEmbarrassmentIncrement - this.absoluteReduction;
+				ewwManager.Play();
 			}
 			else
 			{

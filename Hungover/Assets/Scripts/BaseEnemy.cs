@@ -79,6 +79,7 @@ public class BaseEnemy : MonoBehaviour
         this.redZoneRadius = this.fieldOfViewRadius / 2.0f;
 
         isDancing = false;
+
     }
 
     void Update()
@@ -120,13 +121,21 @@ public class BaseEnemy : MonoBehaviour
 
         mAnimator.SetBool("is_dancing", isDancing);
 
-        ChangeDirection();
+        ChangeDirection(true);
         LimitPosition();
 
         if (this.PlayerInsideFieldOfView() && this.PlayerInLineOfSight())
         {
             this.playerScript.updateEmbarrassment(this.playerDetectionRange);
-        }
+
+			// find the vector pointing from our position to the target
+			Vector3 _direction = (player.transform.position - transform.position).normalized;
+			
+			// translate us over time according to speed until we are in the required rotation
+			transform.Translate(_direction * Time.deltaTime);
+		} else {
+			 speed = 2;
+		}
     }
 
     void MoveCharacter()
@@ -171,7 +180,19 @@ public class BaseEnemy : MonoBehaviour
         transform.position = pos;
     }
 
-    void ChangeDirection()
+	void OnCollisionEnter2D(Collision2D collision) {
+		if(collision.gameObject.tag == "OuterWall") {
+			ChangeDirection(false);
+		}
+	}
+
+	void OnCollisionStay2D(Collision2D collision) {
+		if(collision.gameObject.tag == "OuterWall") {
+			ChangeDirection(false);
+		}
+	}
+
+    void ChangeDirection(bool sameDirectionAllowed)
     {
         // Every few seconds, change direction
         // Note that newDirection could be the same as current one, on purpose
@@ -181,7 +202,11 @@ public class BaseEnemy : MonoBehaviour
         {
             int directionsIdx = UnityEngine.Random.Range(0, 4);
             Vector3 newDirection = directions[directionsIdx];
-            this.direction = newDirection;
+
+			if(!sameDirectionAllowed && this.direction == newDirection)
+				ChangeDirection(sameDirectionAllowed);
+            
+			this.direction = newDirection;
             mAnimator.SetInteger("move_direction", directionsIdx + 1);
             this.directionChangeTimer = UnityEngine.Random.Range(this.minimumDirectionChangeTimer, this.maximumDirectionChangeTimer);
 
