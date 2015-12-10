@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     private float cash;
     private int experience;
     private int beerCans;
-    private float timer = 5.0f * 60.0f; //60.0f is conversion to seconds. only modify minutes
+    private float timer = 1.0f * 60.0f; //60.0f is conversion to seconds. only modify minutes
 
     private Text[] playerStatText;
     private Text cashText;
