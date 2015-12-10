@@ -112,4 +112,44 @@ public class PlayerStats : MonoBehaviour
 		}
 	}
 
+    private void checkForUpgrades()
+    {
+        // maximum 145 exp per level (shirt, pants, shoes, boxers, phone, wallet)
+        // minimum 90 exp per level (shirt, pants, shoes)
+
+        // maximum 725 exp per game (5 levels)
+        // minimum 450 exp per game (5 levels)
+
+        // 145 290 435 580 725
+        // 90 180 270 360 450
+        if (this.experience >= 700)
+        {
+            
+        }
+        else if (this.experience >= 600)
+        {
+
+        }
+        else if (this.experience >= 500)
+        {
+
+        }
+        else if (this.experience >= 400)
+        {
+
+        }
+        else if (this.experience >= 300)
+        {
+
+        }
+        else if (this.experience >= 200)
+        {
+
+        }
+        else if (this.experience >= 100)
+        {
+
+        }
+    }
+
 }

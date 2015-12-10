@@ -89,4 +89,9 @@ public class EmbarrassmentMeter : MonoBehaviour
     {
         this.embarrassmentMeterSlider.value = value;
     }
+
+    public void upgradeEmbarrassmentMeter()
+    {
+        this.embarrassmentMeterSlider.maxValue *= 0.10f;
+    }
 }
