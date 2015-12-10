@@ -125,16 +125,20 @@ public class Player : MonoBehaviour
 
         if (this.embarrassment >= this.embarrassmentMeter.getMaximumEmbarrassmentValue())
         {
-			
-            Utils.Print("YOU DIED OF EMBARRASSMENT");
-			ewwManager.Ewwwwwwww();
-
-            this.headsUpDisplayScript.PlayerDieOfEmbarrassment();
-            //Utils.Print("YOU DIED OF EMBARRASSMENT");
-	
-            //Application.LoadLevel(Application.loadedLevel);
-            //GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+            this.PlayerDieOfEmbarrassment();
         }
+    }
+
+    public void PlayerDieOfEmbarrassment()
+    {
+		Utils.Print("YOU DIED OF EMBARRASSMENT");
+		ewwManager.Ewwwwwwww();
+		
+		this.headsUpDisplayScript.PlayerDieOfEmbarrassment();
+		
+		//Application.LoadLevel(Application.loadedLevel);
+		//GameObject.Find("GameManager").GetComponent<BoardManager>().SetupScene(1);
+
     }
 
     private void CooldownEmbarrassment()
