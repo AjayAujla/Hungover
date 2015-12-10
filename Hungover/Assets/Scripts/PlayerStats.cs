@@ -8,13 +8,15 @@ public class PlayerStats : MonoBehaviour
     private float cash;
     private int experience;
     private int beerCans;
-    private float timer = 0.1f * 60.0f; //60.0f is conversion to seconds. only modify minutes
+    private float timer = 5.0f * 60.0f; //60.0f is conversion to seconds. only modify minutes
 
     private Text[] playerStatText;
     private Text cashText;
     private Text experienceText;
     private Text beerCansText;
     private Text timerText;
+
+    private EmbarrassmentMeter embarassmentMeter;
 
     public void setCash(float cash)
     {
@@ -51,6 +53,10 @@ public class PlayerStats : MonoBehaviour
         return this.timer <= 0.0f;
     }
 
+    void Awake()
+    {
+        this.embarassmentMeter = this.transform.root.GetComponent<EmbarrassmentMeter>();
+    }
     /**
      *  Acquiring handle on text components.
      */
@@ -112,7 +118,7 @@ public class PlayerStats : MonoBehaviour
 		}
 	}
 
-    private void checkForUpgrades()
+    public void checkForUpgrades()
     {
         // maximum 145 exp per level (shirt, pants, shoes, boxers, phone, wallet)
         // minimum 90 exp per level (shirt, pants, shoes)
@@ -148,7 +154,9 @@ public class PlayerStats : MonoBehaviour
         }
         else if (this.experience >= 100)
         {
-
+            float before = this.embarassmentMeter.getMaximumEmbarrassmentValue();
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
+            Utils.Print("upgraded embarrassment from " + before +" to " + this.embarassmentMeter.getMaximumEmbarrassmentValue());
         }
     }
 

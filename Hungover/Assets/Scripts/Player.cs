@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
     private PlayerReskin playerReskinScript;
     private HeadsUpDisplay headsUpDisplayScript;
 
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     public bool isInsideEnemyFieldOfView()
 	{
 		return this.insideEnemyFieldOfView;
@@ -253,7 +258,8 @@ public class Player : MonoBehaviour
             {
 				// if already last level... reload it, else load next level
 				int nextLevel = Application.loadedLevel + 1 == Application.levelCount ? Application.loadedLevel : Application.loadedLevel + 1;
-				if(this.foundPhone) {
+                this.playerStats.checkForUpgrades();
+                if (this.foundPhone) {
 					// set next level in PlayerPrefs, and load the slideshow
 					PlayerPrefs.SetInt("NextLevel", nextLevel);
 					Application.LoadLevel("Slideshow");
