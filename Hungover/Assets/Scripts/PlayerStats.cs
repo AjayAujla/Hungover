@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
     private Text beerCansText;
     private Text timerText;
 
+    private EmbarrassmentMeter embarassmentMeter;
+
     public void setCash(float cash)
     {
         this.cash = cash;
@@ -51,6 +53,10 @@ public class PlayerStats : MonoBehaviour
         return this.timer <= 0.0f;
     }
 
+    void Awake()
+    {
+        this.embarassmentMeter = GameObject.Find("EmbarassmentMeter").GetComponent<EmbarrassmentMeter>();
+    }
     /**
      *  Acquiring handle on text components.
      */
@@ -104,4 +110,49 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+	void OnGUI()
+	{
+		if(this.timerEnded()) {
+			Application.LoadLevel("WeddingPartyEnd");
+		}
+	}
+
+    public void checkForUpgrades()
+    {
+        // maximum 145 exp per level (shirt, pants, shoes, boxers, phone, wallet)
+        // minimum 90 exp per level (shirt, pants, shoes)
+
+        // maximum 725 exp per game (5 levels)
+        // minimum 450 exp per game (5 levels)
+
+        // 145 290 435 580 725
+        // 90 180 270 360 450
+        if (this.experience >= 700)
+        {
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
+        }
+        else if (this.experience >= 600)
+        {
+        }
+        else if (this.experience >= 500)
+        {
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
+        }
+        else if (this.experience >= 400)
+        {
+        }
+        else if (this.experience >= 300)
+        {
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
+        }
+        else if (this.experience >= 200)
+        {
+        }
+        else if (this.experience >= 100)
+        {
+            this.embarassmentMeter.upgradeEmbarrassmentMeter();
+        }
+    }
+
 }

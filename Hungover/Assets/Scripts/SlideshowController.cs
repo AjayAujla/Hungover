@@ -32,7 +32,7 @@ public class SlideshowController : MonoBehaviour {
 
 		// get level slideshow from PlayerPrefs, which is set to previously won level in GameManager
 		string slideshowLevel = PlayerPrefs.GetString("CurrentLevel");
-		nextLevel = PlayerPrefs.GetInt("AfterSlideshowLeve");
+		nextLevel = PlayerPrefs.GetInt("NextLevel");
 		
 		images = Resources.LoadAll<Sprite>("Slideshows/" + slideshowLevel);
 		Utils.Print("Loaded " + images.Length + " " + slideshowLevel + " images");

@@ -493,7 +493,7 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 	
-	public void SetupUpWedding(List<Room> rooms)
+	public void SetupUpWedding()
 	{
 		BoardManager.Room biggestRoom = Room.GetBiggest();
 		
@@ -528,7 +528,8 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		// Place the Alarm switch near the entrance door
-		//		biggestRoom.
+		Vector2 biggestRoomCenter = biggestRoom.xyCenterPos;
+		Instantiate(alarmSwitch, new Vector2(biggestRoom.xyCenterPos.x, biggestRoom.yRoomPosition + 0.25f), Quaternion.identity);
 		
 	}
 	
@@ -555,7 +556,7 @@ public class BoardManager : MonoBehaviour {
         // Let's setup the wedding level, shall we?
         if (Application.loadedLevelName == "WeddingParty")
         {
-            SetupUpWedding(roomsList);
+            SetupUpWedding();
         }
 
 		// After level is setup, place clothes 'randomly' on it

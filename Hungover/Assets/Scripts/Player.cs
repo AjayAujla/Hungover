@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
     private PlayerReskin playerReskinScript;
     private HeadsUpDisplay headsUpDisplayScript;
 
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     public bool isInsideEnemyFieldOfView()
 	{
 		return this.insideEnemyFieldOfView;
@@ -112,12 +117,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Alarm") && !AlarmSound.isPlaying)
-        {
-            AlarmSound.Play();
-            Physics2D.IgnoreLayerCollision(11, 12);
-        }
-
         MoveCharacter();
 
         this.CooldownEmbarrassment();
@@ -245,15 +244,24 @@ public class Player : MonoBehaviour
 			}
 		}
 
+		if (other.gameObject.tag == "Alarm")
+		{
+			if (this.actionButtonInstance == null && !AlarmSound.isPlaying)
+			{
+				this.actionButtonInstance = (GameObject)Instantiate(this.actionButtonE, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1.0f, other.gameObject.transform.position.z), Quaternion.identity);
+			}
+		}
+
         if (other.gameObject.tag == "Exit")
         {
             if (this.foundShirt && this.foundPants && this.foundShoes)
             {
 				// if already last level... reload it, else load next level
 				int nextLevel = Application.loadedLevel + 1 == Application.levelCount ? Application.loadedLevel : Application.loadedLevel + 1;
-				if(this.foundPhone) {
+                this.playerStats.checkForUpgrades();
+                if (this.foundPhone) {
 					// set next level in PlayerPrefs, and load the slideshow
-					PlayerPrefs.SetInt("AfterSlideshowLevel", nextLevel);
+					PlayerPrefs.SetInt("NextLevel", nextLevel);
 					Application.LoadLevel("Slideshow");
 				} else {
                 	Utils.Print("VICTORY");
@@ -267,6 +275,26 @@ public class Player : MonoBehaviour
         }
 	}
 
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "Alarm")
+		{
+			if (Input.GetKeyDown(KeyCode.E) && !AlarmSound.isPlaying) {
+				AlarmSound.Play();
+				Physics2D.IgnoreLayerCollision(11, 12);	// ignores collision between enemies and tables
+			}
+		}
+
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "Alarm")
+		{
+				Destroy(this.actionButtonInstance);
+		}
+	}
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Table")
@@ -276,6 +304,7 @@ public class Player : MonoBehaviour
                 this.actionButtonInstance = (GameObject)Instantiate(this.actionButtonE, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1.0f, other.gameObject.transform.position.z), Quaternion.identity);
             }
         }
+
     }
 
     void OnCollisionStay2D(Collision2D other)
